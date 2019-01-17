@@ -59,3 +59,19 @@ else if ($page === 'updateUser') {
 	$userController = new UserController();
 	$userController->updateUser();
 }
+
+else if ($page === 'connectUser') {
+
+	
+	if ($_POST['pseudo'] = $pseudo AND $_POST['password'] = $password) {
+	
+	
+	$_SESSION['pseudo'] = $_POST['pseudo'];
+	$_SESSION['password'] = $_POST['password'];
+}
+
+	$userController = new UserController();
+	$userController->connectUser();
+
+
+}

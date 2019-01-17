@@ -56,4 +56,12 @@ class UserController {
 		$users = $userRepo->getUsers();
 		require('../view/affichageAccueil.php');
 	}
+
+	function connectUser()
+	{
+		$userRepo = new UserRepository();
+		$userRepo->connectUser();
+		$users = $userRepo->getUsers();
+		require('../view/connectUser.php');
+	}
 }
