@@ -10,7 +10,7 @@
         <h1>Se Connecter</h1>
 
 
-		<form method="post" action="index.php?page=connectUser">
+		<form method="post" action="index.php?page=connected.php">
 
 			<label for="pseudo">Pseudo : </label>
 			<input type="text" name="pseudo" />
