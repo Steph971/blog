@@ -61,14 +61,10 @@ else if ($page === 'updateUser') {
 }
 
 else if ($page === 'connectUser') {
-
 	
-	if ($_POST['pseudo'] = $pseudo AND $_POST['password'] = $password) {
-	
-	
-	$_SESSION['pseudo'] = $_POST['pseudo'];
-	$_SESSION['password'] = $_POST['password'];
-}
+	$_SESSION['id'] = $_SESSION['id'];
+	$_SESSION['pseudo'] = $_SESSION['pseudo'];
+	$_SESSION['password'] = $_SESSION['password'];
 
 	$userController = new UserController();
 	$userController->connectUser();
