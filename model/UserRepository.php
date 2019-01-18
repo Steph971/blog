@@ -89,7 +89,7 @@ class UserRepository extends Connect {
 		$req->bindParam(':password', $_SESSION['password'], \PDO::PARAM_STR);
 		$req->bindParam(':id', $_SESSION['id'], \PDO::PARAM_INT);
 		$req->execute(array(
-			'pseudo' => $pseudo));
+			'pseudo' => $_SESSION['pseudo']));
 		$connect = $req->fetch();
 	}
 }
