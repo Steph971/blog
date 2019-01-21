@@ -10,8 +10,11 @@
 
 
 		<?php
+            echo 'bonjour';
+
 		if(isset($_SESSION['id']) AND isset($_SESSION['pseudo'])) {
 			echo 'bonjour' . $_SESSION['pseudo'];
+            echo 'bonjour';
 		}
 		?>
 
