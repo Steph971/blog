@@ -61,18 +61,19 @@ else if ($page === 'updateUser') {
 }
 
 else if ($page === 'connectUser') {
-	
-	$_SESSION['id'] = $_SESSION['id'];
-	$_SESSION['pseudo'] = $_SESSION['pseudo'];
-	$_SESSION['password'] = $_SESSION['password'];
 
 	$userController = new UserController();
 	$userController->connectUser();
-
-		if(isset($_SESSION['id']) AND $_SESSION['pseudo'] === TRUE) {
-			echo 'bonjour' . $_SESSION['pseudo'];
-			require('../view/connected.php');
-		}
-
-
 }
+
+else if ($page === 'connected') {
+
+	$_SESSION['pseudo'] = $_POST['pseudo'];
+	$_SESSION['password'] = $_POST['password'];
+
+	$userController = new UserController();
+	$userController->connected();
+}
+
+
+
