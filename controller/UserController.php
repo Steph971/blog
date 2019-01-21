@@ -59,9 +59,21 @@ class UserController {
 
 	function connectUser()
 	{
-		$userRepo = new UserRepository();
-		$userRepo->connectUser();
-		$users = $userRepo->getUsers();
 		require('../view/connectUser.php');
+	}
+
+	function connected()
+	{
+		$userRepo = new UserRepository();
+		$user = $userRepo->connectUser();
+
+		if($user){
+
+			require ('../view/connected.php');
+		}
+
+		else {
+			require ('../view/connectUser.php');
+		}
 	}
 }
