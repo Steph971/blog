@@ -84,13 +84,13 @@ class UserRepository extends Connect {
 	{
 		$db = $this->getDb();
 
-		$req = $db->prepare('SELECT * FROM user WHERE pseudo = :pseudo');
+		$req = $db->prepare('SELECT COUNT(*) FROM user WHERE pseudo = :pseudo AND password = :password');
 		$req->bindParam(':pseudo', $_SESSION['pseudo'], \PDO::PARAM_STR);
 		$req->bindParam(':password', $_SESSION['password'], \PDO::PARAM_STR);
-		$req->bindParam(':id', $_SESSION['id'], \PDO::PARAM_INT);
-		$req->execute(array(
-			'pseudo' => $_SESSION['pseudo']));
+		$req->execute();
 		$connect = $req->fetch();
+
+		return $connect;
 	}
 }
 
