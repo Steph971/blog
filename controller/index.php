@@ -69,5 +69,10 @@ else if ($page === 'connectUser') {
 	$userController = new UserController();
 	$userController->connectUser();
 
+		if(isset($_SESSION['id']) AND $_SESSION['pseudo'] === TRUE) {
+			echo 'bonjour' . $_SESSION['pseudo'];
+			require('../view/connected.php');
+		}
+
 
 }
