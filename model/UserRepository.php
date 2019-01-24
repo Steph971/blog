@@ -1,5 +1,5 @@
 <?php
-require('Repository.php');
+require_once('Repository.php');
 require('User.php');
 
 class UserRepository extends Connect {
