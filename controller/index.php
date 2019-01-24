@@ -1,5 +1,6 @@
 <?php
 require('UserController.php');
+require('PostController.php');
 
 if (isset($_GET['page']) && !empty($_GET['page'])) {
 	
@@ -74,6 +75,25 @@ else if ($page === 'connected') {
 	$userController = new UserController();
 	$userController->connected();
 }
+
+else if ($page === 'listPosts') {
+	
+	$postController = new PostController();
+	$postController->listPosts();
+
+}
+
+else if ($page === 'addPost') {
+
+	$_SESSION['title'] = $_POST['title'];
+	$_SESSION['content'] = $_POST['content'];
+
+	
+	$postController = new PostController();
+	$postController->addPost();
+
+}
+
 
 
 
