@@ -8,13 +8,25 @@
         
     <body>
 
-
+        <h1>
 		<?php
 
 		if(isset($_SESSION['pseudo'])) {
-			echo 'bonjour' . $_SESSION['pseudo'];
+			echo 'Bonjour ' .  $_SESSION['pseudo'];
 		}
 		?>
+    </h1>
+
+        <h2>Ajouter un article:</h2>
+
+        <form method="POST" action="index.php?page=addPost">
+           <p> <label for="title">Titre: </label>
+            <input type="text" name="title"></p>
+            <label for="content">Contenu:</label>
+            <textarea name="content"></textarea>
+            <input type="submit">
+
+        </form>
 
 		
     </body>
