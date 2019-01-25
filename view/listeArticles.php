@@ -19,6 +19,8 @@
 				<h3>
 					<?= htmlspecialchars($article['title']); ?>
                     le <?= htmlspecialchars($article['date_cont']); ?></br>
+
+                    Auteur : <?= $_SESSION['pseudo']; ?>
 				</h3>
 				
 				<p>
