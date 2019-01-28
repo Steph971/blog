@@ -20,7 +20,7 @@
 					<?= htmlspecialchars($article['title']); ?>
                     le <?= htmlspecialchars($article['date_cont']); ?></br>
 
-                    Auteur : <?= $_SESSION['pseudo']; ?>
+                    Auteur : <?= $article['author']; ?>
 				</h3>
 				
 				<p>
