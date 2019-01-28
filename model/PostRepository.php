@@ -29,18 +29,13 @@ class PostRepository extends Connect {
 	{
 		$db = $this->getDb();
 
-		$req = $db->prepare('INSERT INTO posts(title, content, date_cont) VALUES(:title, :content, NOW())');
+		var_dump($_SESSION['pseudo']);
+
+		$req = $db->prepare('INSERT INTO posts(title, content, author, date_cont) VALUES(:title, :content, :author, NOW())');
 		$req->bindParam(':title', $_SESSION['title'], \PDO::PARAM_STR);
 		$req->bindParam(':content', $_SESSION['content'], \PDO::PARAM_STR);
+		$req->bindParam(':author', $_SESSION['pseudo'], \PDO::PARAM_STR);
 		$req->execute();
-
-		$req = ('SELECT u.nom nom_user, p.content content_post, p.title title_post
-
-				FROM posts p
-
-				INNER JOIN user u
-
-				ON p.id_user = u.id');
 		
 	}
 	
