@@ -22,6 +22,21 @@ class PostController {
 		require('../view/listeArticles.php');
 		
 	}
+
+	function selectPost() {
+
+		$postRepo = new PostRepository();
+		$post = $postRepo->selectPost();
+		require('../view/selectPost.php');
+	}
+
+	function updatePost() {
+
+		$postRepo = new PostRepository();
+		$postRepo->updatePost();
+		$posts = $postRepo->getPosts();
+		require('../view/listeArticles.php');
+	}
 	
 	
 }
