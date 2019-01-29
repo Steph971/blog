@@ -72,7 +72,7 @@ class UserRepository extends Connect {
 	{
 
 		$db = $this->getDb();
-
+		
 		$req = $db->prepare('UPDATE user SET pseudo=:pseudo, password=:password WHERE id=:id');
 		$req->bindParam(':pseudo', $_SESSION['pseudo'], \PDO::PARAM_STR);
 		$req->bindParam(':password', $_SESSION['password'], \PDO::PARAM_STR);
