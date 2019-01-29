@@ -26,6 +26,7 @@
 				<p>
 					<?= htmlspecialchars($article['content']); ?></br>
                     </br>
+                    <a href="index.php?page=selectPost&amp;id=<?=$article['id']?>">Modifier</a>
 				</p>
 			</div> 
 		
