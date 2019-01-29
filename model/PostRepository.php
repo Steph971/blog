@@ -29,8 +29,6 @@ class PostRepository extends Connect {
 	{
 		$db = $this->getDb();
 
-		var_dump($_SESSION['pseudo']);
-
 		$req = $db->prepare('INSERT INTO posts(title, content, author, date_cont) VALUES(:title, :content, :author, NOW())');
 		$req->bindParam(':title', $_SESSION['title'], \PDO::PARAM_STR);
 		$req->bindParam(':content', $_SESSION['content'], \PDO::PARAM_STR);
@@ -38,7 +36,36 @@ class PostRepository extends Connect {
 		$req->execute();
 		
 	}
-	
+
+	function selectPost()
+	{
+		$db = $this->getDb();
+		$req = $db->prepare('SELECT * FROM posts WHERE id=:id');
+		$req->bindParam(':id', $_SESSION['id'], \PDO::PARAM_INT);
+		$req->execute();
+
+		$posts = [];
+
+		while($data = $req-> fetch()) {
+
+			$posts[] = $data;
+		}
+
+		$req->closeCursor();
+
+		return $posts[0];
+
+	}
+
+	function updatePost()
+	{
+		$db = $this->getDb();
+		$req = $db->prepare('UPDATE posts SET title=:title,content=:content,date_cont= NOW() WHERE id=:id');
+		$req->bindParam(':title', $_SESSION['title'], \PDO::PARAM_STR);
+		$req->bindParam(':content', $_SESSION['content'], \PDO::PARAM_STR);
+		$req->bindParam(':id', $_SESSION['id'], \PDO::PARAM_STR);
+		$req->execute();
+	}
 
 }
 
