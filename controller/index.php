@@ -94,6 +94,21 @@ else if ($page === 'addPost') {
 
 }
 
+else if ($page === 'selectPost') {
+
+	$_SESSION['id'] = $_GET['id'];
+	$postController = new PostController();
+	$postController->selectPost();
+}
+
+else if ($page === 'updatePost') {
+
+	$_SESSION['title'] = $_POST['title'];
+	$_SESSION['content'] = $_POST['content'];
+	$postController = new PostController();
+	$postController->updatePost();
+}
+
 
 
 
