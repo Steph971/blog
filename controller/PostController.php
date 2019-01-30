@@ -26,7 +26,7 @@ class PostController {
 	function selectPost() {
 
 		$postRepo = new PostRepository();
-		$post = $postRepo->selectPost();
+		$article = $postRepo->selectPost();
 		require('../view/selectPost.php');
 	}
 
@@ -38,5 +38,19 @@ class PostController {
 		require('../view/listeArticles.php');
 	}
 	
+	function deletePost() {
+
+		$postRepo = new PostRepository();
+		$postRepo->deletePost();
+		$posts = $postRepo->getPosts();
+		require('../view/listeArticles.php');
+	}
+
+	function deconnexion()
+	{
+
+		require('../view/deconnexion.php');
+		
+	}
 	
 }
