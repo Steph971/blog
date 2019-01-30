@@ -10,7 +10,7 @@
         
         <h1>
 		<?php
-
+        
 		if(isset($_SESSION['pseudo'])) {
 			echo 'Bonjour ' .  $_SESSION['pseudo'];
 		}
@@ -28,6 +28,8 @@
             <input type="submit">
 
         </form>
+
+        <a href="../view/deconnexion.php"><em>Déconnexion</em></a>
 
 		
     </body>
