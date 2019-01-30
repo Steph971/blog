@@ -76,4 +76,11 @@ class UserController {
 			require ('../view/connectUser.php');
 		}
 	}
+
+	function deconnexion()
+	{
+
+		require('../view/deconnexion.php');
+		
+	}
 }
