@@ -26,6 +26,8 @@
             <textarea name="content"></textarea>
             <input type="submit">
 
+           <p><a href="../view/deconnexion.php"><em>Déconnexion</em></a></p>
+
         </form>
 
 		
