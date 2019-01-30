@@ -109,6 +109,21 @@ else if ($page === 'updatePost') {
 	$postController->updatePost();
 }
 
+else if ($page === 'deletePost') {
+
+	$_SESSION['id'] = $_GET['id'];
+	$postController = new PostController();
+	$postController->deletePost();
+
+}
+
+else if ($page === 'deconnexion') {
+	
+	$_SESSION['pseudo'] = $_GET['pseudo'];
+	$userController = new UserController();
+	$userController->deconnexion();
+	
+}
 
 
 
