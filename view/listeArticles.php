@@ -26,7 +26,8 @@
 				<p>
 					<?= htmlspecialchars($article['content']); ?></br>
                     </br>
-                    <a href="index.php?page=selectPost&amp;id=<?=$article['id']?>">Modifier</a>
+                    <a href="index.php?page=selectPost&amp;id=<?=$article['id']?>"><em>Modifier</em></a>
+                    <a href="index.php?page=deletePost&amp;id=<?=$article['id']?>"><em>Supprimer</em></a>
 				</p>
 			</div> 
 		
