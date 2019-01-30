@@ -63,8 +63,17 @@ class PostRepository extends Connect {
 		$req = $db->prepare('UPDATE posts SET title=:title,content=:content,date_cont= NOW() WHERE id=:id');
 		$req->bindParam(':title', $_SESSION['title'], \PDO::PARAM_STR);
 		$req->bindParam(':content', $_SESSION['content'], \PDO::PARAM_STR);
-		$req->bindParam(':id', $_SESSION['id'], \PDO::PARAM_STR);
+		$req->bindParam(':id', $_SESSION['id'], \PDO::PARAM_INT);
 		$req->execute();
+	}
+
+	function deletePost()
+	{
+		$db = $this->getDb();
+		$req = $db->prepare('DELETE FROM posts WHERE id=:id');
+		$req->bindParam(':id', $_SESSION['id'], \PDO::PARAM_INT);
+		$req->execute();
+
 	}
 
 }
