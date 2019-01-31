@@ -13,7 +13,9 @@
 
 		if(isset($_SESSION['pseudo'])) {
 			echo 'Bonjour ' .  $_SESSION['pseudo'];
+
 		}
+
 		?>
     </h1>
 
