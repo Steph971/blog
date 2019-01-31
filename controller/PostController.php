@@ -45,12 +45,5 @@ class PostController {
 		$posts = $postRepo->getPosts();
 		require('../view/listeArticles.php');
 	}
-
-	function deconnexion()
-	{
-
-		require('../view/deconnexion.php');
-		
-	}
 	
 }
