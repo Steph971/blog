@@ -7,17 +7,8 @@
     </head>
         
     <body>
-        
-        <h1>
-		<?php
-        
-		if(isset($_SESSION['pseudo'])) {
-			echo 'Bonjour ' .  $_SESSION['pseudo'];
-		}
-		?>
-    </h1>
 
-        <h2>Modifier l'article:</h2>
+        <h1>Modifier l'article:</h1>
 
         <form method="POST" action="index.php?page=updatePost">
            <p> <label for="title">Titre: </label>
