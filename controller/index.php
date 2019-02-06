@@ -1,6 +1,7 @@
 <?php
 require('UserController.php');
 require('PostController.php');
+require('CommentController.php');
 
 if (isset($_GET['page']) && !empty($_GET['page'])) {
 	
@@ -61,11 +62,6 @@ else if ($page === 'updateUser') {
 	$userController->updateUser();
 }
 
-else if ($page === 'connectUser') {
-
-	$userController = new UserController();
-	$userController->connectUser();
-}
 
 else if ($page === 'connected') {
 
@@ -119,11 +115,28 @@ else if ($page === 'deletePost') {
 
 else if ($page === 'deconnexion') {
 	
-	$_SESSION['pseudo'] = $_GET['pseudo'];
 	$userController = new UserController();
 	$userController->deconnexion();
 	
 }
+
+else if ($page === 'listComments') {
+
+	$_SESSION['id'] = $_GET['id'];
+
+	$commentController = new CommentController();
+	$commentController->listComments();
+
+}
+
+else if ($page === 'addComment') {
+
+	$_SESSION['message'] = $_POST['message'];
+
+	$commentController = new CommentController();
+	$commentController->addComment();	
+}
+
 
 
 
