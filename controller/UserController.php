@@ -57,17 +57,13 @@ class UserController {
 		require('../view/affichageAccueil.php');
 	}
 
-	function connectUser()
-	{
-		require('../view/connectUser.php');
-	}
 
 	function connected()
 	{
 		$userRepo = new UserRepository();
 		$user = $userRepo->connectUser();
 
-		if($user){
+		if($user === "1"){
 
 			require ('../view/connected.php');
 		}
@@ -80,7 +76,10 @@ class UserController {
 	function deconnexion()
 	{
 
-		require('../view/deconnexion.php');
+		unset($_SESSION['pseudo']);
+		unset($_SESSION['password']);
+
+		require('../view/connectUser.php');
 		
 	}
 }
