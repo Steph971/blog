@@ -90,7 +90,7 @@ class UserRepository extends Connect {
 		$req->execute();
 		$connect = $req->fetch();
 
-		return $connect;
+		return $connect[0];
 	}
 }
 
