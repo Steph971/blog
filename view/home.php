@@ -11,7 +11,7 @@
 
         <a href="index.php?page=listUsers">Voir la liste des utilisateurs</a>
         <a href="index.php?page=subscribe">S'inscrire</a>
-        <a href="index.php?page=connectUser">Connexion</a>
+        <a href="index.php?page=connected">Connexion</a>
         <a href="index.php?page=listPosts">Articles</a>
 		
     </body>
