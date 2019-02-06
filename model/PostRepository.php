@@ -23,6 +23,19 @@ class PostRepository extends Connect {
 
 		return $posts;
 	}
+
+	function getPost()
+	{
+		$db = $this->getDb();
+
+		$req = $db->prepare('SELECT * FROM posts WHERE id=:id');
+		$req->execute();
+		
+		$posts = [];
+		
+
+		return $post;
+	}
 	
 		
 	function addPost()
