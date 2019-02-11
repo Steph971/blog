@@ -137,6 +137,16 @@ else if ($page === 'addComment') {
 	$commentController->addComment();	
 }
 
+else if ($page === 'getPost') {
+
+	$_SESSION['id'] = $_GET['id'];
+	
+	$postController = new PostController();
+	$postController->getPost();
+	
+}
+
+
 
 
 
