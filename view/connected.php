@@ -19,6 +19,8 @@
 		?>
     </h1>
 
+    <a href="index.php?page=home">Page d'accueil</a>
+
         <h2>Ajouter un article:</h2>
 
         <form method="POST" action="index.php?page=addPost">
