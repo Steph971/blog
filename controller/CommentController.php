@@ -3,13 +3,13 @@ require('../model/CommentRepository.php');
 
 class CommentController {
 	
-	function listComments() {
-		
+	
+	function getComments() {
+
 		$commentRepo = new CommentRepository();
-		$comments = $commentRepo->getComment();
-		
+		$comment = $commentRepo->getComments();
+
 		require('../view/afficheArticle.php');
-		
 	}
 	
 	function addComment() {
@@ -17,10 +17,18 @@ class CommentController {
 		$commentRepo = new CommentRepository();
 		$commentRepo->addComment();
 		
-		$Comments = $commentRepo->getComment();
+		$comments = $commentRepo->getComments();
 		
-		require('../view/comArticles.php');
-		
+		require('../view/afficheArticle.php');
+	}
+
+	function getCommentsByArticle(){
+
+
+		$commentRepo = new CommentRepository();
+		$comments = $commentRepo->getCommentsByArticle();
+
+		require('../view/afficheArticle.php');
 	}
 }
 
