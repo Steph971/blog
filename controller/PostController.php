@@ -1,5 +1,6 @@
 <?php
 require('../model/PostRepository.php');
+require('../model/CommentRepository.php');
 
 class PostController {
 	
@@ -12,6 +13,16 @@ class PostController {
 		
 	}
 	
+	function getpost() {
+
+		$postRepo = new PostRepository();
+		$post = $postRepo->getPost();
+		$commentRepo = new CommentRepository();
+		$comments = $commentRepo->getCommentsByArticle();
+		
+		require('../view/afficheArticle.php');
+
+	}
 	function addPost() {
 		
 		$postRepo = new PostRepository();
