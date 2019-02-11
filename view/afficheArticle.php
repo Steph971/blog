@@ -7,34 +7,30 @@
     </head>
         
     <body>
-      
-        <?php
-        foreach($post as $article)
-        {
-        ?>
-		
 			<div class="post">
 				<h3>
-					<a href="#"><?= htmlspecialchars($article['title']); ?></a>
-                    le <?= htmlspecialchars($article['date_cont']); ?></br>
+					<?= htmlspecialchars($post['title']); ?>
+                    le <?= htmlspecialchars($post['date_cont']); ?></br>
 
-                    Auteur : <?= $article['author']; ?>
+                    Auteur : <?= $post['author']; ?>
 				</h3>
 				
 				<p>
-					<?= htmlspecialchars($article['content']); ?></br>
+					<?= htmlspecialchars($post['content']); ?></br>
                     </br>
 				</p>
 			</div> 
-		
-        <?php
-        }
-        ?>
 
         <h2>Commentaires:</h2>
+
+            <?php
+            var_dump($comment);
+            foreach ($comments as $comment) {
+            
+            ?>
             <div>
-                <?= htmlspecialchars($article['author']);?></br>
-                <?= htmlspecialchars($article['message']);?>
+                <?= htmlspecialchars($comment['author']);?></br>
+                <?= htmlspecialchars($comment['message']);?>
             </div>
 
             <h3>Ajouter un commentaire:</h3>
@@ -46,11 +42,9 @@
                     </form>
                 </div>
 
-
-
-
-
-
+            <?php
+            }
+            ?>
 		
     </body>
 </html>
