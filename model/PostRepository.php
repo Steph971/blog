@@ -29,12 +29,18 @@ class PostRepository extends Connect {
 		$db = $this->getDb();
 
 		$req = $db->prepare('SELECT * FROM posts WHERE id=:id');
-		$req->bindParam(':id', $_GET['id'], \PDO::PARAM_INT);
+		$req->bindParam(':id', $_SESSION['id_post'], \PDO::PARAM_INT);
 		$req->execute();
 
 		$post = [];
 		
-		$post = $req->fetch();
+		while($data = $req-> fetch()) {
+			
+			$post[] = $data;
+			
+		}
+		
+		$req->closeCursor();
 		
 
 		return $post[0];
