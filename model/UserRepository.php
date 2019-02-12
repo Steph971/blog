@@ -92,5 +92,18 @@ class UserRepository extends Connect {
 
 		return $connect[0];
 	}
+
+	function getConnectUser() {
+
+		$db = $this->getDb();
+
+		$req = $db->prepare('SELECT id FROM user WHERE pseudo=:pseudo');
+		$req->bindParam(':pseudo', $_SESSION['pseudo'], \PDO::PARAM_STR);
+		$req->execute();
+
+		$idUser = $req->fetch();
+
+		return $idUser[0];
+	}
 }
 
