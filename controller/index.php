@@ -133,13 +133,16 @@ else if ($page === 'addComment') {
 
 	$_SESSION['message'] = $_POST['message'];
 
+
 	$commentController = new CommentController();
-	$commentController->addComment();	
+	$commentController->addComment();
+	$postController = new PostController();
+	$postController->getPost();	
 }
 
 else if ($page === 'getPost') {
 
-	$_SESSION['id'] = $_GET['id'];
+	$_SESSION['id_post'] = $_GET['id'];
 	
 	$postController = new PostController();
 	$postController->getPost();
