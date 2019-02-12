@@ -65,6 +65,9 @@ class UserController {
 
 		if($user === "1"){
 
+			$idUser = $userRepo->getConnectUser();
+			$_SESSION['idUser'] = $idUser;
+
 			require ('../view/connected.php');
 		}
 
@@ -82,4 +85,5 @@ class UserController {
 		require('../view/connectUser.php');
 		
 	}
+
 }
