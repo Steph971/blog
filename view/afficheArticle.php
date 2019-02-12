@@ -9,7 +9,7 @@
     <body>
 			<div class="post">
 				<h3>
-					<?= htmlspecialchars($post['title']); ?>
+					<?= $post['title']; ?>
                     le <?= htmlspecialchars($post['date_cont']); ?></br>
 
                     Auteur : <?= $post['author']; ?>
@@ -24,14 +24,17 @@
         <h2>Commentaires:</h2>
 
             <?php
-            var_dump($comment);
             foreach ($comments as $comment) {
             
             ?>
             <div>
-                <?= htmlspecialchars($comment['author']);?></br>
+                <?= htmlspecialchars($comment['pseudo']);?></br>
                 <?= htmlspecialchars($comment['message']);?>
             </div>
+
+            <?php
+            }
+            ?>
 
             <h3>Ajouter un commentaire:</h3>
                 <div>
@@ -42,9 +45,7 @@
                     </form>
                 </div>
 
-            <?php
-            }
-            ?>
+            
 		
     </body>
 </html>
