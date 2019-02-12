@@ -17,7 +17,7 @@
 		
 			<div class="post">
 				<h3>
-					<?= htmlspecialchars($article['title']); ?>
+					<a href="index.php?page=getPost&amp;id=<?=$article['id']?>"><?= htmlspecialchars($article['title']); ?></a>
                     le <?= htmlspecialchars($article['date_cont']); ?></br>
 
                     Auteur : <?= $article['author']; ?>
