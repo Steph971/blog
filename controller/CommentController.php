@@ -17,9 +17,7 @@ class CommentController {
 		$commentRepo = new CommentRepository();
 		$commentRepo->addComment();
 		
-		$comments = $commentRepo->getComments();
 		
-		require('../view/afficheArticle.php');
 	}
 
 	function getCommentsByArticle(){
