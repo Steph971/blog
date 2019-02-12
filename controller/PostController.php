@@ -1,6 +1,5 @@
 <?php
 require('../model/PostRepository.php');
-require('../model/CommentRepository.php');
 
 class PostController {
 	
