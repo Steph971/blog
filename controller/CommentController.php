@@ -28,5 +28,22 @@ class CommentController {
 
 		require('../view/afficheArticle.php');
 	}
+
+	function getCommentsValid() {
+
+		$commentRepo = new CommentRepository();
+		$coms = $commentRepo->getCommentsValid();
+
+		require('../view/moderation.php');
+	}
+
+	function validComment(){
+
+		$commentRepo = new CommentRepository();
+		$commentRepo->validComment();
+
+		require('../view/moderation.php');
+
+	}
 }
 
