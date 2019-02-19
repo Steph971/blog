@@ -105,5 +105,19 @@ class UserRepository extends Connect {
 
 		return $idUser[0];
 	}
+
+	function connectAdmin() {
+
+		$db = $this->getDb();
+
+		$req = $db->prepare('SELECT level FROM user WHERE pseudo = :pseudo AND password = :password');
+		$req->bindParam(':pseudo', $_SESSION['pseudo'], \PDO::PARAM_STR);
+		$req->bindParam(':password', $_SESSION['password'], \PDO::PARAM_STR);
+		$req->execute();
+		$admin = $req->fetch();
+
+		return $admin[0];
+
+	}
 }
 
