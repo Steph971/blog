@@ -8,7 +8,7 @@ class CommentRepository extends Connect {
 	{
 		$db = $this->getDb();
 
-		$req = $db->prepare('SELECT * FROM comments');
+		$req = $db->prepare('SELECT * FROM comments WHERE validate = 1');
 		$req->execute();
 		
 		$comment = [];
@@ -29,7 +29,7 @@ class CommentRepository extends Connect {
 	{
 		$db = $this->getDb();
 		
-		$req = $db->prepare('SELECT * FROM comments INNER JOIN user ON id_user=user.id WHERE id_post=:id_post');
+		$req = $db->prepare('SELECT * FROM comments INNER JOIN user ON id_user=user.id WHERE id_post=:id_post AND validate=1');
 		$req->bindParam(':id_post', $_SESSION['id_post'], \PDO::PARAM_INT);
 		$req->execute();
 
@@ -58,6 +58,45 @@ class CommentRepository extends Connect {
 		$req->execute();
 		
 	}
+
+	function getCommentsValid() {
+
+		$db = $this->getDb();
+
+		$req = $db->prepare('SELECT * FROM comments INNER JOIN user ON id_user = user.id WHERE validate=0');
+		$req->execute();
+
+		$coms = [];
+
+		while($data = $req->fetch()) {
+			
+			$coms[] = $data;
+		}
+
+		$req->closeCursor();
+
+		return $coms;
+	}
+
+	function validComment() {
+
+		$db = $this->getDb();
+
+		$req = $db->prepare('UPDATE comments SET validate = 1 WHERE id = :id');
+		$req->bindParam(':id', $_SESSION['id'], \PDO::PARAM_INT);
+		$req->execute();
+	}
+
+	function suppComment() {
+
+		$db = $this->getDb();
+
+		$req = $db->prepare('DELETE FROM comments WHERE id = :id');
+		$req->bindParam(':id', $_SESSION['id'], \PDO::PARAM_INT);
+		$req->execute();
+	}
+
+
 	
 
 }
