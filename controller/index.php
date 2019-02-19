@@ -63,15 +63,22 @@ else if ($page === 'updateUser') {
 }
 
 
-else if ($page === 'connected') {
+else if ($page === 'connected') {						//
 
 	$_SESSION['pseudo'] = $_POST['pseudo'];
 	$_SESSION['password'] = $_POST['password'];
 
 	$userController = new UserController();
 	$userController->connected();
+	$userController->connectAdmin();
 }
 
+else if ($page === 'moderation') {
+
+	$commentController = new CommentController();
+	$commentController->getCommentsValid();
+
+}
 else if ($page === 'listPosts') {
 	
 	$postController = new PostController();
@@ -147,6 +154,16 @@ else if ($page === 'getPost') {
 	$postController = new PostController();
 	$postController->getPost();
 	
+}
+
+else if ($page === 'getCommentsValid') {
+
+	
+
+	$commentController = new CommentController();
+	$commentController->getCommentsValid();
+
+
 }
 
 
