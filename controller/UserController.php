@@ -86,4 +86,12 @@ class UserController {
 		
 	}
 
+	function connectAdmin() {
+
+		$userRepo = new UserRepository();
+		$_SESSION['level'] = $userRepo->connectAdmin();
+
+
+	}
+
 }
