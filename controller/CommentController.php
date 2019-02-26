@@ -41,9 +41,31 @@ class CommentController {
 
 		$commentRepo = new CommentRepository();
 		$commentRepo->validComment();
+		$coms = $commentRepo->getCommentsValid();
 
 		require('../view/moderation.php');
 
 	}
+
+	function suppComment() {
+
+		$commentRepo = new CommentRepository();
+		$commentRepo->suppComment();
+		$coms = $commentRepo->getCommentsValid();
+
+		require('../view/moderation.php');
+	}
+
+	function flagComment() {
+
+		$commentRepo = new CommentRepository();
+		$commentRepo->flagComment();
+		$comments = $commentRepo->getCommentsByArticle();
+		$postRepo = new PostRepository();
+		$post = $postRepo->getPost();
+
+		require('../view/afficheArticle.php');
+	}
+
 }
 
