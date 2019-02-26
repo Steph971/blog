@@ -14,7 +14,8 @@
             ?>
             <div>
                 <?= htmlspecialchars($com['pseudo']);?></br>
-                <?= htmlspecialchars($com['message']);?></br></br>
+                <?= htmlspecialchars($com['message']);?></br>
+                <a href="index.php?page=validComment&amp;id=<?=$com['id']?>">Valider</a> - <a href="index.php?page=suppComment&amp;id=<?=$com['id']?>">Supprimer</a></br></br>
             </div>
             <?php
                  }
