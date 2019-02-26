@@ -30,6 +30,7 @@
             <div>
                 <?= htmlspecialchars($comment['pseudo']);?></br>
                 <?= htmlspecialchars($comment['message']);?>
+                <a href="index.php?page=flagComment&amp;id=<?=$comment['id']?>">Signaler</a>
             </div>
 
             <?php
