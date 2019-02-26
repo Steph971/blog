@@ -91,7 +91,6 @@ class UserController {
 		$userRepo = new UserRepository();
 		$_SESSION['level'] = $userRepo->connectAdmin();
 
-
 	}
 
 }
