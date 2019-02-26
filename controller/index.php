@@ -75,8 +75,13 @@ else if ($page === 'connected') {						//
 
 else if ($page === 'moderation') {
 
+	if(isset($_SESSION['level']) AND $_SESSION['level'] == "2" ) {
 	$commentController = new CommentController();
 	$commentController->getCommentsValid();
+}
+else {
+	echo "Acces refusé";
+}
 
 }
 else if ($page === 'listPosts') {
@@ -158,10 +163,34 @@ else if ($page === 'getPost') {
 
 else if ($page === 'getCommentsValid') {
 
-	
-
 	$commentController = new CommentController();
 	$commentController->getCommentsValid();
+
+}
+
+else if ($page === 'validComment') {
+
+	$_SESSION['id'] = $_GET['id'];
+	$commentController = new CommentController();
+	$commentController->validComment();
+}
+
+else if ($page === 'suppComment') {
+
+	$_SESSION['id'] = $_GET['id'];
+
+	$commentController = new CommentController();
+	$commentController->suppComment();
+}
+
+
+else if ($page === 'flagComment') {
+
+	$_SESSION['id'] = $_GET['id'];
+
+	$commentController = new CommentController();
+	$commentController->flagComment();
+
 
 
 }
