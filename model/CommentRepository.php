@@ -29,7 +29,7 @@ class CommentRepository extends Connect {
 	{
 		$db = $this->getDb();
 		
-		$req = $db->prepare('SELECT * FROM comments INNER JOIN user ON id_user=user.id WHERE id_post=:id_post AND validate=1');
+		$req = $db->prepare('SELECT comments.id, pseudo, message, date_mess FROM comments INNER JOIN user ON id_user=user.id WHERE id_post=:id_post AND validate=1');
 		$req->bindParam(':id_post', $_SESSION['id_post'], \PDO::PARAM_INT);
 		$req->execute();
 
@@ -63,7 +63,7 @@ class CommentRepository extends Connect {
 
 		$db = $this->getDb();
 
-		$req = $db->prepare('SELECT * FROM comments INNER JOIN user ON id_user = user.id WHERE validate=0');
+		$req = $db->prepare('SELECT comments.id, pseudo, message FROM comments INNER JOIN user ON id_user = user.id WHERE validate=0');
 		$req->execute();
 
 		$coms = [];
@@ -92,6 +92,15 @@ class CommentRepository extends Connect {
 		$db = $this->getDb();
 
 		$req = $db->prepare('DELETE FROM comments WHERE id = :id');
+		$req->bindParam(':id', $_SESSION['id'], \PDO::PARAM_INT);
+		$req->execute();
+	}
+
+	function flagComment() {
+
+		$db = $this->getDb();
+
+		$req = $db->prepare('UPDATE comments SET validate = 0 WHERE id = :id');
 		$req->bindParam(':id', $_SESSION['id'], \PDO::PARAM_INT);
 		$req->execute();
 	}
