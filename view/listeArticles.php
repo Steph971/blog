@@ -9,7 +9,8 @@
     <body>
         <h1>Liste des Articles</h1>
  
-        
+        <p> <a href="index.php?page=home">Page d'accueil</a></p>
+
         <?php
         foreach($posts as $article)
         {

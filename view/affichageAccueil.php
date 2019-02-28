@@ -8,6 +8,9 @@
         
     <body>
         <h1>Mon super blog !</h1>
+
+        <a href="index.php?page=home">Page d'accueil</a>
+        
         <p>Utilisateurs :</p>
  
         

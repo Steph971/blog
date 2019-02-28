@@ -9,6 +9,7 @@
     <body>
         <h1>Se Connecter</h1>
 
+        <p> <a href="index.php?page=home">Retour</a></p>
 
 		<form method="post" action="index.php?page=connected">
 

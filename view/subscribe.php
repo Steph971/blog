@@ -9,6 +9,7 @@
     <body>
         <h1>S'inscrire</h1>
 
+       <p> <a href="index.php?page=home">Retour</a></p>
 
 		<form method="post" action="index.php?page=addUser">
 
