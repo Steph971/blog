@@ -69,19 +69,30 @@ else if ($page === 'connected') {						//
 	$_SESSION['password'] = $_POST['password'];
 
 	$userController = new UserController();
-	$userController->connected();
 	$userController->connectAdmin();
+	$userController->connected();
+	
 }
 
 else if ($page === 'moderation') {
 
-	if(isset($_SESSION['level']) AND $_SESSION['level'] == "2" ) {
-	$commentController = new CommentController();
-	$commentController->getCommentsValid();
-}
-else {
-	echo "Acces refusé";
-}
+	if(isset($_SESSION['pseudo']) && isset($_SESSION['password']) && isset($_SESSION['level'])) {
+
+		if($_SESSION['level'] == "2" ){
+			$commentController = new CommentController();
+			$commentController->getCommentsValid();
+		}
+		 else {
+	
+			echo "Acces refusé";
+		}
+
+	}
+
+	else {
+	
+		echo "Acces refusé";
+	}
 
 }
 else if ($page === 'listPosts') {
