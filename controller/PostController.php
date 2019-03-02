@@ -8,7 +8,7 @@ class PostController {
 		$postRepo = new PostRepository();
 		$posts = $postRepo->getPosts();
 		
-		require('../view/listeArticles.php');
+		require('../view/home.php');
 		
 	}
 	
@@ -29,7 +29,7 @@ class PostController {
 		
 		$posts = $postRepo->getPosts();
 		
-		require('../view/listeArticles.php');
+		require('../view/home.php');
 		
 	}
 
@@ -45,7 +45,7 @@ class PostController {
 		$postRepo = new PostRepository();
 		$postRepo->updatePost();
 		$posts = $postRepo->getPosts();
-		require('../view/listeArticles.php');
+		require('../view/home.php');
 	}
 	
 	function deletePost() {
@@ -53,7 +53,7 @@ class PostController {
 		$postRepo = new PostRepository();
 		$postRepo->deletePost();
 		$posts = $postRepo->getPosts();
-		require('../view/listeArticles.php');
+		require('../view/home.php');
 	}
 	
 }
