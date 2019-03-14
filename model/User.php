@@ -12,7 +12,7 @@ class User {
 		
 	}
 	
-	public function getUsername() {
+	public function getUsername() { // get pour recuperer la valeur d'une variable
 		return $this->username;
 	}
 	
@@ -20,7 +20,7 @@ class User {
 		return $this->password;
 	}
 	
-	public function setUsername($username) {
+	public function setUsername($username) { // set pour affecter une valeur a l'attribut
 		
 		$this->username = $username;
 		

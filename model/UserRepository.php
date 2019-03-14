@@ -29,7 +29,7 @@ class UserRepository extends Connect {
 	{
 		$db = $this->getDb();
 
-		$req = $db->prepare('INSERT INTO user(pseudo, password) VALUES(:pseudo, :password)');
+		$req = $db->prepare('INSERT INTO user(pseudo, password) VALUES(:pseudo, :password)'); 
 		$req->bindParam(':pseudo', $_SESSION['pseudo'], \PDO::PARAM_STR);
 		$req->bindParam(':password', $_SESSION['password'], \PDO::PARAM_STR);
 		$req->execute();
@@ -39,7 +39,7 @@ class UserRepository extends Connect {
 	function deleteUser()														//
 	{																			//
 		$db = $this->getDb();													//
-																				//
+	
 		$req = $db->prepare('DELETE FROM user WHERE id=:id');
 		$req->bindParam(':id', $_SESSION['id'], \PDO::PARAM_INT);
 			

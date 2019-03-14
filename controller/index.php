@@ -15,12 +15,15 @@ if (isset($_GET['page']) && !empty($_GET['page'])) {
 
 if ($page === 'home') {
 	
-	require '../view/home.php';
+	$postController = new PostController();
+	$postController->listPosts();
+
 	
 } else if ($page === 'listUsers') {
 	
 	$userController = new UserController();
 	$userController->listAll();
+
 	
 } else if ($page === 'addUser') {
 	
@@ -61,44 +64,41 @@ else if ($page === 'updateUser') {
 	$userController = new UserController();
 	$userController->updateUser();
 }
-
+else if ($page === 'connectUser') { //nouveau
+	$userController = new UserController();
+	$userController->connectUser();
+}
 
 else if ($page === 'connected') {						//
+
 
 	$_SESSION['pseudo'] = $_POST['pseudo'];
 	$_SESSION['password'] = $_POST['password'];
 
 	$userController = new UserController();
 	$userController->connectAdmin();
-	$userController->connected();
-	
+	$userController->connected();	
 }
 
 else if ($page === 'moderation') {
-
 	if(isset($_SESSION['pseudo']) && isset($_SESSION['password']) && isset($_SESSION['level'])) {
-
 		if($_SESSION['level'] == "2" ){
 			$commentController = new CommentController();
 			$commentController->getCommentsValid();
 		}
 		 else {
-	
 			echo "Acces refusé";
 		}
-
 	}
-
 	else {
-	
 		echo "Acces refusé";
 	}
-
 }
-else if ($page === 'listPosts') {
-	
+
+else if ($page === 'listeArticles') {
+
 	$postController = new PostController();
-	$postController->listPosts();
+	$postController->getAllPosts();
 
 }
 

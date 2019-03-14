@@ -8,6 +8,26 @@ class PostRepository extends Connect {
 	{
 		$db = $this->getDb();
 
+		$req = $db->prepare('SELECT * FROM posts ORDER BY id DESC LIMIT 0, 6');
+		$req->execute();
+		
+		$posts = [];
+		
+		while($data = $req-> fetch()) {
+			
+			$posts[] = $data;
+			
+		}
+		
+		$req->closeCursor();
+
+		return $posts;
+	}
+
+	function getAllPosts()
+	{
+		$db = $this->getDb();
+
 		$req = $db->prepare('SELECT * FROM posts');
 		$req->execute();
 		

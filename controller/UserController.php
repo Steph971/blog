@@ -7,7 +7,7 @@ class UserController {
 	function listAll() {
 		
 		$userRepo = new UserRepository();
-		$users = $userRepo->getUsers();
+		$users = $userRepo->getUsers(); // get the list of users put in the variable $users
 		
 		require('../view/affichageAccueil.php');
 		
@@ -18,7 +18,7 @@ class UserController {
 		$userRepo = new UserRepository();
 		$userRepo->addUser();
 		
-		$users = $userRepo->getUsers();
+		$users = $userRepo->getUsers(); // get the list of users put in the variable $users
 		
 		require('../view/affichageAccueil.php');
 		
@@ -31,65 +31,69 @@ class UserController {
 		
 	}
 
-	function deleteUser()								//
-	{													//
-		$userRepo = new UserRepository();				//
-		$userRepo->deleteUser();
-								//
-														//
-		$users = $userRepo->getUsers();					//
-														//
-		require('../view/affichageAccueil.php'); 					//
+	function deleteUser()								
+	{													
+		$userRepo = new UserRepository();				
+		$userRepo->deleteUser(); // delete by id				
+		$users = $userRepo->getUsers();	 // get the list of users put in the variable $users
+		require('../view/affichageAccueil.php'); // redirection to the list of users
 	}
 
-	function editUser()
+	function editUser() 
 	{
 		$userRepo = new UserRepository();
-		$user = $userRepo->getUserById();
-		require('../view/editUser.php');
+		$user = $userRepo->getUserById(); // get users by id 
+		require('../view/editUser.php'); // redirection to the edit page
 	}
 	
 	function updateUser()
 	{
 		$userRepo = new UserRepository();
-		$userRepo->updateUser();
-		$users = $userRepo->getUsers();
-		require('../view/affichageAccueil.php');
+		$userRepo->updateUser();  // update by id
+		$users = $userRepo->getUsers(); //get the list of users put in the variable $users
+		require('../view/affichageAccueil.php'); // redirection to the list of users
 	}
 
+	function connectUser() //nouveau
+	{
+		$userRepo = new UserRepository();
+		$connect = $userRepo->connectUser();
+
+		require('../view/connectUser.php');
+	}
 
 	function connected()
 	{
 		$userRepo = new UserRepository();
-		$user = $userRepo->connectUser();
+		$user = $userRepo->connectUser(); // check if user exists with given pseudo and password
 
-		if($user === "1"){
+		if($user === "1"){ // if user exists 
 
-			$idUser = $userRepo->getConnectUser();
+			$idUser = $userRepo->getConnectUser(); // get user id by pseudo(used to add comments and articles)
 			$_SESSION['idUser'] = $idUser;
 
-			require ('../view/connected.php');
+			require ('../view/connected.php'); // redirect successfully connected user
 		}
 
-		else {
-			require ('../view/connectUser.php');
+		else { // if user doesn't exist
+			require ('../view/connectUser.php'); // redirect to authentication form
 		}
 	}
 
 	function deconnexion()
 	{
 
-		unset($_SESSION['pseudo']);
+		unset($_SESSION['pseudo']); // delete session for disconnection
 		unset($_SESSION['password']);
 
-		require('../view/connectUser.php');
+		require('../view/connectUser.php'); // redirect to authentication form
 		
 	}
 
 	function connectAdmin() {
 
 		$userRepo = new UserRepository();
-		$_SESSION['level'] = $userRepo->connectAdmin();
+		$_SESSION['level'] = $userRepo->connectAdmin(); // get level by user
 
 	}
 

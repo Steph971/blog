@@ -6,26 +6,40 @@ class PostController {
 	function listPosts() {
 		
 		$postRepo = new PostRepository();
-		$posts = $postRepo->getPosts();
+		$posts = $postRepo->getPosts(); // get articles in descending order
 		
-		require('../view/home.php');
+		require('../view/home.php'); 
+				
+	}
+
+	function getAllPosts() {
 		
+		$postRepo = new PostRepository();
+		$posts = $postRepo->getAllPosts(); // get all articles
+		
+		require('../view/listeArticles.php');
 	}
 	
-	function getpost() {
+	function getPost() {
 
 		$postRepo = new PostRepository();
-		$post = $postRepo->getPost();
+		$post = $postRepo->getPost(); // get article from id
 		$commentRepo = new CommentRepository();
-		$comments = $commentRepo->getCommentsByArticle();
+		$comments = $commentRepo->getCommentsByArticle(); // get the comments link to the users
 		
 		require('../view/afficheArticle.php');
+
+	}
+
+	function addPosts(){
+
+		require('../view/addposts.php');
 
 	}
 	function addPost() {
 		
 		$postRepo = new PostRepository();
-		$postRepo->addPost();
+		$postRepo->addPost(); // add article
 		
 		$posts = $postRepo->getPosts();
 		
@@ -36,22 +50,22 @@ class PostController {
 	function selectPost() {
 
 		$postRepo = new PostRepository();
-		$article = $postRepo->selectPost();
+		$article = $postRepo->selectPost(); // get articles from id
 		require('../view/selectPost.php');
 	}
 
 	function updatePost() {
 
 		$postRepo = new PostRepository();
-		$postRepo->updatePost();
-		$posts = $postRepo->getPosts();
+		$postRepo->updatePost(); // update article from id
+		$posts = $postRepo->getPosts(); 
 		require('../view/home.php');
 	}
 	
 	function deletePost() {
 
 		$postRepo = new PostRepository();
-		$postRepo->deletePost();
+		$postRepo->deletePost(); // delete article from id
 		$posts = $postRepo->getPosts();
 		require('../view/home.php');
 	}
