@@ -80,6 +80,24 @@ class UserController {
 		}
 	}
 
+	function addArticles()
+	{
+		$userRepo = new UserRepository();
+		$user = $userRepo->connectUser(); // check if user exists with given pseudo and password
+
+		if($user === "1"){ // if user exists 
+
+			$idUser = $userRepo->getConnectUser(); // get user id by pseudo(used to add comments and articles)
+			$_SESSION['idUser'] = $idUser;
+
+			require ('../view/addArticles.php'); // redirect successfully connected user
+		}
+
+		else { // if user doesn't exist
+			require ('../view/connectUser.php'); // redirect to authentication form
+		}
+	}
+
 	function deconnexion()
 	{
 
