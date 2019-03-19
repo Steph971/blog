@@ -46,7 +46,7 @@
     <div class="container">
       <?php
         if(isset($_SESSION['pseudo'])) {
-          echo 'Bienvenue ' .  $_SESSION['pseudo'];
+          echo '<a class="nav-link" href="index.php?page=home">Bienvenue'  .  $_SESSION["pseudo"] . '</a>';
         }
       ?>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -56,15 +56,12 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link" href="index.php?page=home"><img src="../img/homepage.png"></a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" href="index.php?page=subscribe">Inscription</a>
           </li>
           <li class="nav-item">
             <?php
               if(isset($_SESSION['pseudo']) && isset($_SESSION['password'])) {
-                echo '<a class="nav-link" href="index.php?page=connected">Ajout Articles</a>';
+                echo '<a class="nav-link" href="index.php?page=addArticles">Ajout un Article</a>';
               }
               else{
 
