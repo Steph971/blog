@@ -80,6 +80,13 @@ else if ($page === 'connected') {						//
 	$userController->connected();	
 }
 
+else if ($page === 'addArticles') {						
+
+	$userController = new UserController();
+	$userController->connectAdmin();
+	$userController->addArticles();	
+}
+
 else if ($page === 'moderation') {
 	if(isset($_SESSION['pseudo']) && isset($_SESSION['password']) && isset($_SESSION['level'])) {
 		if($_SESSION['level'] == "2" ){
