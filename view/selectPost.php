@@ -30,6 +30,14 @@
   </style>
   <link href="../css/clean-blog.min.css" rel="stylesheet">
 
+  <script src='https://cloud.tinymce.com/5/tinymce.min.js?apiKey=yz1dl2jhkmtb0ke23e6t7hbzz91j56ylmje1ow9b02jsm8ao'></script>
+  <script>
+  tinymce.init({
+    selector: '#mytextarea'
+  });
+  </script>
+
+
 </head>
 
 <body>
@@ -39,7 +47,7 @@
     <div class="container">
       <?php
         if(isset($_SESSION['pseudo'])) {
-          echo 'Bienvenue ' .  $_SESSION['pseudo'];
+          echo '<a class="nav-link" href="index.php?page=home">Bienvenue'  .  $_SESSION["pseudo"] . '</a>';
         }
       ?>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -48,9 +56,6 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="index.php?page=home"><img src="../img/homepage.png"></a>
-          </li>
           <li class="nav-item">
             <a class="nav-link" href="index.php?page=subscribe">Inscription</a>
           </li>
@@ -112,7 +117,7 @@
             <input type="text" name="title" value="<?=$article['title'] ?>"></p>
 
             <label for="content">Contenu:</label>
-            <textarea name="content" value="<?=$article['content'] ?>"></textarea>
+            <textarea id="mytextarea" name="content" value="<?=$article['content'] ?>"></textarea>
             <input type="submit">
 
         </form>
