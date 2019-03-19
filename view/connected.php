@@ -30,6 +30,13 @@
   </style>
   <link href="../css/clean-blog.min.css" rel="stylesheet">
 
+  <script src='https://cloud.tinymce.com/5/tinymce.min.js?apiKey=yz1dl2jhkmtb0ke23e6t7hbzz91j56ylmje1ow9b02jsm8ao'></script>
+  <script>
+  tinymce.init({
+    selector: '#mytextarea'
+  });
+  </script>
+
 </head>
 
 <body>
@@ -119,7 +126,7 @@
            <p> <label for="title">Titre: </label>
             <input type="text" name="title"></p>
             <label for="content">Contenu:</label>
-            <textarea name="content"></textarea>
+            <textarea id="mytextarea" name="content"></textarea>
             <input type="submit">
 
            <p><a href="index.php?page=deconnexion"><em>Déconnexion</em></a></p>
