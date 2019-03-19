@@ -54,7 +54,7 @@
           <li class="nav-item">
             <?php
               if(isset($_SESSION['pseudo']) && isset($_SESSION['password'])) {
-                echo '<a class="nav-link" href="index.php?page=connected">Ajout Articles</a>';
+                echo '<a class="nav-link" href="index.php?page=addArticles">Ajouter un Article</a>';
               }
               else{
 
