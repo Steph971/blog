@@ -37,7 +37,11 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
-      <a class="navbar-brand" href="index.html">Start Bootstrap</a>
+      <?php
+        if(isset($_SESSION['pseudo'])) {
+          echo '<a class="nav-link" href="index.php?page=home">Bienvenue'  .  $_SESSION["pseudo"] . '</a>';
+        }
+      ?>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         Menu
         <i class="fas fa-bars"></i>
@@ -45,16 +49,34 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link" href="index.php?page=home">Home</a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" href="index.php?page=subscribe">Inscription</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="index.php?page=connected">Connexion</a>
+            <?php
+              if(isset($_SESSION['pseudo']) && isset($_SESSION['password'])) {
+                echo '<a class="nav-link" href="index.php?page=addArticles">Ajouter un Article</a>';
+              }
+              else{
+
+                echo '<a class="nav-link" href="index.php?page=connectUser">Connexion</a>';
+              } 
+            ?>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="contact.html">Contact</a>
+             <?php
+        if(isset($_SESSION['pseudo']) && isset($_SESSION['password']) && isset($_SESSION['level'])) {
+          if($_SESSION['level'] == "2") {
+            echo '<a class="nav-link" href="index.php?page=moderation">Admin</a>';
+            }
+          }
+        ?>
+          </li>
+          <li class="nav-item">
+            <?php
+              if(isset($_SESSION['pseudo'])) {
+                echo '<a class="nav-link" href="index.php?page=deconnexion"><img src="../img/exit.png"/></a>';
+              }
+            ?>
           </li>
         </ul>
       </div>
