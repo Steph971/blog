@@ -29,7 +29,7 @@ class CommentRepository extends Connect {
 	{
 		$db = $this->getDb();
 		
-		$req = $db->prepare('SELECT comments.id, pseudo, message, date_mess FROM comments INNER JOIN user ON id_user=user.id WHERE id_post=:id_post AND validate=1 ORDER BY id DESC');
+		$req = $db->prepare('SELECT comments.id, pseudo, message, date_mess FROM comments INNER JOIN user ON id_user=user.id WHERE id_post=:id_post AND validate=1 ORDER BY date_mess DESC');
 		$req->bindParam(':id_post', $_SESSION['id_post'], \PDO::PARAM_INT);
 		$req->execute();
 
@@ -63,7 +63,7 @@ class CommentRepository extends Connect {
 
 		$db = $this->getDb();
 
-		$req = $db->prepare('SELECT comments.id, pseudo, message, date_mess FROM comments INNER JOIN user ON id_user = user.id WHERE validate=0 ORDER BY id DESC');
+		$req = $db->prepare('SELECT comments.id, pseudo, message, date_mess FROM comments INNER JOIN user ON id_user = user.id WHERE validate=0 ORDER BY date_mess DESC');
 		$req->execute();
 
 		$coms = [];

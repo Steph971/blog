@@ -8,7 +8,7 @@ class PostRepository extends Connect {
 	{
 		$db = $this->getDb();
 
-		$req = $db->prepare('SELECT * FROM posts ORDER BY id DESC LIMIT 0, 6');
+		$req = $db->prepare('SELECT * FROM posts ORDER BY date_cont DESC LIMIT 0, 6');
 		$req->execute();
 		
 		$posts = [];
@@ -28,7 +28,7 @@ class PostRepository extends Connect {
 	{
 		$db = $this->getDb();
 
-		$req = $db->prepare('SELECT * FROM posts');
+		$req = $db->prepare('SELECT * FROM posts ORDER BY date_cont DESC');
 		$req->execute();
 		
 		$posts = [];
