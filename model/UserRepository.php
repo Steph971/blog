@@ -29,9 +29,10 @@ class UserRepository extends Connect {
 	{
 		$db = $this->getDb();
 
+		$hashpass= password_hash($_SESSION['password'], PASSWORD_DEFAULT);
 		$req = $db->prepare('INSERT INTO user(pseudo, password) VALUES(:pseudo, :password)'); 
 		$req->bindParam(':pseudo', $_SESSION['pseudo'], \PDO::PARAM_STR);
-		$req->bindParam(':password', $_SESSION['password'], \PDO::PARAM_STR);
+		$req->bindParam(':password', $hashpass, \PDO::PARAM_STR);
 		$req->execute();
 		
 	}
