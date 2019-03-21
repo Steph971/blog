@@ -116,7 +116,7 @@
             </h2>
             <h3 class="post-subtitle">
               <p>
-                <?= substr(htmlspecialchars($article['content']), 0, 100) . '...'; ?></br>
+                <?= substr(htmlspecialchars_decode(stripslashes($article['content'])), 0, 100) . '...'; ?></br>
                     </br>
                     <a href="index.php?page=selectPost&amp;id=<?=$article['id']?>"><img src='../img/edit.png'/></a>
                     <a href="index.php?page=deletePost&amp;id=<?=$article['id']?>"><img src='../img/delete.png'/></a>

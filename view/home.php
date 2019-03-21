@@ -40,7 +40,7 @@
     <div class="container">
       <?php
         if(isset($_SESSION['pseudo'])) {
-          echo '<a class="nav-link" href="index.php?page=home">Bienvenue'  .  $_SESSION["pseudo"] . '</a>';
+          echo '<a class="nav-link" href="index.php?page=home">Bienvenue '  .  $_SESSION["pseudo"] . '</a>';
         }
       ?>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -118,7 +118,7 @@
             </h2>
             <h3 class="post-subtitle">
               <p>
-                <?= substr(htmlspecialchars($article['content']), 0, 100) . '...'; ?></br>
+                <?= substr(htmlspecialchars_decode(stripslashes($article['content'])), 0, 100) . '...'; ?></br>
                     </br>
                     <a href="index.php?page=selectPost&amp;id=<?=$article['id']?>"><img src='../img/edit.png'/></a>
                     <a href="index.php?page=deletePost&amp;id=<?=$article['id']?>"><img src='../img/delete.png'/></a>
