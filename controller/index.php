@@ -73,7 +73,9 @@ else if ($page === 'connected') {						//
 
 
 	$_SESSION['pseudo'] = $_POST['pseudo'];
+	//$_SESSION['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT); 
 	$_SESSION['password'] = $_POST['password'];
+
 
 	$userController = new UserController();
 	$userController->connectAdmin();
