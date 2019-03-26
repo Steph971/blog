@@ -8,7 +8,6 @@ class UserController {
 		
 		$userRepo = new UserRepository();
 		$users = $userRepo->getUsers(); // get the list of users put in the variable $users
-		
 		require('../view/affichageAccueil.php');
 		
 	}
