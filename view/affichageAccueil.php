@@ -107,8 +107,7 @@
         <a href="index.php?page=home">Page d'accueil</a>
         
         <p>Utilisateurs :</p>
- 
-        
+
         <?php
           foreach($users as $user)
           {
@@ -116,12 +115,12 @@
     
         <div class="user">
           <h3>
-           <?= htmlspecialchars($user['pseudo']); ?>
+           <?= htmlspecialchars($user->getUsername()); ?>
           </h3>
         
           <p>
             Mot de passe:
-           <?= password_hash(htmlspecialchars($user['password']), PASSWORD_DEFAULT); ?></br>
+           <?= password_hash(htmlspecialchars($user->getPassword()), PASSWORD_DEFAULT); ?></br>
               <a href="index.php?page=editUser&amp;id=<?=$user['id']?>"><img src="../img/edit.png"></a>
               <a href="index.php?page=delete&amp;id=<?=$user['id']?>"><img src="../img/delete.png"></a> <!---->
               </br>
