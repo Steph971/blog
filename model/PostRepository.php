@@ -14,9 +14,11 @@ class PostRepository extends Connect {
 		$posts = [];
 		
 		while($data = $req-> fetch()) {
+
+			$post = new Post($data['id'], $data['title'], $data['content'], $data['author'], $data['date_cont']);
 			
-			$posts[] = $data;
-			
+			$posts[] = $post;
+	
 		}
 		
 		$req->closeCursor();
@@ -35,7 +37,9 @@ class PostRepository extends Connect {
 		
 		while($data = $req-> fetch()) {
 			
-			$posts[] = $data;
+			$post = new Post($data['id'], $data['title'], $data['content'], $data['author'], $data['date_cont']);
+
+			$posts[] = $post;
 			
 		}
 		
@@ -55,8 +59,10 @@ class PostRepository extends Connect {
 		$post = [];
 		
 		while($data = $req-> fetch()) {
+
+			$article = new Post($data['id'], $data['title'], $data['content'], $data['author'], $data['date_cont']);
 			
-			$post[] = $data;
+			$post[] = $article;
 			
 		}
 		
@@ -90,7 +96,9 @@ class PostRepository extends Connect {
 
 		while($data = $req-> fetch()) {
 
-			$posts[] = $data;
+			$post = new Post($data['id'], $data['title'], $data['content'], $data['author'], $data['date_cont']);
+
+			$posts[] = $post;
 		}
 
 		$req->closeCursor();
