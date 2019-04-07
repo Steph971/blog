@@ -121,8 +121,8 @@
           <p>
             Mot de passe:
            <?= password_hash(htmlspecialchars($user->getPassword()), PASSWORD_DEFAULT); ?></br>
-              <a href="index.php?page=editUser&amp;id=<?=$user['id']?>"><img src="../img/edit.png"></a>
-              <a href="index.php?page=delete&amp;id=<?=$user['id']?>"><img src="../img/delete.png"></a> <!---->
+              <a href="index.php?page=editUser&amp;id=<?=$user->getId()?>"><img src="../img/edit.png"></a>
+              <a href="index.php?page=delete&amp;id=<?=$user->getId()?>"><img src="../img/delete.png"></a> <!---->
               </br>
           </p>
         </div> 

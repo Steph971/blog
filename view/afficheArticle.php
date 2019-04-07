@@ -104,24 +104,24 @@
       <div class="col-lg-8 col-md-10 mx-auto">
         <div class="post">
         <h3>
-          <?= $post['title']; ?>
-            le <?= htmlspecialchars($post['date_cont']); ?></br>
-            Auteur : <?= $post['author']; ?>
+          <?= htmlspecialchars($post->getTitle()); ?>
+            le <?= htmlspecialchars($post->getDate_cont()); ?></br>
+            Auteur : <?= $post->getAuthor(); ?>
         </h3>
         <p>
-          <?= htmlspecialchars($post['content']); ?></br>
+          <?= htmlspecialchars_decode($post->getContent()); ?></br>
           </br>
         </p>
       </div> 
         <h2>Commentaires:</h2>
         <?php
-          foreach ($comments as $comment) {
+          foreach ($comments as $com) {
         ?>
         <div>
-          <?= htmlspecialchars($comment['pseudo']);?></br>
-          <?= htmlspecialchars($comment['message']);?></br>
-          le <?= $comment['date_mess'];?>
-          <a href="index.php?page=flagComment&amp;id=<?=$comment['id']?>"><img src="../img/warning.png"></a>
+          <?= htmlspecialchars($post->getAuthor());?></br>
+          <?= htmlspecialchars($com->getMessage());?></br>
+          le <?= $com->getDate_mess();?>
+          <a href="index.php?page=flagComment&amp;id=<?=$com->getId()?>"><img src="../img/warning.png"></a>
           <hr>
         </div>
         <?php

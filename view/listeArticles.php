@@ -105,27 +105,27 @@
         <h1>Liste des Articles</h1>
         
         <?php
-          foreach($posts as $article)
+          foreach($posts as $post)
           {
         ?>
     
           <div class="post-preview">
-          <a href="index.php?page=getPost&amp;id=<?=$article['id']?>">
+          <a href="index.php?page=getPost&amp;id=<?=$post->getId()?>">
             <h2 class="post-title">
-              <?= htmlspecialchars($article['title']); ?>
+              <?= htmlspecialchars($post->getTitle()); ?>
             </h2>
             <h3 class="post-subtitle">
               <p>
-                <?= substr(htmlspecialchars_decode(stripslashes($article['content'])), 0, 100) . '...'; ?></br>
+                <?= substr(htmlspecialchars_decode(stripslashes($post->getContent())), 0, 100) . '...'; ?></br>
                     </br>
-                    <a href="index.php?page=selectPost&amp;id=<?=$article['id']?>"><img src='../img/edit.png'/></a>
-                    <a href="index.php?page=deletePost&amp;id=<?=$article['id']?>"><img src='../img/delete.png'/></a>
+                    <a href="index.php?page=selectPost&amp;id=<?=$post->getId()?>"><img src='../img/edit.png'/></a>
+                    <a href="index.php?page=deletePost&amp;id=<?=$post->getId()?>"><img src='../img/delete.png'/></a>
               </p>
             </h3>
           </a>
           <p class="post-meta">Publié par
-            <?= $article['author']; ?>
-            le <?= htmlspecialchars($article['date_cont']); ?></p>
+            <?= $post->getAuthor(); ?>
+            le <?= htmlspecialchars($post->getDate_cont()); ?></p>
         </div>
         <hr>
         <?php

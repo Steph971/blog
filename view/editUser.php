@@ -109,10 +109,10 @@
         <form method="post" action="index.php?page=updateUser">
 
           <label for="pseudo">Pseudo : </label>
-          <input type="text" name="pseudo" value="<?=$user['pseudo'] ?>"/></br>
+          <input type="text" name="pseudo" value="<?=$user->getUsername() ?>"/></br>
       
           <label for="password">Password : </label>
-          <input type="text" name="password" value="<?=$user['password'] ?>"/></br>
+          <input type="text" name="password" value="<?=$user->getPassword() ?>"/></br>
       
           <input type="submit"/>
     

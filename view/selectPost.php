@@ -114,10 +114,10 @@
 
         <form method="POST" action="index.php?page=updatePost">
            <p> <label for="title">Titre: </label>
-            <input type="text" name="title" value="<?=$article['title'] ?>"></p>
+            <input type="text" name="title" value="<?=$article->getTitle() ?>"></p>
 
             <label for="content">Contenu:</label>
-            <textarea id="mytextarea" name="content" value="<?=$article['content'] ?>"></textarea>
+            <textarea id="mytextarea" name="content"><?=$article->getContent() ?></textarea>
             <input type="submit">
 
         </form>

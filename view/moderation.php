@@ -109,10 +109,10 @@
             
             ?>
             <div>
-                <?= htmlspecialchars($com['pseudo']);?></br>
-                <?= htmlspecialchars($com['message']);?></br>
-                <?= $com['date_mess'];?></br>
-                <a href="index.php?page=validComment&amp;id=<?=$com['id']?>"><img src="../img/check.png"></a> - <a href="index.php?page=suppComment&amp;id=<?=$com['id']?>"><img src="../img/delete.png"></a></br></br>
+                <?= htmlspecialchars($com->getPseudo());?></br>
+                <?= htmlspecialchars($com->getMessage());?></br>
+                <?= $com->getDate_mess();?></br>
+                <a href="index.php?page=validComment&amp;id=<?=$com->getId()?>"><img src="../img/check.png"></a> - <a href="index.php?page=suppComment&amp;id=<?=$com->getId()?>"><img src="../img/delete.png"></a></br></br>
             </div>
             <?php
                  }
