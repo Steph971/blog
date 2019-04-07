@@ -26,7 +26,6 @@ class PostController {
 		$post = $postRepo->getPost(); // get article from id
 		$commentRepo = new CommentRepository();
 		$comments = $commentRepo->getCommentsByArticle(); // get the comments link to the users
-		
 		require('../view/afficheArticle.php');
 
 	}
