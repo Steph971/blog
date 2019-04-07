@@ -16,7 +16,7 @@ class UserRepository extends Connect {
 		while($data = $req-> fetch()) {
 			
 			
-			$user = new User($data['pseudo'] , $data['password']);
+			$user = new User($data['id'], $data['pseudo'] , $data['password']);
 			
 			$users[] = $user;
 			
@@ -61,8 +61,10 @@ class UserRepository extends Connect {
 		$users = [];
 		
 		while($data = $req-> fetch()) {
+
+			$user = new User($data['id'], $data['pseudo'], $data['password']);
 			
-			$users[] = $data;
+			$users[] = $user;
 			
 		}
 		
