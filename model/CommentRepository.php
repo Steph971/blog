@@ -14,8 +14,10 @@ class CommentRepository extends Connect {
 		$comment = [];
 		
 		while($data = $req-> fetch()) {
+
+			$com = new Comment($data['id'], $data['message'], $data['date_mess']);
 			
-			$comment[] = $data;
+			$comment[] = $com;
 			
 		}
 		
@@ -36,8 +38,10 @@ class CommentRepository extends Connect {
 		$comment = [];
 		
 		while($data = $req-> fetch()) {
+
+			$com = new Comment($data['id'], $data['pseudo'], $data['message'], $data['date_mess']);
 			
-			$comment[] = $data;
+			$comment[] = $com;
 			
 		}
 
@@ -69,8 +73,10 @@ class CommentRepository extends Connect {
 		$coms = [];
 
 		while($data = $req->fetch()) {
+
+			$com = new Comment($data['id'], $data['pseudo'], $data['message'], $data['date_mess']);
 			
-			$coms[] = $data;
+			$coms[] = $com;
 		}
 
 		$req->closeCursor();
