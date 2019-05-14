@@ -35,6 +35,8 @@ class UserController {
 		$userRepo = new UserRepository();				
 		$userRepo->deleteUser(); // delete by id				
 		$users = $userRepo->getUsers();	 // get the list of users put in the variable $users
+		unset($_SESSION['pseudo']); // delete session 
+		unset($_SESSION['password']);
 		require('../view/affichageAccueil.php'); // redirection to the list of users
 	}
 
@@ -53,11 +55,8 @@ class UserController {
 		require('../view/affichageAccueil.php'); // redirection to the list of users
 	}
 
-	function connectUser() //nouveau
+	function connectUser() //afficher le formulaire de connexion
 	{
-		$userRepo = new UserRepository();
-		$connect = $userRepo->connectUser();
-
 		require('../view/connectUser.php');
 	}
 
@@ -66,7 +65,8 @@ class UserController {
 		$userRepo = new UserRepository();
 		$user = $userRepo->connectUser(); // check if user exists with given pseudo and password
 
-		if($user === "1"){ // if user exists 
+
+		if($user){ // if user exists 
 
 			$idUser = $userRepo->getConnectUser(); // get user id by pseudo(used to add comments and articles)
 			$_SESSION['idUser'] = $idUser;
@@ -84,7 +84,7 @@ class UserController {
 		$userRepo = new UserRepository();
 		$user = $userRepo->connectUser(); // check if user exists with given pseudo and password
 
-		if($user === "1"){ // if user exists 
+		if($user){ // if user exists 
 
 			$idUser = $userRepo->getConnectUser(); // get user id by pseudo(used to add comments and articles)
 			$_SESSION['idUser'] = $idUser;
