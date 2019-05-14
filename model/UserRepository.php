@@ -90,13 +90,27 @@ class UserRepository extends Connect {
 	{
 		$db = $this->getDb();
 
-		$req = $db->prepare('SELECT COUNT(*) FROM user WHERE pseudo = :pseudo AND password = :password');
+		$req = $db->prepare('SELECT * FROM user WHERE pseudo = :pseudo');
 		$req->bindParam(':pseudo', $_SESSION['pseudo'], \PDO::PARAM_STR);
-		$req->bindParam(':password', $_SESSION['password'], \PDO::PARAM_STR);
 		$req->execute();
-		$connect = $req->fetch();
 
-		return $connect[0];
+		$users = [];
+		
+		while($data = $req-> fetch()) {
+
+			$user = new User($data['id'], $data['pseudo'], $data['password']);
+			
+			$users[] = $user;
+		}
+		
+		$req->closeCursor();
+		if (isset($users[0])){
+
+			return password_verify($_SESSION['password'], $users[0]->getPassword());
+		}else{
+			return false;
+		}
+
 	}
 
 	function getConnectUser() {
