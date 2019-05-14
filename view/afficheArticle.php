@@ -41,6 +41,9 @@
         if(isset($_SESSION['pseudo'])) {
           echo '<a class="nav-link" href="index.php?page=home">Bienvenue '  .  $_SESSION["pseudo"] . '</a>';
         }
+         else{
+         echo '<a class="nav-link" href="index.php?page=home">Bienvenue</a>';
+        }
       ?>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         Menu
@@ -118,7 +121,7 @@
           foreach ($comments as $com) {
         ?>
         <div>
-          <?= htmlspecialchars($post->getAuthor());?></br>
+          <?= htmlspecialchars($com->getPseudo());?></br>
           <?= htmlspecialchars($com->getMessage());?></br>
           le <?= $com->getDate_mess();?>
           <a href="index.php?page=flagComment&amp;id=<?=$com->getId()?>"><img src="../img/warning.png"></a>
