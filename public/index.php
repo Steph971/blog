@@ -1,7 +1,7 @@
 <?php
-require('UserController.php');
-require('PostController.php');
-require('CommentController.php');
+require('../src/controller/UserController.php');
+require('../src/controller/PostController.php');
+require('../src/controller/CommentController.php');
 
 if (isset($_GET['page']) && !empty($_GET['page'])) {
 	

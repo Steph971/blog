@@ -1,5 +1,5 @@
 <?php
-require_once('Repository.php');
+require_once('../config/untitled.php');
 require('User.php');
 
 class UserRepository extends Connect {
@@ -79,9 +79,10 @@ class UserRepository extends Connect {
 
 		$db = $this->getDb();
 		
+		$hashpass= password_hash($_SESSION['password'], PASSWORD_DEFAULT);
 		$req = $db->prepare('UPDATE user SET pseudo=:pseudo, password=:password WHERE id=:id');
 		$req->bindParam(':pseudo', $_SESSION['pseudo'], \PDO::PARAM_STR);
-		$req->bindParam(':password', $_SESSION['password'], \PDO::PARAM_STR);
+		$req->bindParam(':password', $hashpass, \PDO::PARAM_STR);
 		$req->bindParam(':id', $_SESSION['id'], \PDO::PARAM_INT);
 		$req->execute();
 	}
@@ -104,13 +105,13 @@ class UserRepository extends Connect {
 		}
 		
 		$req->closeCursor();
+
 		if (isset($users[0])){
 
 			return password_verify($_SESSION['password'], $users[0]->getPassword());
 		}else{
 			return false;
 		}
-
 	}
 
 	function getConnectUser() {
@@ -130,9 +131,8 @@ class UserRepository extends Connect {
 
 		$db = $this->getDb();
 
-		$req = $db->prepare('SELECT level FROM user WHERE pseudo = :pseudo AND password = :password');
+		$req = $db->prepare('SELECT level FROM user WHERE pseudo = :pseudo');
 		$req->bindParam(':pseudo', $_SESSION['pseudo'], \PDO::PARAM_STR);
-		$req->bindParam(':password', $_SESSION['password'], \PDO::PARAM_STR);
 		$req->execute();
 		$admin = $req->fetch();
 

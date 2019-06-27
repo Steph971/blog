@@ -1,5 +1,5 @@
 <?php
-require('../model/PostRepository.php');
+require('../src/model/PostRepository.php');
 
 class PostController {
 	
@@ -8,7 +8,7 @@ class PostController {
 		$postRepo = new PostRepository();
 		$posts = $postRepo->getPosts(); // get articles in descending order
 		
-		require('../view/home.php'); 
+		require('../src/view/home.php'); 
 				
 	}
 
@@ -17,7 +17,7 @@ class PostController {
 		$postRepo = new PostRepository();
 		$posts = $postRepo->getAllPosts(); // get all articles
 		
-		require('../view/listeArticles.php');
+		require('../src/view/listeArticles.php');
 	}
 	
 	function getPost() {
@@ -26,13 +26,13 @@ class PostController {
 		$post = $postRepo->getPost(); // get article from id
 		$commentRepo = new CommentRepository();
 		$comments = $commentRepo->getCommentsByArticle(); // get the comments link to the users
-		require('../view/afficheArticle.php');
+		require('../src/view/afficheArticle.php');
 
 	}
 
 	function addPosts(){
 
-		require('../view/addposts.php');
+		require('../src/view/addposts.php');
 
 	}
 	function addPost() {
@@ -42,7 +42,7 @@ class PostController {
 		
 		$posts = $postRepo->getPosts();
 		
-		require('../view/home.php');
+		require('../src/view/home.php');
 		
 	}
 
@@ -50,7 +50,7 @@ class PostController {
 
 		$postRepo = new PostRepository();
 		$article = $postRepo->selectPost(); // get articles from id
-		require('../view/selectPost.php');
+		require('../src/view/selectPost.php');
 	}
 
 	function updatePost() {
@@ -58,7 +58,7 @@ class PostController {
 		$postRepo = new PostRepository();
 		$postRepo->updatePost(); // update article from id
 		$posts = $postRepo->getPosts(); 
-		require('../view/home.php');
+		require('../src/view/home.php');
 	}
 	
 	function deletePost() {
@@ -66,7 +66,7 @@ class PostController {
 		$postRepo = new PostRepository();
 		$postRepo->deletePost(); // delete article from id
 		$posts = $postRepo->getPosts();
-		require('../view/home.php');
+		require('../src/view/home.php');
 	}
 	
 }

@@ -28,7 +28,15 @@
     }
 
   </style>
-  <link href="../css/clean-blog.min.css" rel="stylesheet">
+  <link href="css/clean-blog.min.css" rel="stylesheet">
+
+  <script src='https://cloud.tinymce.com/5/tinymce.min.js?apiKey=yz1dl2jhkmtb0ke23e6t7hbzz91j56ylmje1ow9b02jsm8ao'></script>
+  <script>
+  tinymce.init({
+    selector: '#mytextarea'
+  });
+  </script>
+
 
 </head>
 
@@ -38,7 +46,7 @@
   <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
       <?php
-        if(isset($_SESSION['pseudo'])) {
+        if(isset($_SESSION['idUser'])) {
           echo '<a class="nav-link" href="index.php?page=home">Bienvenue '  .  $_SESSION["pseudo"] . '</a>';
         }
         else{
@@ -56,8 +64,8 @@
           </li>
           <li class="nav-item">
             <?php
-              if(isset($_SESSION['pseudo']) && isset($_SESSION['password'])) {
-                echo '<a class="nav-link" href="index.php?page=connected">Ajout Articles</a>';
+              if(isset($_SESSION['idUser'])) {
+                echo '<a class="nav-link" href="index.php?page=addArticles">Ajouter un Article</a>';
               }
               else{
 
@@ -76,8 +84,8 @@
           </li>
           <li class="nav-item">
             <?php
-              if(isset($_SESSION['pseudo'])) {
-                echo '<a class="nav-link" href="index.php?page=deconnexion"><img src="../img/exit.png"/></a>';
+              if(isset($_SESSION['idUser'])) {
+                echo '<a class="nav-link" href="index.php?page=deconnexion"><img src="img/exit.png"/></a>';
               }
             ?>
           </li>
@@ -87,7 +95,7 @@
   </nav>
 
   <!-- Page Header -->
-  <header class="masthead" style="background-image: url('../img/home-bg.jpg')">
+  <header class="masthead" style="background-image: url('img/home-bg.jpg')">
     <div class="overlay"></div>
     <div class="container">
       <div class="row">
@@ -105,21 +113,19 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
-        <h1>S'inscrire</h1>
+        <h1>Modifier l'article:</h1>
 
-        <p> <a href="index.php?page=home">Retour</a></p>
+        <form method="POST" action="index.php?page=updatePost">
+           <p> <label for="title">Titre: </label>
+            <input type="text" name="title" value="<?=$article->getTitle() ?>"></p>
 
-        <form method="post" action="index.php?page=addUser">
+            <label for="content">Contenu:</label>
+            <textarea id="mytextarea" name="content"><?=$article->getContent() ?></textarea>
+            <input type="submit">
 
-          <label for="pseudo">Pseudo : </label>
-          <input type="text" name="pseudo" /></br>
-      
-          <label for="password">Password : </label>
-          <input type="password" name="password" /></br>
-      
-          <input type="submit"/>
-    
         </form>
+
+        <a href="index.php?page=deconnexion"><em>Déconnexion</em></a>
       
       </div>
     </div>
@@ -169,7 +175,7 @@
   <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Custom scripts for this template -->
-  <script src="../js/clean-blog.min.js"></script>
+  <script src="js/clean-blog.min.js"></script>
 
 </body>
 

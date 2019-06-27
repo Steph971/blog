@@ -1,6 +1,6 @@
 <?php
 session_start();
-require('../model/UserRepository.php');
+require('../src/model/UserRepository.php');
 
 class UserController {
 	
@@ -8,7 +8,7 @@ class UserController {
 		
 		$userRepo = new UserRepository();
 		$users = $userRepo->getUsers(); // get the list of users put in the variable $users
-		require('../view/affichageAccueil.php');
+		require('../src/view/affichageAccueil.php');
 		
 	}
 	
@@ -19,14 +19,14 @@ class UserController {
 		
 		$users = $userRepo->getUsers(); // get the list of users put in the variable $users
 		
-		require('../view/affichageAccueil.php');
+		require('../src/view/affichageAccueil.php');
 		
 	}
 	
 	function subscribe() {
 		
 		
-		require('../view/subscribe.php');
+		require('../src/view/subscribe.php');
 		
 	}
 
@@ -37,14 +37,14 @@ class UserController {
 		$users = $userRepo->getUsers();	 // get the list of users put in the variable $users
 		unset($_SESSION['pseudo']); // delete session 
 		unset($_SESSION['password']);
-		require('../view/affichageAccueil.php'); // redirection to the list of users
+		require('../src/view/affichageAccueil.php'); // redirection to the list of users
 	}
 
 	function editUser() 
 	{
 		$userRepo = new UserRepository();
 		$user = $userRepo->getUserById(); // get users by id 
-		require('../view/editUser.php'); // redirection to the edit page
+		require('../src/view/editUser.php'); // redirection to the edit page
 	}
 	
 	function updateUser()
@@ -52,12 +52,12 @@ class UserController {
 		$userRepo = new UserRepository();
 		$userRepo->updateUser();  // update by id
 		$users = $userRepo->getUsers(); //get the list of users put in the variable $users
-		require('../view/affichageAccueil.php'); // redirection to the list of users
+		require('../src/view/affichageAccueil.php'); // redirection to the list of users
 	}
 
 	function connectUser() //afficher le formulaire de connexion
 	{
-		require('../view/connectUser.php');
+		require('../src/view/connectUser.php');
 	}
 
 	function connected()
@@ -71,11 +71,11 @@ class UserController {
 			$idUser = $userRepo->getConnectUser(); // get user id by pseudo(used to add comments and articles)
 			$_SESSION['idUser'] = $idUser;
 
-			require ('../view/connected.php'); // redirect successfully connected user
+			require ('../src/view/connected.php'); // redirect successfully connected user
 		}
 
 		else { // if user doesn't exist
-			require ('../view/connectUser.php'); // redirect to authentication form
+			require ('../src/view/connectUser.php'); // redirect to authentication form
 		}
 	}
 
@@ -89,11 +89,11 @@ class UserController {
 			$idUser = $userRepo->getConnectUser(); // get user id by pseudo(used to add comments and articles)
 			$_SESSION['idUser'] = $idUser;
 
-			require ('../view/addArticles.php'); // redirect successfully connected user
+			require ('../src/view/addArticles.php'); // redirect successfully connected user
 		}
 
 		else { // if user doesn't exist
-			require ('../view/connectUser.php'); // redirect to authentication form
+			require ('../src/view/connectUser.php'); // redirect to authentication form
 		}
 	}
 
@@ -102,8 +102,9 @@ class UserController {
 
 		unset($_SESSION['pseudo']); // delete session for disconnection
 		unset($_SESSION['password']);
+		unset($_SESSION['idUser']);
 
-		require('../view/connectUser.php'); // redirect to authentication form
+		require('../src/view/connectUser.php'); // redirect to authentication form
 		
 	}
 

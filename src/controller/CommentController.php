@@ -1,5 +1,5 @@
 <?php
-require('../model/CommentRepository.php');
+require('../src/model/CommentRepository.php');
 
 class CommentController {
 	
@@ -9,7 +9,7 @@ class CommentController {
 		$commentRepo = new CommentRepository();
 		$comment = $commentRepo->getComments(); // get validated comments (validate = 1)
 
-		require('../view/afficheArticle.php');
+		require('../src/view/afficheArticle.php');
 	}
 	
 	function addComment() {
@@ -26,7 +26,7 @@ class CommentController {
 		$commentRepo = new CommentRepository();
 		$comments = $commentRepo->getCommentsByArticle(); // get the comments link to the users and articles
 
-		require('../view/afficheArticle.php');
+		require('../src/view/afficheArticle.php');
 	}
 
 	function getCommentsValid() {
@@ -34,7 +34,7 @@ class CommentController {
 		$commentRepo = new CommentRepository();
 		$coms = $commentRepo->getCommentsValid(); // get comments to validated link to the users
 
-		require('../view/moderation.php');
+		require('../src/view/moderation.php');
 	}
 
 	function validComment(){
@@ -43,7 +43,7 @@ class CommentController {
 		$commentRepo->validComment(); // to validate the comment
 		$coms = $commentRepo->getCommentsValid(); //get comments to validated 
 
-		require('../view/moderation.php');
+		require('../src/view/moderation.php');
 
 	}
 
@@ -53,7 +53,7 @@ class CommentController {
 		$commentRepo->suppComment(); // delete comment from id
 		$coms = $commentRepo->getCommentsValid();
 
-		require('../view/moderation.php');
+		require('../src/view/moderation.php');
 	}
 
 	function flagComment() {
@@ -64,7 +64,7 @@ class CommentController {
 		$postRepo = new PostRepository();
 		$post = $postRepo->getPost(); // get article from id
 
-		require('../view/afficheArticle.php');
+		require('../src/view/afficheArticle.php');
 	}
 
 }

@@ -28,7 +28,7 @@
     }
 
   </style>
-  <link href="../css/clean-blog.min.css" rel="stylesheet">
+  <link href="css/clean-blog.min.css" rel="stylesheet">
 
   <script src='https://cloud.tinymce.com/5/tinymce.min.js?apiKey=yz1dl2jhkmtb0ke23e6t7hbzz91j56ylmje1ow9b02jsm8ao'></script>
   <script>
@@ -46,11 +46,8 @@
   <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
       <?php
-        if(isset($_SESSION['pseudo'])) {
+        if(isset($_SESSION['idUser'])) {
           echo '<a class="nav-link" href="index.php?page=home">Bienvenue '  .  $_SESSION["pseudo"] . '</a>';
-        }
-        else{
-         echo '<a class="nav-link" href="index.php?page=home">Bienvenue</a>';
         }
       ?>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -64,8 +61,8 @@
           </li>
           <li class="nav-item">
             <?php
-              if(isset($_SESSION['pseudo']) && isset($_SESSION['password'])) {
-                echo '<a class="nav-link" href="index.php?page=addArticles">Ajouter un Article</a>';
+              if(isset($_SESSION['idUser'])) {
+                echo '<a class="nav-link" href="index.php?page=connected">Ajouter un Article</a>';
               }
               else{
 
@@ -84,8 +81,8 @@
           </li>
           <li class="nav-item">
             <?php
-              if(isset($_SESSION['pseudo'])) {
-                echo '<a class="nav-link" href="index.php?page=deconnexion"><img src="../img/exit.png"/></a>';
+              if(isset($_SESSION['idUser'])) {
+                echo '<a class="nav-link" href="index.php?page=deconnexion"><img src="img/exit.png"/></a>';
               }
             ?>
           </li>
@@ -95,7 +92,7 @@
   </nav>
 
   <!-- Page Header -->
-  <header class="masthead" style="background-image: url('../img/home-bg.jpg')">
+  <header class="masthead" style="background-image: url('img/home-bg.jpg')">
     <div class="overlay"></div>
     <div class="container">
       <div class="row">
@@ -113,19 +110,19 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
-        <h1>Modifier l'article:</h1>
+        
+        <h2>Ajouter un article:</h2>
 
-        <form method="POST" action="index.php?page=updatePost">
+        <form method="POST" action="index.php?page=addPost">
            <p> <label for="title">Titre: </label>
-            <input type="text" name="title" value="<?=$article->getTitle() ?>"></p>
-
+            <input type="text" name="title"></p>
             <label for="content">Contenu:</label>
-            <textarea id="mytextarea" name="content"><?=$article->getContent() ?></textarea>
+            <textarea id="mytextarea" name="content"></textarea>
             <input type="submit">
 
-        </form>
+           <p><a href="index.php?page=deconnexion"><em>Déconnexion</em></a></p>
 
-        <a href="index.php?page=deconnexion"><em>Déconnexion</em></a>
+        </form>
       
       </div>
     </div>
@@ -175,7 +172,7 @@
   <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Custom scripts for this template -->
-  <script src="../js/clean-blog.min.js"></script>
+  <script src="js/clean-blog.min.js"></script>
 
 </body>
 

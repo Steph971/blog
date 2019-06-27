@@ -26,9 +26,10 @@
       font-weight: normal !important;
 
     }
+    div 
 
   </style>
-  <link href="../css/clean-blog.min.css" rel="stylesheet">
+  <link href="css/clean-blog.min.css" rel="stylesheet">
 
 </head>
 
@@ -38,11 +39,11 @@
   <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
       <?php
-        if(isset($_SESSION['pseudo'])) {
+        if(isset($_SESSION['idUser'])) {
           echo '<a class="nav-link" href="index.php?page=home">Bienvenue '  .  $_SESSION["pseudo"] . '</a>';
         }
          else{
-         echo '<a class="nav-link" href="index.php?page=home">Bienvenue</a>';
+          echo '<a class="nav-link" href="index.php?page=home">Bienvenue</a>';
         }
       ?>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -56,7 +57,7 @@
           </li>
           <li class="nav-item">
             <?php
-              if(isset($_SESSION['pseudo']) && isset($_SESSION['password'])) {
+              if(isset($_SESSION['idUser'])) {
                 echo '<a class="nav-link" href="index.php?page=addArticles">Ajouter un Article</a>';
               }
               else{
@@ -76,8 +77,8 @@
           </li>
           <li class="nav-item">
             <?php
-              if(isset($_SESSION['pseudo'])) {
-                echo '<a class="nav-link" href="index.php?page=deconnexion"><img src="../img/exit.png"/></a>';
+              if(isset($_SESSION['idUser'])) {
+                echo '<a class="nav-link" href="index.php?page=deconnexion"><img src="img/exit.png"/></a>';
               }
             ?>
           </li>
@@ -87,7 +88,7 @@
   </nav>
 
   <!-- Page Header -->
-  <header class="masthead" style="background-image: url('../img/home-bg.jpg')">
+  <header class="masthead" style="background-image: url('img/home-bg.jpg')">
     <div class="overlay"></div>
     <div class="container">
       <div class="row">
@@ -105,41 +106,41 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
-        <div class="post">
-        <h3>
-          <?= htmlspecialchars($post->getTitle()); ?>
-            le <?= htmlspecialchars($post->getDate_cont()); ?></br>
-            Auteur : <?= $post->getAuthor(); ?>
-        </h3>
-        <p>
-          <?= htmlspecialchars_decode($post->getContent()); ?></br>
-          </br>
-        </p>
-      </div> 
-        <h2>Commentaires:</h2>
+
+<h1>Les derniers articles</h1>
+ 
         <?php
-          foreach ($comments as $com) {
+        foreach($posts as $post)
+        {
         ?>
-        <div>
-          <?= htmlspecialchars($com->getPseudo());?></br>
-          <?= htmlspecialchars($com->getMessage());?></br>
-          le <?= $com->getDate_mess();?>
-          <a href="index.php?page=flagComment&amp;id=<?=$com->getId()?>"><img src="../img/warning.png"></a>
-          <hr>
+
+        <div class="post-preview">
+          <a href="index.php?page=getPost&amp;id=<?=$post->getId()?>">
+            <h2 class="post-title">
+              <?= htmlspecialchars($post->getTitle()); ?>
+            </h2>
+            <h3 class="post-subtitle">
+              <p>
+                <?= substr(htmlspecialchars_decode(stripslashes($post->getContent())), 0, 100) . '...'; ?></br>
+                    </br>
+                    <a href="index.php?page=selectPost&amp;id=<?=$post->getId()?>"><img src='img/edit.png'/></a>
+                    <a href="index.php?page=deletePost&amp;id=<?=$post->getId()?>"><img src='img/delete.png'/></a>
+              </p>
+            </h3>
+          </a>
+          <p class="post-meta">Publié par
+            <?= $post->getAuthor(); ?>
+            le <?= htmlspecialchars($post->getDate_cont()); ?> 
+          </p>
         </div>
+        <hr>
         <?php
         }
         ?>
-
-        <h3>Ajouter un commentaire:</h3>
-           <div>
-            <form action="index.php?page=addComment" method="POST">
-              <p><label for="message">Commentaire</label>
-              <textarea name="message" id="message"></textarea></p>
-              <input type="submit">
-            </form>
-          </div>
-      
+        <!-- Pager -->
+        <div class="clearfix">
+          <a class="btn btn-primary float-right" href="index.php?page=listeArticles">Older Posts &rarr;</a>
+        </div>
       </div>
     </div>
   </div>
@@ -188,7 +189,7 @@
   <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Custom scripts for this template -->
-  <script src="../js/clean-blog.min.js"></script>
+  <script src="js/clean-blog.min.js"></script>
 
 </body>
 

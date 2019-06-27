@@ -28,7 +28,7 @@
     }
 
   </style>
-  <link href="../css/clean-blog.min.css" rel="stylesheet">
+  <link href="css/clean-blog.min.css" rel="stylesheet">
 
 </head>
 
@@ -38,9 +38,10 @@
   <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
       <?php
-        if(isset($_SESSION['pseudo'])) {
+        if(isset($_SESSION['idUser'])) {
           echo '<a class="nav-link" href="index.php?page=home">Bienvenue '  .  $_SESSION["pseudo"] . '</a>';
-        }else{
+        }
+        else{
          echo '<a class="nav-link" href="index.php?page=home">Bienvenue</a>';
         }
       ?>
@@ -55,8 +56,8 @@
           </li>
           <li class="nav-item">
             <?php
-              if(isset($_SESSION['pseudo']) && isset($_SESSION['password'])) {
-                echo '<a class="nav-link" href="index.php?page=addArticles">Ajouter un Article</a>';
+              if(isset($_SESSION['idUser']) && isset($_SESSION['password'])) {
+                echo '<a class="nav-link" href="index.php?page=connected">Ajout Articles</a>';
               }
               else{
 
@@ -75,8 +76,8 @@
           </li>
           <li class="nav-item">
             <?php
-              if(isset($_SESSION['pseudo'])) {
-                echo '<a class="nav-link" href="index.php?page=deconnexion"><img src="../img/exit.png"/></a>';
+              if(isset($_SESSION['idUser'])) {
+                echo '<a class="nav-link" href="index.php?page=deconnexion"><img src="img/exit.png"/></a>';
               }
             ?>
           </li>
@@ -86,7 +87,7 @@
   </nav>
 
   <!-- Page Header -->
-  <header class="masthead" style="background-image: url('../img/home-bg.jpg')">
+  <header class="masthead" style="background-image: url('img/home-bg.jpg')">
     <div class="overlay"></div>
     <div class="container">
       <div class="row">
@@ -104,22 +105,18 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
-        <h1>Attente de validation:</h1>
 
-            <?php
-            foreach ($coms as $com) {
-            
-            ?>
-            <div>
-                <?= htmlspecialchars($com->getPseudo());?></br>
-                <?= htmlspecialchars($com->getMessage());?></br>
-                <?= $com->getDate_mess();?></br>
-                <a href="index.php?page=validComment&amp;id=<?=$com->getId()?>"><img src="../img/check.png"></a> - <a href="index.php?page=suppComment&amp;id=<?=$com->getId()?>"><img src="../img/delete.png"></a></br></br>
-            </div>
-            <?php
-                 }
-            ?>
-      
+        <h1>Se Connecter</h1>
+
+        <p> <a href="index.php?page=home">Retour</a></p>
+
+        <form method="post" action="index.php?page=connected">
+          <label for="pseudo">Pseudo : </label>
+          <input type="text" name="pseudo" /></br>     
+          <label for="password">Password : </label>
+          <input type="password" name="password" /></br>
+          <input type="submit" value="Connexion" />
+        </form>
       </div>
     </div>
   </div>
@@ -168,7 +165,7 @@
   <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Custom scripts for this template -->
-  <script src="../js/clean-blog.min.js"></script>
+  <script src="js/clean-blog.min.js"></script>
 
 </body>
 
