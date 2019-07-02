@@ -1,5 +1,5 @@
 <?php
-require_once('Repository.php');
+require_once('../src/model/Repository.php');
 require('Post.php');
 
 class PostRepository extends Connect {
