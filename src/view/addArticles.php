@@ -57,7 +57,14 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link" href="index.php?page=subscribe">Inscription</a>
+            <?php
+            if(isset($_SESSION['idUser'])) {
+              echo '';
+            }
+            else{
+              echo '<a class="nav-link" href="index.php?page=subscribe">Inscription</a>';
+            }
+            ?>
           </li>
           <li class="nav-item">
             <?php
