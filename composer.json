@@ -1,0 +1,16 @@
+{
+    "name": "mos/blog",
+    "description": "Création d'un blog pour un écrivain",
+    "type": "e.g library",
+    "require": {
+        "twbs/bootstrap": "4.3.1",
+        "components/jquery": "3.3.1",
+        "fortawesome/font-awesome": "5.9.0"
+    },
+    "authors": [
+        {
+            "name": "Stephen Germain",
+            "email": "stephen.germain@free.fr"
+        }
+    ]
+}
