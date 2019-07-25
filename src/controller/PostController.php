@@ -1,14 +1,19 @@
 <?php
-require('../src/model/PostRepository.php');
+namespace App\Controller;
 
-class PostController {
+use App\model\PostRepository;
+use App\Controller\Controller;
+//require('../src/model/PostRepository.php');
+//require_once('Controller.php');
+
+class PostController extends Controller {
 	
 	function listPosts() {
 		
 		$postRepo = new PostRepository();
 		$posts = $postRepo->getPosts(); // get articles in descending order
 		
-		require('../src/view/home.php'); 
+		echo $this->render('home.twig', ['posts' => $posts]);
 				
 	}
 

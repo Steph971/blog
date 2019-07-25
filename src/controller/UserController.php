@@ -1,8 +1,14 @@
 <?php
-session_start();
-require('../src/model/UserRepository.php');
 
-class UserController {
+namespace App\Controller;
+session_start();
+
+use App\Controller;
+use App\UserRepository;
+//require('../src/model/UserRepository.php');
+//require('Controller.php');
+
+class UserController extends Controller{
 	
 	function listAll() {
 		
@@ -57,7 +63,7 @@ class UserController {
 
 	function connectUser() //afficher le formulaire de connexion
 	{
-		require('../src/view/connectUser.php');
+		echo $this->render('connectUser.twig');
 	}
 
 	function connected()

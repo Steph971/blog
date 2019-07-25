@@ -1,5 +1,9 @@
 <?php
-require('../src/model/CommentRepository.php');
+
+namespace App\Controller;
+
+use App\model\CommentRepository;
+//require('../src/model/CommentRepository.php');
 
 class CommentController {
 	

@@ -1,6 +1,11 @@
 <?php
-require_once('../src/model/Repository.php');
-require('User.php');
+
+namespace App\model;
+
+use App\model\Repository;
+use App\model\User;
+//require_once('../src/model/Repository.php');
+//require('User.php');
 
 class UserRepository extends Connect {
 	

@@ -1,4 +1,7 @@
 <?php
+
+namespace App\model;
+
 abstract class Connect
 {
 	private $db;
