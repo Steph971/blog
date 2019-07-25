@@ -1,0 +1,21 @@
+ {% extends 'layout.twig' %}
+
+ {% block head %}
+ <title>Connexion</title>
+{% endblock %}
+ 
+ {% block content %}
+
+ <h1>Se Connecter</h1>
+
+        <p> <a href="index.php?page=home">Retour</a></p>
+
+        <form method="post" action="index.php?page=connected">
+          <label for="pseudo">Pseudo : </label>
+          <input type="text" name="pseudo" /></br>     
+          <label for="password">Password : </label>
+          <input type="password" name="password" /></br>
+          <input type="submit" value="Connexion" />
+        </form> 
+        
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'layout.twig' %}
+
+{% block head %}
+ <title>Accueil</title>
+{% endblock %}
+
+{% block content %}
+
+<h1>Les derniers articles</h1>
+
+
+        {% for post in posts %}
+
+        <div class="post-preview">
+          <a href="index.php?page=getPost&amp;id={{post.id}}">
+            <h2 class="post-title">
+              {{post.title}}
+            </h2>
+            <p class="post-subtitle">
+              {{post.content |slice(0, 150, true, '...')}}</br>
+                </br>
+                <a href="index.php?page=selectPost&amp;id={{post.id}}"><img src='img/edit.png'/></a>
+                <a href="index.php?page=deletePost&amp;id={{post.id}}"><img src='img/delete.png'/></a>
+            </p>
+          </a>
+          <p class="post-meta">Publié par
+            {{post.author}}
+            le {{post.date_cont}} 
+          </p>
+        </div>
+        <hr>
+
+        {% endfor %}
+
+        
+        
+
+{% endblock %}
