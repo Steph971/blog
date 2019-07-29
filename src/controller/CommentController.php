@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\model\CommentRepository;
 //require('../src/model/CommentRepository.php');
 
-class CommentController {
+class CommentController extends Controller {
 	
 	
 	function getComments() {
@@ -30,7 +30,7 @@ class CommentController {
 		$commentRepo = new CommentRepository();
 		$comments = $commentRepo->getCommentsByArticle(); // get the comments link to the users and articles
 
-		require('../src/view/afficheArticle.php');
+		echo $this->render('afficheArticle.twig', ['comments' => $comments, 'session' => $_SESSION]);
 	}
 
 	function getCommentsValid() {
@@ -38,7 +38,7 @@ class CommentController {
 		$commentRepo = new CommentRepository();
 		$coms = $commentRepo->getCommentsValid(); // get comments to validated link to the users
 
-		require('../src/view/moderation.php');
+		echo $this->render('moderation.twig', ['coms' => $coms, 'session' => $_SESSION]);
 	}
 
 	function validComment(){
@@ -47,7 +47,7 @@ class CommentController {
 		$commentRepo->validComment(); // to validate the comment
 		$coms = $commentRepo->getCommentsValid(); //get comments to validated 
 
-		require('../src/view/moderation.php');
+		echo $this->render('moderation.twig', ['coms' => $coms, 'session' => $_SESSION]);
 
 	}
 
@@ -57,7 +57,7 @@ class CommentController {
 		$commentRepo->suppComment(); // delete comment from id
 		$coms = $commentRepo->getCommentsValid();
 
-		require('../src/view/moderation.php');
+		echo $this->render('moderation.twig', ['coms' => $coms, 'session' => $_SESSION]);
 	}
 
 	function flagComment() {
@@ -68,7 +68,7 @@ class CommentController {
 		$postRepo = new PostRepository();
 		$post = $postRepo->getPost(); // get article from id
 
-		require('../src/view/afficheArticle.php');
+		echo $this->render('afficheArticle.twig', ['comments' => $comments, 'session' => $_SESSION]);
 	}
 
 }

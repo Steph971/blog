@@ -1,10 +1,10 @@
 <?php
 namespace App\Controller;
 
-use App\model\PostRepository;
-use App\Controller\Controller;
+//use App\model\PostRepository;
+//use App\Controller\Controller;
 //require('../src/model/PostRepository.php');
-//require_once('Controller.php');
+require_once('Controller.php');
 
 class PostController extends Controller {
 	
@@ -13,7 +13,7 @@ class PostController extends Controller {
 		$postRepo = new PostRepository();
 		$posts = $postRepo->getPosts(); // get articles in descending order
 		
-		echo $this->render('home.twig', ['posts' => $posts]);
+		echo $this->render('home.twig', ['posts' => $posts, 'session' => $_SESSION]);
 				
 	}
 
@@ -22,7 +22,7 @@ class PostController extends Controller {
 		$postRepo = new PostRepository();
 		$posts = $postRepo->getAllPosts(); // get all articles
 		
-		require('../src/view/listeArticles.php');
+		echo $this->render('listeArticles.twig', ['posts' => $posts, 'session' => $_SESSION]);
 	}
 	
 	function getPost() {
@@ -31,15 +31,15 @@ class PostController extends Controller {
 		$post = $postRepo->getPost(); // get article from id
 		$commentRepo = new CommentRepository();
 		$comments = $commentRepo->getCommentsByArticle(); // get the comments link to the users
-		require('../src/view/afficheArticle.php');
+		echo $this->render('afficheArticle.twig', ['post' => $post, 'comments' => $comments, 'session' => $_SESSION]);
 
 	}
 
-	function addPosts(){
+	//function addPosts(){
 
-		require('../src/view/addposts.php');
+		//require('../src/view/addposts.php');
 
-	}
+	//}
 	function addPost() {
 		
 		$postRepo = new PostRepository();
@@ -47,7 +47,7 @@ class PostController extends Controller {
 		
 		$posts = $postRepo->getPosts();
 		
-		require('../src/view/home.php');
+		echo $this->render('home.twig', ['posts' => $posts, 'session' => $_SESSION]);
 		
 	}
 
@@ -55,7 +55,7 @@ class PostController extends Controller {
 
 		$postRepo = new PostRepository();
 		$article = $postRepo->selectPost(); // get articles from id
-		require('../src/view/selectPost.php');
+		echo $this->render('selectPost.twig', ['posts' => $posts, 'session' => $_SESSION]);
 	}
 
 	function updatePost() {
@@ -63,7 +63,7 @@ class PostController extends Controller {
 		$postRepo = new PostRepository();
 		$postRepo->updatePost(); // update article from id
 		$posts = $postRepo->getPosts(); 
-		require('../src/view/home.php');
+		echo $this->render('home.twig', ['posts' => $posts, 'session' => $_SESSION]);
 	}
 	
 	function deletePost() {
@@ -71,7 +71,7 @@ class PostController extends Controller {
 		$postRepo = new PostRepository();
 		$postRepo->deletePost(); // delete article from id
 		$posts = $postRepo->getPosts();
-		require('../src/view/home.php');
+		echo $this->render('home.twig', ['posts' => $posts, 'session' => $_SESSION]);
 	}
 	
 }
