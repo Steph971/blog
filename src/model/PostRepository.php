@@ -3,11 +3,11 @@
 namespace App\model;
 
 use App\model\Repository;
-use App\model\Post;
+//use App\model\Post;
 //require_once('../src/model/Repository.php');
 //require('Post.php');
 
-class PostRepository extends Repository {
+class PostRepository extends Connect {
 	
 	function getPosts()
 	{
