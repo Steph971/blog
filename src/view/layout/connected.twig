@@ -8,15 +8,13 @@
   });
   </script>
 
-{% blockend %}
+{% endblock %}
 
 {% block content %}
 
-  <?php
-    if(isset($_SESSION['pseudo'])) {
-       echo 'Bonjour ' .  $_SESSION['pseudo'];
-      } 
-    ?>
+  {% if session.pseudo is defined %}
+       <p> Bonjour {{ session.pseudo }} </p>
+  {% endif %}
         
   <h2>Ajouter un article:</h2>
 
@@ -31,4 +29,10 @@
 
   </form>
 
-{% blockend %}
+{% endblock %}
+
+{% block nextpage %}
+  <div class="clearfix">
+    <a class="btn btn-primary float-right" href="index.php?page=listeArticles">Older Posts &rarr;</a>
+  </div>
+{% endblock %}

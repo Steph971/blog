@@ -1,0 +1,53 @@
+{% extends 'layout.twig' %}
+
+{% block head %}
+ <title>Détail article</title>
+{% endblock %}
+
+{% block content %}
+
+  <h3>
+
+    {% for art in post %}
+
+      {{art.title}}
+      le {{art.date_cont}}</br>
+      Auteur : {{art.author}}
+  </h3>
+  <p>
+    {{art.content}}</br>
+    </br>
+  </p>
+    {% endfor %}
+
+  <h2>Commentaires:</h2>
+        
+    {% for com in comments %} 
+        
+      <div>
+        {{com.pseudo}}</br>
+        {{com.message}}</br>
+        le {{com.date_mess}}
+        <a href="index.php?page=flagComment&amp;id={{com.id}}"><img src="img/warning.png"></a>
+        <hr>
+      </div>
+       
+      {% endfor %}
+
+    <h3>Ajouter un commentaire:</h3>
+      <div>
+        <form action="index.php?page=addComment" method="POST">
+          <p><label for="message">Commentaire</label>
+          <textarea name="message" id="message"></textarea></p>
+          <input type="submit">
+        </form>
+      </div>
+
+{% endblock %}
+
+{% block nextpage %}
+  <div class="clearfix">
+    <a class="btn btn-primary float-right" href="index.php?page=listeArticles">Older Posts &rarr;</a>
+  </div>
+{% endblock %}
+

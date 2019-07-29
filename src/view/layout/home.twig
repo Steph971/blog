@@ -17,7 +17,7 @@
               {{post.title}}
             </h2>
             <p class="post-subtitle">
-              {{post.content |slice(0, 150, true, '...')}}</br>
+              {{post.content |slice(0, 150, true, '...' |escape)}}</br>
                 </br>
                 <a href="index.php?page=selectPost&amp;id={{post.id}}"><img src='img/edit.png'/></a>
                 <a href="index.php?page=deletePost&amp;id={{post.id}}"><img src='img/delete.png'/></a>
@@ -32,7 +32,11 @@
 
         {% endfor %}
 
-        
-        
-
 {% endblock %}
+
+{% block nextpage %}
+  <div class="clearfix">
+    <a class="btn btn-primary float-right" href="index.php?page=listeArticles">Older Posts &rarr;</a>
+  </div>
+{% endblock %}
+

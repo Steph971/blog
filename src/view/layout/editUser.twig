@@ -1,0 +1,29 @@
+{% extends 'layout.twig' %}
+
+{% block head %}
+ <title>Modification</title>
+{% endblock %}
+
+{% block content %}
+
+  <h1>Modification</h1>
+
+    <p> <a href="index.php?page=home">Retour</a></p>
+
+    <form method="post" action="index.php?page=updateUser">
+      <label for="pseudo">Pseudo : </label>
+      <input type="text" name="pseudo" value="{{user.username}}"/
+      ></br>
+      <label for="password">Password : </label>
+      <input type="text" name="password" value="{{user.password}}"/></br>
+      <input type="submit"/>
+    </form>
+
+{% endblock %}
+
+{% block nextpage %}
+  <div class="clearfix">
+    <a class="btn btn-primary float-right" href="index.php?page=listeArticles">Older Posts &rarr;</a>
+  </div>
+{% endblock %}
+

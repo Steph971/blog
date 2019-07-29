@@ -1,0 +1,28 @@
+{% extends 'layout.twig' %}
+
+{% block head %}
+ <title>Accueil</title>
+{% endblock %}
+
+{% block content %}
+
+  <h1>Modifier l'article:</h1>
+
+  <form method="POST" action="index.php?page=updatePost">
+    <p> <label for="title">Titre: </label>
+    <input type="text" name="title" value={{article.title}}></p>
+    <label for="content">Contenu:</label>
+    <textarea id="mytextarea" name="content">{{article.content}}</textarea>
+    <input type="submit">
+  </form>
+
+  <a href="index.php?page=deconnexion"><em>Déconnexion</em></a>
+
+{% endblock %}
+
+{% block nextpage %}
+  <div class="clearfix">
+    <a class="btn btn-primary float-right" href="index.php?page=listeArticles">Older Posts &rarr;</a>
+  </div>
+{% endblock %}
+
