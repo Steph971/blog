@@ -15,22 +15,22 @@ abstract class Controller
     /**
      * @var Twig_Environment
      */
-    private $twig;
+    protected $twig;
 
     /**
      * @var mixed
      */
-    private $get;
+    protected $get;
 
     /**
      * @var mixed
      */
-    private $post;
+    protected $post;
 
     /**
      * @var mixed
      */
-    private $session;
+    protected $session;
 
     /**
      * Controller constructor.
