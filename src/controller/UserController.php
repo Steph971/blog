@@ -1,12 +1,8 @@
 <?php
 
 namespace App\Controller;
-session_start();
 
-use App\Controller;
-use App\UserRepository;
-//require('../src/model/UserRepository.php');
-//require('Controller.php');
+use \App\Model\UserRepository;
 
 class UserController extends Controller{
 	

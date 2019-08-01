@@ -1,10 +1,8 @@
 <?php
 namespace App\Controller;
 
-//use App\model\PostRepository;
-//use App\Controller\Controller;
-//require('../src/model/PostRepository.php');
-require_once('Controller.php');
+use \App\Model\PostRepository;
+use \App\Model\CommentRepository;
 
 class PostController extends Controller {
 	
@@ -55,7 +53,7 @@ class PostController extends Controller {
 
 		$postRepo = new PostRepository();
 		$article = $postRepo->selectPost(); // get articles from id
-		echo $this->render('selectPost.twig', ['posts' => $posts, 'session' => $_SESSION]);
+		echo $this->render('selectPost.twig', ['article' => $article, 'session' => $_SESSION]);
 	}
 
 	function updatePost() {

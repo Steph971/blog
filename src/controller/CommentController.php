@@ -2,8 +2,8 @@
 
 namespace App\Controller;
 
-use App\model\CommentRepository;
-//require('../src/model/CommentRepository.php');
+use \App\Model\CommentRepository;
+use \App\Model\PostRepository;
 
 class CommentController extends Controller {
 	
