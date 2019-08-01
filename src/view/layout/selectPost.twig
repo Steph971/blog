@@ -1,7 +1,17 @@
 {% extends 'layout.twig' %}
 
 {% block head %}
- <title>Accueil</title>
+ <title>Modifié l'article</title>
+{% endblock %}
+
+{% block tiny %}
+  <script src='https://cloud.tinymce.com/5/tinymce.min.js?apiKey=yz1dl2jhkmtb0ke23e6t7hbzz91j56ylmje1ow9b02jsm8ao'></script>
+  <script>
+  tinymce.init({
+    selector: '#mytextarea'
+  });
+  </script>
+
 {% endblock %}
 
 {% block content %}

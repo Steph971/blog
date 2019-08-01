@@ -80,9 +80,7 @@
           </li>
           <li class="nav-item">
       
-            {% if session.idUser is defined and session.password is defined and session.level is defined %}
-            {% endif %}
-              {% if session.level == "2" %}
+            {% if session.idUser is defined and session.password is defined and session.level is defined and  session.level == "2"%}
                 <a class="nav-link" href="index.php?page=moderation">Admin</a>
             {% endif %}
         
