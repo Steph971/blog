@@ -1,13 +1,10 @@
 <?php
 
-namespace App\model;
+namespace App\Model;
 
-use App\model\Repository;
-//use App\model\Post;
-//require_once('../src/model/Repository.php');
-//require('Post.php');
+use \App\Model\Repository;
 
-class PostRepository extends Connect {
+class PostRepository extends Repository {
 	
 	function getPosts()
 	{
@@ -74,7 +71,7 @@ class PostRepository extends Connect {
 		$req->closeCursor();
 		
 
-		return $post[0];
+		return $post;
 	}
 	
 		

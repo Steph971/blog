@@ -1,13 +1,10 @@
 <?php
 
-namespace App\model;
+namespace App\Model;
 
 use App\model\Repository;
-use App\model\User;
-//require_once('../src/model/Repository.php');
-//require('User.php');
 
-class UserRepository extends Connect {
+class UserRepository extends Repository  {
 	
 	function getUsers()
 	{

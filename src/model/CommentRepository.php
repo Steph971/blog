@@ -1,13 +1,10 @@
 <?php
 
-namespace App\model;
+namespace App\Model;
 
-use App\model\Repository;
-use App\model\Comment;
-//require_once('../src/model/Repository.php');
-//require('Comment.php');
+use \App\Model\Repository;
 
-class CommentRepository extends Connect {
+class CommentRepository extends Repository {
 	
 	function getComments()
 	{
