@@ -1,21 +1,17 @@
 <?php
 
 namespace App\Controller;
-//require('../src/controller/UserController.php');
-//require('../src/controller/PostController.php');
-//require('../src/controller/CommentController.php');
 require('../vendor/autoload.php');
 
-use App\model\PostRepository;
 use Twig\Environment;
 use Twig\Extension\DebugExtension;
 use Twig\Loader\FilesystemLoader;
 
-class FrontController {
+class FrontController  {
 
 	public function run(){
 
-		$loader = new \Twig\Loader\FilesystemLoader( '../src/view/layout');
+		$loader = new \Twig\Loader\FilesystemLoader( '../src/View/layout');
         $twig = new \Twig\Environment($loader, [
             //'cache' => false,
             'debug' => false
@@ -104,9 +100,9 @@ class FrontController {
 						echo "Acces refusé";
 					}
 				}
-				else {
-					echo "Acces refusé";
-				}
+				//else {
+					//echo "Acces refusé";
+				//}
 				break;
 
 			case "listeArticles" : 
@@ -155,7 +151,7 @@ class FrontController {
 				$_SESSION['message'] = $_POST['message'];
 				$commentController = new CommentController($twig);
 				$commentController->addComment();
-				$postController = new PostController();
+				$postController = new PostController($twig);
 				$postController->getPost();	
 				break;
 
