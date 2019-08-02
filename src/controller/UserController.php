@@ -6,7 +6,7 @@ use \App\Model\UserRepository;
 
 class UserController extends Controller{
 	
-	function listAll() {
+	function listAllUsers() {
 		
 		$userRepo = new UserRepository();
 		$users = $userRepo->getUsers(); // get the list of users put in the variable $users
@@ -14,7 +14,7 @@ class UserController extends Controller{
 		
 	}
 	
-	function addUser() {
+	function showAddUser() {
 		
 		$userRepo = new UserRepository();
 		$userRepo->addUser();
@@ -32,7 +32,7 @@ class UserController extends Controller{
 		
 	}
 
-	function deleteUser()								
+	function showDeleteUser()								
 	{													
 		$userRepo = new UserRepository();				
 		$userRepo->deleteUser(); // delete by id				
@@ -49,7 +49,7 @@ class UserController extends Controller{
 		echo $this->render('editUser.twig', ['user' => $user, 'session' => $_SESSION]);  // redirection to the edit page
 	}
 	
-	function updateUser()
+	function showUpdateUser()
 	{
 		$userRepo = new UserRepository();
 		$userRepo->updateUser();  // update by id
@@ -57,7 +57,7 @@ class UserController extends Controller{
 		echo $this->render('affichageAccueil.twig', ['users' => $users, 'session' => $_SESSION]); // redirection to the list of users
 	}
 
-	function connectUser() //afficher le formulaire de connexion
+	function showConnectUser() //afficher le formulaire de connexion
 	{
 		echo $this->render('connectUser.twig');
 	}
@@ -110,7 +110,7 @@ class UserController extends Controller{
 		
 	}
 
-	function connectAdmin() {
+	function showConnectAdmin() {
 
 		$userRepo = new UserRepository();
 		$_SESSION['level'] = $userRepo->connectAdmin(); // get level by user

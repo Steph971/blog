@@ -36,7 +36,7 @@ class FrontController  {
 	
 			case "listUsers" : 
 				$userController = new UserController($twig);
-				$userController->listAll();
+				$userController->listAllUsers();
 				break;
 
 	
@@ -44,7 +44,7 @@ class FrontController  {
 				$_SESSION['pseudo'] = $_POST['pseudo'];
 				$_SESSION['password'] = $_POST['password'];	
 				$userController = new UserController($twig);
-				$userController->addUser();
+				$userController->showAddUser();
 				break;
 	
 			case "subscribe" : 
@@ -55,7 +55,7 @@ class FrontController  {
 			case "delete" :					
 				$_SESSION['id'] = $_GET['id'];											
 				$userController = new UserController($twig);		
-				$userController->deleteUser();	
+				$userController->showDeleteUser();	
 				break;		
 
 			case "editUser" : 
@@ -68,25 +68,25 @@ class FrontController  {
 				$_SESSION['pseudo'] = $_POST['pseudo'];
 				$_SESSION['password'] = $_POST['password'];	
 				$userController = new UserController($twig);
-				$userController->updateUser();
+				$userController->showUpdateUser();
 				break;
 
 			case "connectUser" : 
 				$userController = new UserController($twig);
-				$userController->connectUser();
+				$userController->showConnectUser();
 				break;
 
 			case "connected" :	
 				$_SESSION['pseudo'] = $_POST['pseudo'];
 				$_SESSION['password'] = $_POST['password'];
 				$userController = new UserController($twig);
-				$userController->connectAdmin();
+				$userController->showConnectAdmin();
 				$userController->connected();	
 				break;
 
 			case "addArticles" :						
 				$userController = new UserController($twig);
-				$userController->connectAdmin();
+				$userController->showConnectAdmin();
 				$userController->addArticles();	
 				break;
 
@@ -94,7 +94,7 @@ class FrontController  {
 				if(isset($_SESSION['pseudo']) && isset($_SESSION['password']) && isset($_SESSION['level'])) {
 					if($_SESSION['level'] == "2" ){
 						$commentController = new CommentController($twig);
-						$commentController->getCommentsValid();
+						$commentController->showCommentsValid();
 					}
 		 			else {
 						echo "Acces refusé";
@@ -107,33 +107,33 @@ class FrontController  {
 
 			case "listeArticles" : 
 				$postController = new PostController($twig);
-				$postController->getAllPosts();
+				$postController->showAllPosts();
 				break;
 
 			case "addPost" : 
 				$_SESSION['title'] = $_POST['title'];
 				$_SESSION['content'] = $_POST['content'];
 				$postController = new PostController($twig);
-				$postController->addPost();
+				$postController->showAddPost();
 				break;	
 
 			case "selectPost" : 
 				$_SESSION['id'] = $_GET['id'];
 				$postController = new PostController($twig);
-				$postController->selectPost();
+				$postController->showSelectPost();
 				break;
 
 			case "updatePost" : 
 				$_SESSION['title'] = $_POST['title'];
 				$_SESSION['content'] = $_POST['content'];
 				$postController = new PostController($twig);
-				$postController->updatePost();
+				$postController->showUpdatePost();
 				break;
 
 			case "deletePost" : 
 				$_SESSION['id'] = $_GET['id'];
 				$postController = new PostController($twig);
-				$postController->deletePost();
+				$postController->showDeletePost();
 				break;
 
 			case "deconnexion" :
@@ -141,47 +141,47 @@ class FrontController  {
 				$userController->deconnexion();
 				break;
 
-			case "listComments" : 
-				$_SESSION['id'] = $_GET['id'];
-				$commentController = new CommentController();
-				$commentController->listComments();
-				break;
+			//case "listComments" : 
+				//$_SESSION['id'] = $_GET['id'];
+				//$commentController = new CommentController();
+				//$commentController->listComments();
+				//break;
 
 			case "addComment" : 
 				$_SESSION['message'] = $_POST['message'];
 				$commentController = new CommentController($twig);
-				$commentController->addComment();
+				$commentController->showAddComment();
 				$postController = new PostController($twig);
-				$postController->getPost();	
+				$postController->showPost();	
 				break;
 
 			case "getPost" : 
 				$_SESSION['id_post'] = $_GET['id'];
 				$postController = new PostController($twig);
-				$postController->getPost();
+				$postController->showPost();
 				break;
 
 			case "getCommentsValid" :
 				$commentController = new CommentController($twig);
-				$commentController->getCommentsValid();
+				$commentController->showCommentsValid();
 				break;
 
 			case "validComment" : 
 				$_SESSION['id'] = $_GET['id'];
 				$commentController = new CommentController($twig);
-				$commentController->validComment();
+				$commentController->showValidComment();
 				break;
 
 			case "suppComment" : 
 				$_SESSION['id'] = $_GET['id'];
 				$commentController = new CommentController($twig);
-				$commentController->suppComment();
+				$commentController->showSuppComment();
 				break;	
 
 			case "flagComment" : 
 				$_SESSION['id'] = $_GET['id'];
 				$commentController = new CommentController($twig);
-				$commentController->flagComment();
+				$commentController->showFlagComment();
 				break;
 		}
 	}	

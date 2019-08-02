@@ -6,7 +6,7 @@ use \App\Model\Repository;
 
 class PostRepository extends Repository {
 	
-	function getPosts()
+	function getLastPosts()
 	{
 		$db = $this->getDb();
 

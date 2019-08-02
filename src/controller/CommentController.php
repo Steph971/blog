@@ -16,7 +16,7 @@ class CommentController extends Controller {
 		require('../src/view/afficheArticle.php');
 	}
 	
-	function addComment() {
+	function showAddComment() {
 		
 		$commentRepo = new CommentRepository();
 		$commentRepo->addComment();
@@ -24,16 +24,16 @@ class CommentController extends Controller {
 		
 	}
 
-	function getCommentsByArticle(){
+	//function getCommentsByArticle(){
 
 
-		$commentRepo = new CommentRepository();
-		$comments = $commentRepo->getCommentsByArticle(); // get the comments link to the users and articles
+		//$commentRepo = new CommentRepository();
+		//$comments = $commentRepo->getCommentsByArticle(); // get the comments link to the users and articles
 
-		echo $this->render('afficheArticle.twig', ['comments' => $comments, 'session' => $_SESSION]);
-	}
+		//echo $this->render('afficheArticle.twig', ['comments' => $comments, 'session' => $_SESSION]);
+	//}
 
-	function getCommentsValid() {
+	function showCommentsValid() {
 
 		$commentRepo = new CommentRepository();
 		$coms = $commentRepo->getCommentsValid(); // get comments to validated link to the users
@@ -41,7 +41,7 @@ class CommentController extends Controller {
 		echo $this->render('moderation.twig', ['coms' => $coms, 'session' => $_SESSION]);
 	}
 
-	function validComment(){
+	function showValidComment(){
 
 		$commentRepo = new CommentRepository();
 		$commentRepo->validComment(); // to validate the comment
@@ -51,7 +51,7 @@ class CommentController extends Controller {
 
 	}
 
-	function suppComment() {
+	function showSuppComment() {
 
 		$commentRepo = new CommentRepository();
 		$commentRepo->suppComment(); // delete comment from id
@@ -60,7 +60,7 @@ class CommentController extends Controller {
 		echo $this->render('moderation.twig', ['coms' => $coms, 'session' => $_SESSION]);
 	}
 
-	function flagComment() {
+	function showFlagComment() {
 
 		$commentRepo = new CommentRepository();
 		$commentRepo->flagComment(); // put the comment pending validation
@@ -68,7 +68,7 @@ class CommentController extends Controller {
 		$postRepo = new PostRepository();
 		$post = $postRepo->getPost(); // get article from id
 
-		echo $this->render('afficheArticle.twig', ['comments' => $comments, 'session' => $_SESSION]);
+		echo $this->render('afficheArticle.twig', ['post' => $post, 'comments' => $comments, 'session' => $_SESSION]);
 	}
 
 }

@@ -9,13 +9,13 @@ class PostController extends Controller {
 	function listPosts() {
 		
 		$postRepo = new PostRepository();
-		$posts = $postRepo->getPosts(); // get articles in descending order
+		$posts = $postRepo->getLastPosts(); // get articles in descending order
 		
 		echo $this->render('home.twig', ['posts' => $posts, 'session' => $_SESSION]);
 				
 	}
 
-	function getAllPosts() {
+	function showAllPosts() {
 		
 		$postRepo = new PostRepository();
 		$posts = $postRepo->getAllPosts(); // get all articles
@@ -23,7 +23,7 @@ class PostController extends Controller {
 		echo $this->render('listeArticles.twig', ['posts' => $posts, 'session' => $_SESSION]);
 	}
 	
-	function getPost() {
+	function showPost() {
 
 		$postRepo = new PostRepository();
 		$post = $postRepo->getPost(); // get article from id
@@ -38,37 +38,37 @@ class PostController extends Controller {
 		//require('../src/view/addposts.php');
 
 	//}
-	function addPost() {
+	function showAddPost() {
 		
 		$postRepo = new PostRepository();
 		$postRepo->addPost(); // add article
 		
-		$posts = $postRepo->getPosts();
+		$posts = $postRepo->getLastPosts();
 		
 		echo $this->render('home.twig', ['posts' => $posts, 'session' => $_SESSION]);
 		
 	}
 
-	function selectPost() {
+	function showSelectPost() {
 
 		$postRepo = new PostRepository();
 		$article = $postRepo->selectPost(); // get articles from id
 		echo $this->render('selectPost.twig', ['article' => $article, 'session' => $_SESSION]);
 	}
 
-	function updatePost() {
+	function showUpdatePost() {
 
 		$postRepo = new PostRepository();
 		$postRepo->updatePost(); // update article from id
-		$posts = $postRepo->getPosts(); 
+		$posts = $postRepo->getLastPosts(); 
 		echo $this->render('home.twig', ['posts' => $posts, 'session' => $_SESSION]);
 	}
 	
-	function deletePost() {
+	function showDeletePost() {
 
 		$postRepo = new PostRepository();
 		$postRepo->deletePost(); // delete article from id
-		$posts = $postRepo->getPosts();
+		$posts = $postRepo->getLastPosts();
 		echo $this->render('home.twig', ['posts' => $posts, 'session' => $_SESSION]);
 	}
 	
