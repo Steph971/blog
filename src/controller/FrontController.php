@@ -7,15 +7,11 @@ use Twig\Environment;
 use Twig\Extension\DebugExtension;
 use Twig\Loader\FilesystemLoader;
 
-class FrontController  {
+class FrontController extends Controller {
 
 	public function run(){
 
-		$loader = new \Twig\Loader\FilesystemLoader( '../src/View/layout');
-        $twig = new \Twig\Environment($loader, [
-            //'cache' => false,
-            'debug' => false
-        ]);		
+			
 		
 		if (isset($_GET['page']) && !empty($_GET['page'])) {
 	
@@ -30,7 +26,7 @@ class FrontController  {
 		switch ($page)	{
 
 			case "home" :
-				$postController = new PostController($twig);
+				$postController = new PostController();
 				$postController->listPosts();
 				break;
 	
@@ -72,14 +68,14 @@ class FrontController  {
 				break;
 
 			case "connectUser" : 
-				$userController = new UserController($twig);
+				$userController = new UserController();
 				$userController->showConnectUser();
 				break;
 
 			case "connected" :	
-				$_SESSION['pseudo'] = $_POST['pseudo'];
-				$_SESSION['password'] = $_POST['password'];
-				$userController = new UserController($twig);
+				$this->session['pseudo'] = $this->post['pseudo'];
+				$this->session['password'] = $this->post['password'];
+				$userController = new UserController();
 				$userController->showConnectAdmin();
 				$userController->connected();	
 				break;
@@ -157,7 +153,7 @@ class FrontController  {
 
 			case "getPost" : 
 				$_SESSION['id_post'] = $_GET['id'];
-				$postController = new PostController($twig);
+				$postController = new PostController();
 				$postController->showPost();
 				break;
 
