@@ -36,8 +36,14 @@ abstract class Controller
      * Controller constructor.
      * @param Environment $twig
      */
-    public function __construct(Environment $twig)
+    public function __construct()
     {
+
+        $loader = new \Twig\Loader\FilesystemLoader( '../src/View/layout');
+        $twig = new \Twig\Environment($loader, [
+            //'cache' => false,
+            'debug' => false
+        ]); 
         $this->twig = $twig;
 
         $this->get  = filter_input_array(INPUT_GET);
