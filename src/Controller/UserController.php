@@ -6,7 +6,7 @@ use \App\Model\UserRepository;
 
 class UserController extends Controller{
 	
-	function listAllUsers() {
+	function listAllUsers($twig) {
 		
 		$userRepo = new UserRepository();
 		$users = $userRepo->getUsers(); // get the list of users put in the variable $users
@@ -14,7 +14,7 @@ class UserController extends Controller{
 		
 	}
 	
-	function showAddUser() {
+	function showAddUser($twig) {
 		
 		$userRepo = new UserRepository();
 		$userRepo->addUser();
@@ -25,14 +25,14 @@ class UserController extends Controller{
 		
 	}
 	
-	function subscribe() {
+	function subscribe($twig) {
 		
 		
 		echo $this->render('subscribe.twig');
 		
 	}
 
-	function showDeleteUser()								
+	function showDeleteUser($twig)								
 	{													
 		$userRepo = new UserRepository();				
 		$userRepo->deleteUser(); // delete by id				
