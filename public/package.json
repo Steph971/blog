@@ -17,18 +17,17 @@
   },
   "license": "MIT",
   "author": "Stephen Germain",
-
   "repository": {
     "type": "git",
     "url": "git+https://github.com/BlackrockDigital/startbootstrap-clean-blog.git"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "5.7.0",
-    "bootstrap": "4.2.1",
-    "jquery": "3.3.1"
+    "bootstrap": "^4.3.1",
+    "jquery": "^3.4.1"
   },
   "devDependencies": {
-    "browser-sync": "2.26.3",
+    "browser-sync": "^2.26.7",
     "gulp": "4.0.0",
     "gulp-autoprefixer": "6.0.0",
     "gulp-clean-css": "4.0.0",
