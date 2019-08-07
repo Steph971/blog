@@ -8,13 +8,13 @@ use \App\Model\PostRepository;
 class CommentController extends Controller {
 	
 	
-	function getComments() {
+	//function getComments() {
 
-		$commentRepo = new CommentRepository();
-		$comment = $commentRepo->getComments(); // get validated comments (validate = 1)
+		//$commentRepo = new CommentRepository();
+		//$comment = $commentRepo->getComments(); // get validated comments (validate = 1)
 
-		require('../src/view/afficheArticle.php');
-	}
+		//require('../src/view/afficheArticle.php');
+	//}
 	
 	function showAddComment() {
 		
@@ -38,7 +38,7 @@ class CommentController extends Controller {
 		$commentRepo = new CommentRepository();
 		$coms = $commentRepo->getCommentsValid(); // get comments to validated link to the users
 
-		echo $this->render('moderation.twig', ['coms' => $coms, 'session' => $_SESSION]);
+		echo $this->render('moderation.twig', ['coms' => $coms, 'session' => $this->session]);
 	}
 
 	function showValidComment(){
@@ -47,7 +47,7 @@ class CommentController extends Controller {
 		$commentRepo->validComment(); // to validate the comment
 		$coms = $commentRepo->getCommentsValid(); //get comments to validated 
 
-		echo $this->render('moderation.twig', ['coms' => $coms, 'session' => $_SESSION]);
+		echo $this->render('moderation.twig', ['coms' => $coms, 'session' => $this->session]);
 
 	}
 
@@ -57,7 +57,7 @@ class CommentController extends Controller {
 		$commentRepo->suppComment(); // delete comment from id
 		$coms = $commentRepo->getCommentsValid();
 
-		echo $this->render('moderation.twig', ['coms' => $coms, 'session' => $_SESSION]);
+		echo $this->render('moderation.twig', ['coms' => $coms, 'session' => $this->session]);
 	}
 
 	function showFlagComment() {
@@ -68,7 +68,7 @@ class CommentController extends Controller {
 		$postRepo = new PostRepository();
 		$post = $postRepo->getPost(); // get article from id
 
-		echo $this->render('afficheArticle.twig', ['post' => $post, 'comments' => $comments, 'session' => $_SESSION]);
+		echo $this->render('afficheArticle.twig', ['post' => $post, 'comments' => $comments, 'session' => $this->session]);
 	}
 
 }
