@@ -17,10 +17,6 @@ class FrontController extends Controller {
 
 		if (isset($this->get['page']) && !empty($this->get['page'])) {
 			$page = $this->get['page'];
-
-		} else {
-	
-			$page = 'home';
 		}
 
 		switch ($page)	{
