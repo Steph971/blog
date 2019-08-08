@@ -2,9 +2,14 @@
 
 namespace App\Model;
 
-use \App\Model\Repository;
-
 class PostRepository extends Repository {
+
+	protected $session;
+
+	public function __construct()
+    { 
+        $this->session = filter_var_array($_SESSION);
+    }
 	
 	function getLastPosts()
 	{
@@ -55,7 +60,7 @@ class PostRepository extends Repository {
 		$db = $this->getDb();
 
 		$req = $db->prepare('SELECT * FROM posts WHERE id=:id');
-		$req->bindParam(':id', $_SESSION['id_post'], \PDO::PARAM_INT);
+		$req->bindParam(':id', $this->session['id_post'], \PDO::PARAM_INT);
 		$req->execute();
 
 		$post = [];
@@ -80,9 +85,9 @@ class PostRepository extends Repository {
 		$db = $this->getDb();
 
 		$req = $db->prepare('INSERT INTO posts(title, content, author, date_cont) VALUES(:title, :content, :author, NOW())');
-		$req->bindParam(':title', $_SESSION['title'], \PDO::PARAM_STR);
-		$req->bindParam(':content', $_SESSION['content'], \PDO::PARAM_STR);
-		$req->bindParam(':author', $_SESSION['pseudo'], \PDO::PARAM_STR);
+		$req->bindParam(':title', $this->session['title'], \PDO::PARAM_STR);
+		$req->bindParam(':content', $this->session['content'], \PDO::PARAM_STR);
+		$req->bindParam(':author', $this->session['pseudo'], \PDO::PARAM_STR);
 		$req->execute();
 		
 	}
@@ -91,7 +96,7 @@ class PostRepository extends Repository {
 	{
 		$db = $this->getDb();
 		$req = $db->prepare('SELECT * FROM posts WHERE id=:id');
-		$req->bindParam(':id', $_SESSION['id'], \PDO::PARAM_INT);
+		$req->bindParam(':id', $this->session['id'], \PDO::PARAM_INT);
 		$req->execute();
 
 		$posts = [];
@@ -113,9 +118,9 @@ class PostRepository extends Repository {
 	{
 		$db = $this->getDb();
 		$req = $db->prepare('UPDATE posts SET title=:title,content=:content,date_cont= NOW() WHERE id=:id');
-		$req->bindParam(':title', $_SESSION['title'], \PDO::PARAM_STR);
-		$req->bindParam(':content', $_SESSION['content'], \PDO::PARAM_STR);
-		$req->bindParam(':id', $_SESSION['id'], \PDO::PARAM_INT);
+		$req->bindParam(':title', $this->session['title'], \PDO::PARAM_STR);
+		$req->bindParam(':content', $this->session['content'], \PDO::PARAM_STR);
+		$req->bindParam(':id', $this->session['id'], \PDO::PARAM_INT);
 		$req->execute();
 	}
 
@@ -123,7 +128,7 @@ class PostRepository extends Repository {
 	{
 		$db = $this->getDb();
 		$req = $db->prepare('DELETE FROM posts WHERE id=:id');
-		$req->bindParam(':id', $_SESSION['id'], \PDO::PARAM_INT);
+		$req->bindParam(':id', $this->session['id'], \PDO::PARAM_INT);
 		$req->execute();
 
 	}

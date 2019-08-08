@@ -2,9 +2,14 @@
 
 namespace App\Model;
 
-use \App\Model\Repository;
-
 class CommentRepository extends Repository {
+
+	protected $session;
+
+	public function __construct()
+    { 
+        $this->session = filter_var_array($_SESSION);
+    }
 	
 	function getComments()
 	{
@@ -34,7 +39,7 @@ class CommentRepository extends Repository {
 		$db = $this->getDb();
 		
 		$req = $db->prepare('SELECT comments.id, pseudo, message, date_mess FROM comments INNER JOIN user ON id_user=user.id WHERE id_post=:id_post AND validate=1 ORDER BY date_mess DESC');
-		$req->bindParam(':id_post', $_SESSION['id_post'], \PDO::PARAM_INT);
+		$req->bindParam(':id_post', $this->session['id_post'], \PDO::PARAM_INT);
 		$req->execute();
 
 		$comment = [];
@@ -58,9 +63,9 @@ class CommentRepository extends Repository {
 		$db = $this->getDb();
 		
 		$req = $db->prepare('INSERT INTO comments(id_user, id_post, message, date_mess) VALUES(:id_user, :id_post, :message, NOW())');
-		$req->bindParam(':id_user', $_SESSION['idUser'], \PDO::PARAM_INT);
-		$req->bindParam(':id_post', $_SESSION['id_post'], \PDO::PARAM_INT);
-		$req->bindParam(':message', $_SESSION['message'], \PDO::PARAM_STR);
+		$req->bindParam(':id_user', $this->session['idUser'], \PDO::PARAM_INT);
+		$req->bindParam(':id_post', $this->session['id_post'], \PDO::PARAM_INT);
+		$req->bindParam(':message', $this->session['message'], \PDO::PARAM_STR);
 		$req->execute();
 		
 	}
@@ -91,7 +96,7 @@ class CommentRepository extends Repository {
 		$db = $this->getDb();
 
 		$req = $db->prepare('UPDATE comments SET validate = 1 WHERE id = :id');
-		$req->bindParam(':id', $_SESSION['id'], \PDO::PARAM_INT);
+		$req->bindParam(':id', $this->session['id'], \PDO::PARAM_INT);
 		$req->execute();
 	}
 
@@ -100,7 +105,7 @@ class CommentRepository extends Repository {
 		$db = $this->getDb();
 
 		$req = $db->prepare('DELETE FROM comments WHERE id = :id');
-		$req->bindParam(':id', $_SESSION['id'], \PDO::PARAM_INT);
+		$req->bindParam(':id', $this->session['id'], \PDO::PARAM_INT);
 		$req->execute();
 	}
 
@@ -109,7 +114,7 @@ class CommentRepository extends Repository {
 		$db = $this->getDb();
 
 		$req = $db->prepare('UPDATE comments SET validate = 0 WHERE id = :id');
-		$req->bindParam(':id', $_SESSION['id'], \PDO::PARAM_INT);
+		$req->bindParam(':id', $this->session['id'], \PDO::PARAM_INT);
 		$req->execute();
 	}
 
