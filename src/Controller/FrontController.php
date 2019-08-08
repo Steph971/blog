@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Controller;
-//require('../vendor/autoload.php');
 
 use Twig\Environment;
 use Twig\Extension\DebugExtension;
@@ -16,20 +15,15 @@ class FrontController extends Controller {
 
 	public function run(){
 
-			
-		
 		if (isset($this->get['page']) && !empty($this->get['page'])) {
-	
 			$page = $this->get['page'];
-	
+
 		} else {
 	
 			$page = 'home';
-	
 		}
 
 		switch ($page)	{
-
 
 			case "home" :
 				$postController = new PostController();
@@ -41,7 +35,6 @@ class FrontController extends Controller {
 				$userController->listAllUsers();
 				break;
 
-	
 			case "addUser" :
 				$this->session['pseudo'] = $this->post['pseudo'];
 				$this->session['password'] = $this->post['password'];
@@ -107,9 +100,6 @@ class FrontController extends Controller {
 						echo "Acces refusé";
 					}
 				}
-				//else {
-					//echo "Acces refusé";
-				//}
 				break;
 
 			case "listeArticles" : 
@@ -151,12 +141,6 @@ class FrontController extends Controller {
 				$userController = new UserController();
 				$userController->deconnexion();
 				break;
-
-			//case "listComments" : 
-				//$_SESSION['id'] = $_GET['id'];
-				//$commentController = new CommentController();
-				//$commentController->listComments();
-				//break;
 
 			case "addComment" : 
 				$this->session['message'] = $this->post['message'];
