@@ -37,8 +37,8 @@ class UserController extends Controller{
 		$userRepo = new UserRepository();				
 		$userRepo->deleteUser(); // delete by id				
 		$users = $userRepo->getUsers();	 // get the list of users put in the variable $users
-		unset($_SESSION['pseudo']); // delete session 
-		unset($_SESSION['password']);
+		unset($this->session['pseudo']); // delete session 
+		unset($this->session['password']);
 		echo $this->render('affichageAccueil.twig', ['users' => $users, 'session' => $this->session]); // redirection to the list of users
 	}
 
@@ -94,9 +94,9 @@ class UserController extends Controller{
 			echo $this->render('connected.twig', ['session' => $_SESSION]);  // redirect successfully connected user
 		}
 
-		else { // if user doesn't exist
-			echo $this->render('connectUser.twig');// redirect to authentication form
-		}
+		//else { // if user doesn't exist
+			//echo $this->render('connectUser.twig');// redirect to authentication form
+		//}
 	}
 
 	function deconnexion()
