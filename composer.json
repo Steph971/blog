@@ -3,9 +3,6 @@
     "description": "Création d'un blog pour un écrivain",
     "type": "e.g library",
     "require": {
-        "twbs/bootstrap": "4.3.1",
-        "components/jquery": "3.3.1",
-        "fortawesome/font-awesome": "5.9.0",
         "twig/twig": "^2.0"
     },
     "authors": [
