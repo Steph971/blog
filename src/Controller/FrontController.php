@@ -25,41 +25,39 @@ class FrontController extends Controller {
 	
 		}
 
+        $postController = new PostController();
+        $userController = new UserController();
+        $commentController = new CommentController();
+
 		switch ($page)	{
 
 			case "home" :
-				$postController = new PostController();
 				$postController->listPosts();
 				break;
 	
-			case "listUsers" : 
-				$userController = new UserController();
+			case "listUsers" :
 				$userController->listAllUsers();
 				break;
 
 			case "addUser" :
 				$this->session['pseudo'] = $this->post['pseudo'];
 				$this->session['password'] = $this->post['password'];
-				$userController = new UserController();
 				$this->setSession();
 				$userController->showAddUser();
 				break;
 	
-			case "subscribe" : 
-				$userController = new UserController();
+			case "subscribe" :
 				$userController->subscribe();
 				break;
 
 			case "delete" :					
 				$this->session['id'] = $this->get['id'];
-				$userController = new UserController();
 				$this->setSession();
 				$userController->showDeleteUser();	
 				break;		
 
 			case "editUser" : 
 				$this->session['id'] = $this->get['id'];
-				$userController = new UserController();
 				$this->setSession();
 				$userController->editUser();
 				break;		
@@ -67,7 +65,6 @@ class FrontController extends Controller {
 			case "updateUser" :
 				$this->session['pseudo'] = $this->post['pseudo'];
 				$this->session['password'] = $this->post['password'];
-				$userController = new UserController();
 				$this->setSession();
 				$userController->showUpdateUser();
 				break;
@@ -80,14 +77,12 @@ class FrontController extends Controller {
 			case "connected" :	
 				$this->session['pseudo'] = $this->post['pseudo'];
 				$this->session['password'] = $this->post['password'];
-				$userController = new UserController();
                 $this->setSession();
 				$userController->showConnectAdmin();
 				$userController->connected();	
 				break;
 
-			case "addArticles" :						
-				$userController = new UserController();
+			case "addArticles" :
 				$userController->showConnectAdmin();
 				$userController->addArticles();	
 				break;
@@ -95,7 +90,6 @@ class FrontController extends Controller {
 			case "moderation" :
 				if(isset($this->session['pseudo']) && isset($this->session['password']) && isset($this->session['level'])) {
 					if($this->session['level'] == "2" ){
-						$commentController = new CommentController();
 						$commentController->showCommentsValid();
 					}
 		 			else {
@@ -104,22 +98,19 @@ class FrontController extends Controller {
 				}
 				break;
 
-			case "listeArticles" : 
-				$postController = new PostController();
+			case "listeArticles" :
 				$postController->showAllPosts();
 				break;
 
 			case "addPost" : 
 				$this->session['title'] = $this->post['title'];
 				$this->session['content'] = $this->post['content'];
-				$postController = new PostController();
 				$this->setSession();
 				$postController->showAddPost();
 				break;	
 
 			case "selectPost" : 
 				$this->session['id'] = $this->get['id'];
-				$postController = new PostController();
 				$this->setSession();
 				$postController->showSelectPost();
 				break;
@@ -127,62 +118,52 @@ class FrontController extends Controller {
 			case "updatePost" : 
 				$this->session['title'] = $this->post['title'];
 				$this->session['content'] = $this->post['content'];
-				$postController = new PostController();
 				$this->setSession();
 				$postController->showUpdatePost();
 				break;
 
 			case "deletePost" : 
 				$this->session['id'] = $this->get['id'];
-				$postController = new PostController();
 				$this->setSession();
 				$postController->showDeletePost();
 				break;
 
 			case "deconnexion" :
-				$userController = new UserController();
 				$userController->deconnexion();
 				break;
 
 			case "addComment" : 
 				$this->session['message'] = $this->post['message'];
-				$commentController = new CommentController();
 				$this->setSession();
 				$commentController->showAddComment();
-				$postController = new PostController();
 				$this->setSession();
 				$postController->showPost();	
 				break;
 
 			case "getPost" : 
 				$this->session['id_post'] = $this->get['id'];
-				$postController = new PostController();
 				$this->setSession();
 				$postController->showPost();
 				break;
 
 			case "getCommentsValid" :
-				$commentController = new CommentController();
 				$commentController->showCommentsValid();
 				break;
 
 			case "validComment" : 
 				$this->session['id'] = $this->get['id'];
-				$commentController = new CommentController();
 				$this->setSession();
 				$commentController->showValidComment();
 				break;
 
 			case "suppComment" : 
 				$this->session['id'] = $this->get['id'];
-				$commentController = new CommentController();
 				$this->setSession();
 				$commentController->showSuppComment();
 				break;	
 
 			case "flagComment" : 
 				$this->session['id'] = $this->get['id'];
-				$commentController = new CommentController();
 				$this->setSession();
 				$commentController->showFlagComment();
 				break;
