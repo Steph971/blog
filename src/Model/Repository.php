@@ -11,19 +11,19 @@ abstract class Repository
     { 
         $this->session = filter_var_array($_SESSION);
     }
-    
-	private $db;
+
+	private $database;
 	
 	protected function getDb() {
 		
-		if($this->db === null) {
+		if($this->database === null) {
 			
 			$bdd = new \PDO('mysql:host=localhost;dbname=projet;charset=utf8', 'root', 'root');
 			
-			$this->db = $bdd;
+			$this->database = $bdd;
 		}
 	
-		return $this->db;
+		return $this->database;
 		
 	}
 }

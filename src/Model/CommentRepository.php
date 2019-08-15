@@ -6,9 +6,9 @@ class CommentRepository extends Repository {
 	
 	function getComments()
 	{
-		$db = $this->getDb();
+		$database = $this->getDb();
 
-		$req = $db->prepare('SELECT * FROM comments WHERE validate = 1');
+		$req = $database->prepare('SELECT * FROM comments WHERE validate = 1');
 		$req->execute();
 		
 		$comment = [];
@@ -29,9 +29,9 @@ class CommentRepository extends Repository {
 
 	function getCommentsByArticle()
 	{
-		$db = $this->getDb();
+		$database = $this->getDb();
 		
-		$req = $db->prepare('SELECT comments.id, pseudo, message, date_mess FROM comments INNER JOIN user ON id_user=user.id WHERE id_post=:id_post AND validate=1 ORDER BY date_mess DESC');
+		$req = $database->prepare('SELECT comments.id, pseudo, message, date_mess FROM comments INNER JOIN user ON id_user=user.id WHERE id_post=:id_post AND validate=1 ORDER BY date_mess DESC');
 		$req->bindParam(':id_post', $this->session['id_post'], \PDO::PARAM_INT);
 		$req->execute();
 
@@ -53,9 +53,9 @@ class CommentRepository extends Repository {
 		
 	function addComment()
 	{
-		$db = $this->getDb();
+		$database = $this->getDb();
 		
-		$req = $db->prepare('INSERT INTO comments(id_user, id_post, message, date_mess) VALUES(:id_user, :id_post, :message, NOW())');
+		$req = $database->prepare('INSERT INTO comments(id_user, id_post, message, date_mess) VALUES(:id_user, :id_post, :message, NOW())');
 		$req->bindParam(':id_user', $this->session['idUser'], \PDO::PARAM_INT);
 		$req->bindParam(':id_post', $this->session['id_post'], \PDO::PARAM_INT);
 		$req->bindParam(':message', $this->session['message'], \PDO::PARAM_STR);
@@ -65,9 +65,9 @@ class CommentRepository extends Repository {
 
 	function getCommentsValid() {
 
-		$db = $this->getDb();
+		$database = $this->getDb();
 
-		$req = $db->prepare('SELECT comments.id, pseudo, message, date_mess FROM comments INNER JOIN user ON id_user = user.id WHERE validate=0 ORDER BY date_mess DESC');
+		$req = $database->prepare('SELECT comments.id, pseudo, message, date_mess FROM comments INNER JOIN user ON id_user = user.id WHERE validate=0 ORDER BY date_mess DESC');
 		$req->execute();
 
 		$coms = [];
@@ -86,27 +86,27 @@ class CommentRepository extends Repository {
 
 	function validComment() {
 
-		$db = $this->getDb();
+		$database = $this->getDb();
 
-		$req = $db->prepare('UPDATE comments SET validate = 1 WHERE id = :id');
+		$req = $database->prepare('UPDATE comments SET validate = 1 WHERE id = :id');
 		$req->bindParam(':id', $this->session['id'], \PDO::PARAM_INT);
 		$req->execute();
 	}
 
 	function suppComment() {
 
-		$db = $this->getDb();
+		$database = $this->getDb();
 
-		$req = $db->prepare('DELETE FROM comments WHERE id = :id');
+		$req = $database->prepare('DELETE FROM comments WHERE id = :id');
 		$req->bindParam(':id', $this->session['id'], \PDO::PARAM_INT);
 		$req->execute();
 	}
 
 	function flagComment() {
 
-		$db = $this->getDb();
+		$database = $this->getDb();
 
-		$req = $db->prepare('UPDATE comments SET validate = 0 WHERE id = :id');
+		$req = $database->prepare('UPDATE comments SET validate = 0 WHERE id = :id');
 		$req->bindParam(':id', $this->session['id'], \PDO::PARAM_INT);
 		$req->execute();
 	}
