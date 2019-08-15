@@ -57,7 +57,7 @@ class CommentController extends Controller {
 		$commentRepo->suppComment(); // delete comment from id
 		$coms = $commentRepo->getCommentsValid();
 
-		echo $this->render('moderation.twig', ['coms' => $coms, 'session' => $this->session]);
+		echo filter_var($this->render('moderation.twig', ['coms' => $coms, 'session' => $this->session]));
 	}
 
 	function showFlagComment() {
@@ -68,7 +68,7 @@ class CommentController extends Controller {
 		$postRepo = new PostRepository();
 		$post = $postRepo->getPost(); // get article from id
 
-		echo $this->render('afficheArticle.twig', ['post' => $post, 'comments' => $comments, 'session' => $this->session]);
+		echo filter_var($this->render('afficheArticle.twig', ['post' => $post, 'comments' => $comments, 'session' => $this->session]));
 	}
 
 }

@@ -21,14 +21,14 @@ class UserController extends Controller{
 		
 		$users = $userRepo->getUsers(); // get the list of users put in the variable $users
 		
-		echo $this->render('affichageAccueil.twig', ['users' => $users, 'session' => $this->session]);
+		echo filter_var($this->render('affichageAccueil.twig', ['users' => $users, 'session' => $this->session]));
 		
 	}
 	
 	function subscribe() {
 		
 		
-		echo $this->render('subscribe.twig');
+		echo filter_var($this->render('subscribe.twig'));
 		
 	}
 
@@ -46,7 +46,7 @@ class UserController extends Controller{
 	{
 		$userRepo = new UserRepository();
 		$user = $userRepo->getUserById(); // get users by id 
-		echo $this->render('editUser.twig', ['user' => $user, 'session' => $this->session]);  // redirection to the edit page
+		echo filter_var($this->render('editUser.twig', ['user' => $user, 'session' => $this->session]));  // redirection to the edit page
 	}
 	
 	function showUpdateUser()
@@ -54,12 +54,12 @@ class UserController extends Controller{
 		$userRepo = new UserRepository();
 		$userRepo->updateUser();  // update by id
 		$users = $userRepo->getUsers(); //get the list of users put in the variable $users
-		echo $this->render('affichageAccueil.twig', ['users' => $users, 'session' => $this->session]); // redirection to the list of users
+		echo filter_var($this->render('affichageAccueil.twig', ['users' => $users, 'session' => $this->session])); // redirection to the list of users
 	}
 
 	function showConnectUser() //afficher le formulaire de connexion
 	{
-		echo $this->render('connectUser.twig');
+		echo filter_var($this->render('connectUser.twig'));
 	}
 
 	function connected()
@@ -91,7 +91,7 @@ class UserController extends Controller{
 			$this->session['idUser'] = $userRepo->getConnectUser(); // get user id by pseudo(used to add comments and articles)
 			$_SESSION['idUser'] = $this->session['idUser'];
 
-			echo $this->render('connected.twig', ['session' => $this->session]);  // redirect successfully connected user
+			echo filter_var($this->render('connected.twig', ['session' => $this->session]));  // redirect successfully connected user
 		}
 
 		//else { // if user doesn't exist
@@ -106,7 +106,7 @@ class UserController extends Controller{
 		unset($this->session['password']);
 		unset($_SESSION['idUser']);
 
-		echo $this->render('connectUser.twig'); // redirect to authentication form
+		echo filter_var($this->render('connectUser.twig')); // redirect to authentication form
 		
 	}
 
