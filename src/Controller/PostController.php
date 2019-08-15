@@ -11,7 +11,7 @@ class PostController extends Controller {
 		$postRepo = new PostRepository();
 		$posts = $postRepo->getLastPosts(); // get articles in descending order
 		
-		echo $this->render('home.twig', ['posts' => $posts, 'session' => $this->session]);
+		echo filter_var($this->render('home.twig', ['posts' => $posts, 'session' => $this->session]));
 				
 	}
 
@@ -45,7 +45,7 @@ class PostController extends Controller {
 		
 		$posts = $postRepo->getLastPosts();
 		
-		echo $this->render('home.twig', ['posts' => $posts, 'session' => $this->session]);
+		echo filter_var($this->render('home.twig', ['posts' => $posts, 'session' => $this->session]));
 		
 	}
 
@@ -61,7 +61,7 @@ class PostController extends Controller {
 		$postRepo = new PostRepository();
 		$postRepo->updatePost(); // update article from id
 		$posts = $postRepo->getLastPosts(); 
-		echo $this->render('home.twig', ['posts' => $posts, 'session' => $this->session]);
+		echo filter_var($this->render('home.twig', ['posts' => $posts, 'session' => $this->session]));
 	}
 	
 	function showDeletePost() {

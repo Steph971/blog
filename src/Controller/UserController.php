@@ -10,7 +10,7 @@ class UserController extends Controller{
 		
 		$userRepo = new UserRepository();
 		$users = $userRepo->getUsers(); // get the list of users put in the variable $users
-		echo $this->render('affichageAccueil.twig', ['users' => $users, 'session' => $this->session]);
+		echo filter_var($this->render('affichageAccueil.twig', ['users' => $users, 'session' => $this->session]));
 		
 	}
 	
@@ -39,7 +39,7 @@ class UserController extends Controller{
 		$users = $userRepo->getUsers();	 // get the list of users put in the variable $users
 		unset($this->session['pseudo']); // delete session 
 		unset($this->session['password']);
-		echo $this->render('affichageAccueil.twig', ['users' => $users, 'session' => $this->session]); // redirection to the list of users
+		echo filter_var($this->render('affichageAccueil.twig', ['users' => $users, 'session' => $this->session])); // redirection to the list of users
 	}
 
 	function editUser() 
@@ -73,11 +73,11 @@ class UserController extends Controller{
 			$this->session['idUser'] = $userRepo->getConnectUser(); // get user id by pseudo(used to add comments and articles)
 			$_SESSION['idUser'] = $this->session['idUser'];
 
-			echo $this->render('connected.twig', ['session' => $this->session]);// redirect successfully connected user
+			echo filter_var($this->render('connected.twig', ['session' => $this->session]));// redirect successfully connected user
 		}
 
 		else { // if user doesn't exist
-			echo $this->render('connectUser.twig'); // redirect to authentication form
+			echo filter_var($this->render('connectUser.twig')); // redirect to authentication form
 		}
 	}
 

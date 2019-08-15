@@ -38,7 +38,7 @@ class CommentController extends Controller {
 		$commentRepo = new CommentRepository();
 		$coms = $commentRepo->getCommentsValid(); // get comments to validated link to the users
 
-		echo $this->render('moderation.twig', ['coms' => $coms, 'session' => $this->session]);
+		echo filter_var($this->render('moderation.twig', ['coms' => $coms, 'session' => $this->session]));
 	}
 
 	function showValidComment(){
@@ -47,7 +47,7 @@ class CommentController extends Controller {
 		$commentRepo->validComment(); // to validate the comment
 		$coms = $commentRepo->getCommentsValid(); //get comments to validated 
 
-		echo $this->render('moderation.twig', ['coms' => $coms, 'session' => $this->session]);
+		echo filter_var($this->render('moderation.twig', ['coms' => $coms, 'session' => $this->session]));
 
 	}
 
