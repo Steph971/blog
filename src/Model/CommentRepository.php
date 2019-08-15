@@ -3,13 +3,6 @@
 namespace App\Model;
 
 class CommentRepository extends Repository {
-
-	protected $session;
-
-	public function __construct()
-    { 
-        $this->session = filter_var_array($_SESSION);
-    }
 	
 	function getComments()
 	{
