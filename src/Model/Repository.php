@@ -4,6 +4,14 @@ namespace App\Model;
 
 abstract class Repository
 {
+
+	protected $session;
+
+	public function __construct()
+    { 
+        $this->session = filter_var_array($_SESSION);
+    }
+    
 	private $db;
 	
 	protected function getDb() {
