@@ -335,8 +335,8 @@ header.masthead .post-heading .meta a {
   border: none;
   border-radius: 0;
   background: none;
-  -webkit-box-shadow: none !important;
-  box-shadow: none !important;
+  -webkit-box-shadow: none;
+  box-shadow: none;
   font-family: 'Lora', 'Times New Roman', serif;
 }
 
@@ -410,8 +410,8 @@ footer .copyright {
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active {
   color: #fff;
-  background-color: #00657b !important;
-  border-color: #00657b !important;
+  background-color: #00657b;
+  border-color: #00657b;
 }
 
 .btn-lg {
