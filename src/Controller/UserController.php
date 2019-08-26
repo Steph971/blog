@@ -10,7 +10,7 @@ class UserController extends Controller{
 		
 		$userRepo = new UserRepository();
 		$users = $userRepo->getUsers(); // get the list of users put in the variable $users
-		echo filter_var($this->render('affichageAccueil.twig', ['users' => $users, 'session' => $this->session]));
+		return $this->render('affichageAccueil.twig', ['users' => $users, 'session' => $this->session]);
 		
 	}
 	
@@ -21,14 +21,14 @@ class UserController extends Controller{
 		
 		$users = $userRepo->getUsers(); // get the list of users put in the variable $users
 		
-		echo filter_var($this->render('affichageAccueil.twig', ['users' => $users, 'session' => $this->session]));
+		return $this->render('affichageAccueil.twig', ['users' => $users, 'session' => $this->session]);
 		
 	}
 	
 	function subscribe() {
 		
 		
-		echo filter_var($this->render('subscribe.twig'));
+		return $this->render('subscribe.twig');
 		
 	}
 
@@ -39,14 +39,14 @@ class UserController extends Controller{
 		$users = $userRepo->getUsers();	 // get the list of users put in the variable $users
 		unset($this->session['pseudo']); // delete session 
 		unset($this->session['password']);
-		echo filter_var($this->render('affichageAccueil.twig', ['users' => $users, 'session' => $this->session])); // redirection to the list of users
+		return $this->render('affichageAccueil.twig', ['users' => $users, 'session' => $this->session]); // redirection to the list of users
 	}
 
 	function editUser() 
 	{
 		$userRepo = new UserRepository();
 		$user = $userRepo->getUserById(); // get users by id 
-		echo filter_var($this->render('editUser.twig', ['user' => $user, 'session' => $this->session]));  // redirection to the edit page
+		return $this->render('editUser.twig', ['user' => $user, 'session' => $this->session]);  // redirection to the edit page
 	}
 	
 	function showUpdateUser()
@@ -54,12 +54,12 @@ class UserController extends Controller{
 		$userRepo = new UserRepository();
 		$userRepo->updateUser();  // update by id
 		$users = $userRepo->getUsers(); //get the list of users put in the variable $users
-		echo filter_var($this->render('affichageAccueil.twig', ['users' => $users, 'session' => $this->session])); // redirection to the list of users
+		return $this->render('affichageAccueil.twig', ['users' => $users, 'session' => $this->session]); // redirection to the list of users
 	}
 
 	function showConnectUser() //afficher le formulaire de connexion
 	{
-		echo filter_var($this->render('connectUser.twig'));
+		return $this->render('connectUser.twig');
 	}
 
 	function connected()
@@ -73,11 +73,11 @@ class UserController extends Controller{
 			$this->session['idUser'] = $userRepo->getConnectUser(); // get user id by pseudo(used to add comments and articles)
 			$_SESSION['idUser'] = $this->session['idUser'];
 
-			echo filter_var($this->render('connected.twig', ['session' => $this->session]));// redirect successfully connected user
+			return $this->render('connected.twig', ['session' => $this->session]);// redirect successfully connected user
 		}
 
 		else { // if user doesn't exist
-			echo filter_var($this->render('connectUser.twig')); // redirect to authentication form
+			return $this->render('connectUser.twig'); // redirect to authentication form
 		}
 	}
 
@@ -91,7 +91,7 @@ class UserController extends Controller{
 			$this->session['idUser'] = $userRepo->getConnectUser(); // get user id by pseudo(used to add comments and articles)
 			$_SESSION['idUser'] = $this->session['idUser'];
 
-			echo filter_var($this->render('connected.twig', ['session' => $this->session]));  // redirect successfully connected user
+			return $this->render('connected.twig', ['session' => $this->session]);  // redirect successfully connected user
 		}
 
 		//else { // if user doesn't exist
@@ -106,7 +106,7 @@ class UserController extends Controller{
 		unset($this->session['password']);
 		unset($_SESSION['idUser']);
 
-		echo filter_var($this->render('connectUser.twig')); // redirect to authentication form
+		return $this->render('connectUser.twig'); // redirect to authentication form
 		
 	}
 
