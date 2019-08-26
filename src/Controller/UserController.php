@@ -6,10 +6,10 @@ use \App\Model\UserRepository;
 
 class UserController extends Controller{
 
-	private function setSessionId()
-    {
-        $_SESSION['idUser'] = $this->session['idUser'];
-    }
+	//private function setSessionId()
+    //{
+        //$_SESSION['idUser'] = $this->session['idUser'];
+   // }
 	
 	function listAllUsers() {
 		
@@ -76,7 +76,7 @@ class UserController extends Controller{
 		if($user){ // if user exists 
 
 			$this->session['idUser'] = $userRepo->getConnectUser(); // get user id by pseudo(used to add comments and articles)
-			//$_SESSION['idUser'] = $this->session['idUser'];
+			$_SESSION['idUser'] = $this->session['idUser'];
 
 			return $this->render('connected.twig', ['session' => $this->session]);// redirect successfully connected user
 		}
@@ -94,7 +94,7 @@ class UserController extends Controller{
 		if($user){ // if user exists 
 
 			$this->session['idUser'] = $userRepo->getConnectUser(); // get user id by pseudo(used to add comments and articles)
-			//$_SESSION['idUser'] = $this->session['idUser'];
+			$_SESSION['idUser'] = $this->session['idUser'];
 
 			return $this->render('connected.twig', ['session' => $this->session]);  // redirect successfully connected user
 		}
@@ -106,7 +106,7 @@ class UserController extends Controller{
 
 	function deconnexion()
 	{
-		//$_SESSION['idUser'] = $this->session['idUser'];
+		$_SESSION['idUser'] = $this->session['idUser'];
 		unset($this->session['pseudo']); // delete session for disconnection
 		unset($this->session['password']);
 		unset($this->session['idUser']);
@@ -118,7 +118,7 @@ class UserController extends Controller{
 	function showConnectAdmin() {
 
 		$userRepo = new UserRepository();
-		$this->session['level'] = $userRepo->connectAdmin(); // get level by user
+		$_SESSION['level'] = $userRepo->connectAdmin(); // get level by user
 
 	}
 
