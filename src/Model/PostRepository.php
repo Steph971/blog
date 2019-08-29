@@ -3,56 +3,38 @@
 namespace App\Model;
 
 class PostRepository extends Repository {
-	
-	function getLastPosts()
-	{
-		$database = $this->getDb();
 
-		$req = $database->prepare('SELECT * FROM posts ORDER BY date_cont DESC LIMIT 0, 6');
-		$req->execute();
-		
-		$posts = [];
-		
-		while($data = $req-> fetch()) {
+    private function getPosts($req)
+    {
+        $posts = [];
+        while($data = $req-> fetch()) {
+            $post = new Post($data['id'], $data['title'], $data['content'], $data['author'], $data['date_cont']);
+            $posts[] = $post;
+        }
+        $req->closeCursor();
 
-			$post = new Post($data['id'], $data['title'], $data['content'], $data['author'], $data['date_cont']);
-			
-			$posts[] = $post;
-	
-		}
-		
-		$req->closeCursor();
+        return $posts;
+    }
 
-		return $posts;
-	}
+    public function getLastPosts()
+    {
+        $req = $this->database->prepare('SELECT * FROM posts ORDER BY date_cont DESC LIMIT 0, 6');
+        $req->execute();
 
-	function getAllPosts()
-	{
-		$database = $this->getDb();
+        return $this->getPosts($req);
+    }
 
-		$req = $database->prepare('SELECT * FROM posts ORDER BY date_cont DESC');
-		$req->execute();
-		
-		$posts = [];
-		
-		while($data = $req-> fetch()) {
-			
-			$post = new Post($data['id'], $data['title'], $data['content'], $data['author'], $data['date_cont']);
+    public function getAllPosts()
+    {
+        $req = $this->database->prepare('SELECT * FROM posts ORDER BY date_cont DESC');
+        $req->execute();
 
-			$posts[] = $post;
-			
-		}
-		
-		$req->closeCursor();
-
-		return $posts;
-	}
+        return $this->getPosts($req);
+    }
 
 	function getPost()
 	{
-		$database = $this->getDb();
-
-		$req = $database->prepare('SELECT * FROM posts WHERE id=:id');
+		$req = $this->database->prepare('SELECT * FROM posts WHERE id=:id');
 		$req->bindParam(':id', $this->session['id_post'], \PDO::PARAM_INT);
 		$req->execute();
 
@@ -75,9 +57,7 @@ class PostRepository extends Repository {
 		
 	function addPost()
 	{
-		$database = $this->getDb();
-
-		$req = $database->prepare('INSERT INTO posts(title, content, author, date_cont) VALUES(:title, :content, :author, NOW())');
+		$req = $this->database->prepare('INSERT INTO posts(title, content, author, date_cont) VALUES(:title, :content, :author, NOW())');
 		$req->bindParam(':title', $this->session['title'], \PDO::PARAM_STR);
 		$req->bindParam(':content', $this->session['content'], \PDO::PARAM_STR);
 		$req->bindParam(':author', $this->session['pseudo'], \PDO::PARAM_STR);
@@ -87,8 +67,7 @@ class PostRepository extends Repository {
 
 	function selectPost()
 	{
-		$database = $this->getDb();
-		$req = $database->prepare('SELECT * FROM posts WHERE id=:id');
+		$req = $this->database->prepare('SELECT * FROM posts WHERE id=:id');
 		$req->bindParam(':id', $this->session['id'], \PDO::PARAM_INT);
 		$req->execute();
 
@@ -109,8 +88,7 @@ class PostRepository extends Repository {
 
 	function updatePost()
 	{
-		$database = $this->getDb();
-		$req = $database->prepare('UPDATE posts SET title=:title,content=:content,date_cont= NOW() WHERE id=:id');
+		$req = $this->database->prepare('UPDATE posts SET title=:title,content=:content,date_cont= NOW() WHERE id=:id');
 		$req->bindParam(':title', $this->session['title'], \PDO::PARAM_STR);
 		$req->bindParam(':content', $this->session['content'], \PDO::PARAM_STR);
 		$req->bindParam(':id', $this->session['id'], \PDO::PARAM_INT);
@@ -119,12 +97,10 @@ class PostRepository extends Repository {
 
 	function deletePost()
 	{
-		$database = $this->getDb();
-		$req = $database->prepare('DELETE FROM posts WHERE id=:id');
+		$req = $this->database->prepare('DELETE FROM posts WHERE id=:id');
 		$req->bindParam(':id', $this->session['id'], \PDO::PARAM_INT);
 		$req->execute();
 
 	}
-
 }
 

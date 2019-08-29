@@ -6,9 +6,7 @@ class UserRepository extends Repository  {
 	
 	function getUsers()
 	{
-		$database = $this->getDb();
-
-		$req = $database->prepare('SELECT id, pseudo, password FROM user');
+		$req = $this->database->prepare('SELECT id, pseudo, password FROM user');
 		$req->execute();
 		
 		$users = [];
@@ -30,10 +28,8 @@ class UserRepository extends Repository  {
 		
 	function addUser()
 	{
-		$database = $this->getDb();
-
 		$hashpass= password_hash($this->session['password'], PASSWORD_DEFAULT);
-		$req = $database->prepare('INSERT INTO user(pseudo, password) VALUES(:pseudo, :password)'); 
+		$req = $this->database->prepare('INSERT INTO user(pseudo, password) VALUES(:pseudo, :password)'); 
 		$req->bindParam(':pseudo', $this->session['pseudo'], \PDO::PARAM_STR);
 		$req->bindParam(':password', $hashpass, \PDO::PARAM_STR);
 		$req->execute();
@@ -41,10 +37,8 @@ class UserRepository extends Repository  {
 	}
 	
 	function deleteUser()														//
-	{																			//
-		$database = $this->getDb();													//
-	
-		$req = $database->prepare('DELETE FROM user WHERE id=:id');
+	{			
+		$req = $this->database->prepare('DELETE FROM user WHERE id=:id');
 		$req->bindParam(':id', $this->session['id'], \PDO::PARAM_INT);
 			
 		$req->execute();									//
@@ -52,8 +46,7 @@ class UserRepository extends Repository  {
 
 	function getUserById()
 	{
-		$database = $this->getDb();
-		$req = $database->prepare('SELECT * FROM user WHERE id=:id');
+		$req = $this->database->prepare('SELECT * FROM user WHERE id=:id');
 		$req->bindParam(':id', $this->session['id'], \PDO::PARAM_INT);
 			
 		$req->execute();
@@ -76,11 +69,8 @@ class UserRepository extends Repository  {
 
 	function updateUser()
 	{
-
-		$database = $this->getDb();
-		
 		$hashpass= password_hash($this->session['password'], PASSWORD_DEFAULT);
-		$req = $database->prepare('UPDATE user SET pseudo=:pseudo, password=:password WHERE id=:id');
+		$req = $this->database->prepare('UPDATE user SET pseudo=:pseudo, password=:password WHERE id=:id');
 		$req->bindParam(':pseudo', $this->session['pseudo'], \PDO::PARAM_STR);
 		$req->bindParam(':password', $hashpass, \PDO::PARAM_STR);
 		$req->bindParam(':id', $this->session['id'], \PDO::PARAM_INT);
@@ -89,9 +79,7 @@ class UserRepository extends Repository  {
 
 	function connectUser()
 	{
-		$database = $this->getDb();
-
-		$req = $database->prepare('SELECT * FROM user WHERE pseudo = :pseudo');
+		$req = $this->database->prepare('SELECT * FROM user WHERE pseudo = :pseudo');
 		$req->bindParam(':pseudo', $this->session['pseudo'], \PDO::PARAM_STR);
 		$req->execute();
 
@@ -114,11 +102,9 @@ class UserRepository extends Repository  {
 		}
 	}
 
-	function getConnectUser() {
-
-		$database = $this->getDb();
-
-		$req = $database->prepare('SELECT id FROM user WHERE pseudo=:pseudo');
+	function getConnectUser()
+	{
+		$req = $this->database->prepare('SELECT id FROM user WHERE pseudo=:pseudo');
 		$req->bindParam(':pseudo', $this->session['pseudo'], \PDO::PARAM_STR);
 		$req->execute();
 
@@ -127,11 +113,9 @@ class UserRepository extends Repository  {
 		return $idUser[0];
 	}
 
-	function connectAdmin() {
-
-		$database = $this->getDb();
-
-		$req = $database->prepare('SELECT level FROM user WHERE pseudo = :pseudo');
+	function connectAdmin() 
+	{
+		$req = $this->database->prepare('SELECT level FROM user WHERE pseudo = :pseudo');
 		$req->bindParam(':pseudo', $this->session['pseudo'], \PDO::PARAM_STR);
 		$req->execute();
 		$admin = $req->fetch();
