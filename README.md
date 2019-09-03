@@ -1,0 +1,2 @@
+# blog
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/3adef8b430a443a58e9fd3fd833f920b)](https://app.codacy.com/app/stephen-germain/blog?utm_source=github.com&utm_medium=referral&utm_content=stephen-germain/blog&utm_campaign=Badge_Grade_Dashboard)
