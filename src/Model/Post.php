@@ -4,71 +4,22 @@ namespace App\Model;
 
 class Post {
 	
-	private $id;
-	private $title;
-	private $content;
-	private $author;
-	private $date_cont;
+	private $post;
 	
-	public function __construct($id, $title, $content, $author, $date_cont) {
+	public function __construct() {
 		
-		$this->id = $id;
-		$this->title = $title;
-		$this->content = $content;
-		$this->author = $author;
-		$this->date_cont = $date_cont;
+		$this->post = filter_input_array(INPUT_POST);
 		
 	}
 	
-	public function getId() {
-		return $this->id;
+	public function getPostArray() {
+		return $this->post;
 	}
 
-	public function getTitle() {
-		return $this->title;
-	}
-	
-	public function getContent() {
-		return $this->content;
+	public function getPostVar(string $var) {
+		return $this->post[$var];
 	}
 
-	public function getAuthor() {
-		return $this->author;
-	}
-
-	public function getDate_cont() {
-		return $this->date_cont;
-	}
-
-	public function setId($id) {
 		
-		$this->id = $id;
-		
-	}
-	
-	public function setTitle($title) {
-		
-		$this->title = $title;
-		
-	}
-	
-	public function setContent($content) {
-		
-		$this->content = $content;
-		
-	}
-
-	public function setAuthor($author) {
-		
-		$this->title = $author;
-		
-	}
-
-	public function setDate_cont($date_cont) {
-		
-		$this->title = $date_cont;
-		
-	}
-	
 }
 
