@@ -8,8 +8,13 @@ class PostRepository extends Repository {
     {
         $posts = [];
         while($data = $req-> fetch()) {
-            $post = new Post($data['id'], $data['title'], $data['content'], $data['author'], $data['date_cont']);
-            $posts[] = $post;
+            $this->post = new Post();
+            $this->data['id'] = $this->post->getPostVar('id');
+            $this->data['title'] = $this->post->getPostVar('title');
+            $this->data['content'] = $this->post->getPostVar('content');
+            $this->data['author'] = $this->post->getPostVar('author');
+            $this->data['date_cont'] = $this->post->getPostVar('date_cont');
+            $posts[] = $data;
         }
         $req->closeCursor();
 
@@ -42,9 +47,15 @@ class PostRepository extends Repository {
 		
 		while($data = $req-> fetch()) {
 
-			$article = new Post($data['id'], $data['title'], $data['content'], $data['author'], $data['date_cont']);
+			$this->article = new Post();
+			$this->data['id'] = $this->article->getPostVar('id');
+            $this->data['title'] = $this->article->getPostVar('title');
+            $this->data['content'] = $this->article->getPostVar('content');
+            $this->data['author'] = $this->article->getPostVar('author');
+            $this->data['date_cont'] = $this->article->getPostVar('date_cont');
+
 			
-			$post[] = $article;
+			$post[] = $data;
 			
 		}
 		
@@ -75,9 +86,14 @@ class PostRepository extends Repository {
 
 		while($data = $req-> fetch()) {
 
-			$post = new Post($data['id'], $data['title'], $data['content'], $data['author'], $data['date_cont']);
+			$this->post = new Post();
+			$this->data['id'] = $this->post->getPostVar('id');
+            $this->data['title'] = $this->post->getPostVar('title');
+            $this->data['content'] = $this->post->getPostVar('content');
+            $this->data['author'] = $this->post->getPostVar('author');
+            $this->data['date_cont'] = $this->post->getPostVar('date_cont');
 
-			$posts[] = $post;
+			$posts[] = $data;
 		}
 
 		$req->closeCursor();
