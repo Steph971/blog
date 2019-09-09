@@ -107,9 +107,11 @@ class UserController extends Controller{
 	function deconnexion()
 	{
 		$_SESSION['idUser'] = $this->session['idUser'];
-		unset($this->session['pseudo']); // delete session for disconnection
-		unset($this->session['password']);
-		unset($this->session['idUser']);
+		$this->session['pseudo']; // delete session for disconnection
+		$this->session['password'];
+		$this->session['idUser'];
+
+		session_destroy();
 
 		return $this->render('connectUser.twig'); // redirect to authentication form
 		
