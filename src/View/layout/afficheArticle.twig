@@ -6,42 +6,44 @@
 
 {% block content %}
 
-  <h3>
+  {% for art in post %}
+    <h3>
+      {{art.title}}  
+    </h3>
+    <p>
+      {{art.content |striptags}}</br></br>
+    </p>
 
-    {% for art in post %}
-
-      {{art.title}}
-      le {{art.date_cont}}</br>
-      Auteur : {{art.author}}
-  </h3>
-  <p>
-    {{art.content}}</br>
-    </br>
-  </p>
-    {% endfor %}
+    <h5>
+      <p>
+        le {{art.date_cont}}</br>
+        Auteur : {{art.author}}
+      </p>
+    </h5>
+  {% endfor %}
 
   <h2>Commentaires:</h2>
         
-    {% for com in comments %} 
+  {% for com in comments %} 
         
-      <div>
-        {{com.pseudo}}</br>
-        {{com.message}}</br>
-        le {{com.date_mess}}
-        <a href="index.php?page=flagComment&amp;id={{com.id}}"><img src="img/warning.png"></a>
-        <hr>
-      </div>
+    <div>
+      {{com.pseudo}}</br>
+      {{com.message}}</br>
+      le {{com.date_mess}}
+      <a href="index.php?page=flagComment&amp;id={{com.id}}"><img src="img/warning.png"></a>
+      <hr>
+    </div>
        
-      {% endfor %}
+  {% endfor %}
 
-    <h3>Ajouter un commentaire:</h3>
-      <div>
-        <form action="index.php?page=addComment" method="POST">
-          <p><label for="message">Commentaire</label>
-          <textarea name="message" id="message"></textarea></p>
-          <input type="submit">
-        </form>
-      </div>
+  <h3>Ajouter un commentaire:</h3>
+  <div>
+    <form action="index.php?page=addComment" method="POST">
+      <p><label for="message">Commentaire</label>
+      <textarea name="message" id="message"></textarea></p>
+      <input type="submit">
+    </form>
+  </div>
 
 {% endblock %}
 
