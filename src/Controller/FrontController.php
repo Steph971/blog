@@ -8,21 +8,32 @@ use Twig\Environment;
 use Twig\Extension\DebugExtension;
 use Twig\Loader\FilesystemLoader;
 
-class FrontController extends Controller {
+/**
+ * Class FrontController
+ * @package App\Controller
+ */
+class FrontController extends Controller 
+{
 
+    /**
+     *
+     */
     private function setSession()
     {
         $_SESSION = $this->session;
     }
 
-	public function run(){
+    /**
+     *
+     */
+    public function run()
+    {
 
 		if (isset($this->get['page']) && !empty($this->get['page'])) {
 			$page = $this->get['page'];
-		} else {
-	
+		} 
+		else {
 			$page = 'home';
-	
 		}
 
         $postController = new PostController();
@@ -78,12 +89,12 @@ class FrontController extends Controller {
 				$this->session['pseudo'] = $this->post['pseudo'];
 				$this->session['password'] = $this->post['password'];
                 $this->setSession();
-				$response = $userController->showConnectAdmin();
+				$userController->showConnectAdmin();
 				$response = $userController->connected();	
 				break;
 
 			case "addArticles" :
-				$response = $userController->showConnectAdmin();
+				$userController->showConnectAdmin();
 				$response = $userController->addArticles();	
 				break;
 
@@ -135,7 +146,7 @@ class FrontController extends Controller {
 			case "addComment" : 
 				$this->session['message'] = $this->post['message'];
 				$this->setSession();
-				$response = $commentController->showAddComment();
+				$commentController->showAddComment();
 				$this->setSession();
 				$response = $postController->showPost();	
 				break;
@@ -172,7 +183,3 @@ class FrontController extends Controller {
 		echo filter_var($response);
 	}	
 }
-
-
-
-
