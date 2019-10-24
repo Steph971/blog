@@ -2,49 +2,91 @@
 
 namespace App\Model;
 
-class User {
-	
-	private $id;
-	private $username;
-	private $password;
-	
-	public function __construct($id, $username, $password) {
+/**
+ * Class User
+ * @package App\Model
+ */
+class User 
+{
+
+    /**
+     * @var
+     */
+    private $id;
+    /**
+     * @var
+     */
+    private $username;
+    /**
+     * @var
+     */
+    private $password;
+
+    /**
+     * User constructor.
+     * @param $id
+     * @param $username
+     * @param $password
+     */
+    public function __construct($id, $username, $password) 
+    {
 		
 		$this->id = $id;
 		$this->username = $username;
-		$this->password = $password;
-		
+		$this->password = $password;	
 	}
-	
-	public function getId() {
+
+    /**
+     * @return mixed
+     */
+    public function getId() 
+    {
 		return $this->id;
 	}
 
-	public function getUsername() { // get pour recuperer la valeur d'une variable
+    /**
+     * @return mixed
+     */
+    public function getUsername() // get pour recuperer la valeur d'une variable
+    { 
 		return $this->username;
 	}
-	
-	public function getPassword() {
+
+    /**
+     * @return mixed
+     */
+    public function getPassword() 
+    {
 		return $this->password;
 	}
-	
-	public function setId($id) {
+
+    /**
+     * @param $id
+     */
+    public function setId($id) 
+    {
 		
 		$this->id = $id;
 		
 	}
 
-	public function setUsername($username) { // set pour affecter une valeur a l'attribut
+    /**
+     * @param $username
+     */
+    public function setUsername($username) // set pour affecter une valeur a l'attribut
+    { 
 		
 		$this->username = $username;
 		
 	}
-	
-	public function setPassword($password) {
+
+    /**
+     * @param $password
+     */
+    public function setPassword($password) 
+    {
 		
 		$this->password = $password;
 		
-	}
-	
+	}	
 }
-

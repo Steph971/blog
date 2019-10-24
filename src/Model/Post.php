@@ -2,24 +2,40 @@
 
 namespace App\Model;
 
-class Post {
-	
-	private $post;
-	
-	public function __construct() {
-		
-		$this->post = filter_input_array(INPUT_POST);
-		
+/**
+ * Class Post
+ * @package App\Model
+ */
+class Post 
+{
+
+    /**
+     * @var mixed
+     */
+    private $post;
+
+    /**
+     * Post constructor.
+     */
+    public function __construct() 
+    {
+		$this->post = filter_input_array(INPUT_POST);	
 	}
-	
-	public function getPostArray() {
+
+    /**
+     * @return mixed
+     */
+    public function getPostArray() 
+    {
 		return $this->post;
 	}
 
-	public function getPostVar(string $var) {
+    /**
+     * @param string $var
+     * @return mixed
+     */
+    public function getPostVar(string $var) 
+    {
 		return $this->post[$var];
-	}
-
-		
+	}		
 }
-

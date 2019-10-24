@@ -5,7 +5,12 @@ namespace App\Controller;
 use \App\Model\CommentRepository;
 use \App\Model\PostRepository;
 
-class CommentController extends Controller {
+/**
+ * Class CommentController
+ * @package App\Controller
+ */
+class CommentController extends Controller 
+{
 	
 	
 	//function getComments() {
@@ -15,13 +20,15 @@ class CommentController extends Controller {
 
 		//require('../src/view/afficheArticle.php');
 	//}
-	
-	function showAddComment() {
+
+    /**
+     *
+     */
+    public function showAddComment() 
+    {
 		
 		$commentRepo = new CommentRepository();
-		$commentRepo->addComment();
-		
-		
+		$commentRepo->addComment();	
 	}
 
 	//function getCommentsByArticle(){
@@ -33,7 +40,14 @@ class CommentController extends Controller {
 		//echo $this->render('afficheArticle.twig', ['comments' => $comments, 'session' => $_SESSION]);
 	//}
 
-	function showCommentsValid() {
+    /**
+     * @return string
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
+     */
+    public function showCommentsValid() 
+    {
 
 		$commentRepo = new CommentRepository();
 		$coms = $commentRepo->getCommentsValid(); // get comments to validated link to the users
@@ -41,17 +55,30 @@ class CommentController extends Controller {
 		return $this->render('moderation.twig', ['coms' => $coms, 'session' => $this->session]);
 	}
 
-	function showValidComment(){
+    /**
+     * @return string
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
+     */
+    public function showValidComment()
+    {
 
 		$commentRepo = new CommentRepository();
 		$commentRepo->validComment(); // to validate the comment
 		$coms = $commentRepo->getCommentsValid(); //get comments to validated 
 
 		return $this->render('moderation.twig', ['coms' => $coms, 'session' => $this->session]);
-
 	}
 
-	function showSuppComment() {
+    /**
+     * @return string
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
+     */
+    public function showSuppComment() 
+    {
 
 		$commentRepo = new CommentRepository();
 		$commentRepo->suppComment(); // delete comment from id
@@ -60,7 +87,14 @@ class CommentController extends Controller {
 		return $this->render('moderation.twig', ['coms' => $coms, 'session' => $this->session]);
 	}
 
-	function showFlagComment() {
+    /**
+     * @return string
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
+     */
+    public function showFlagComment() 
+    {
 
 		$commentRepo = new CommentRepository();
 		$commentRepo->flagComment(); // put the comment pending validation
@@ -70,6 +104,4 @@ class CommentController extends Controller {
 
 		return $this->render('afficheArticle.twig', ['post' => $post, 'comments' => $comments, 'session' => $this->session]);
 	}
-
 }
-

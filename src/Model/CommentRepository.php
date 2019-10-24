@@ -2,9 +2,18 @@
 
 namespace App\Model;
 
-class CommentRepository extends Repository {
+/**
+ * Class CommentRepository
+ * @package App\Model
+ */
+class CommentRepository extends Repository 
+{
 
-	private function getComs($req)
+    /**
+     * @param $req
+     * @return array
+     */
+    public function getComs($req)
     {
         $comment = [];
 		
@@ -18,8 +27,11 @@ class CommentRepository extends Repository {
 
 		return $comment;
     }
-	
-	function getComments()
+
+    /**
+     * @return array
+     */
+    public function getComments()
 	{
 		$req = $this->database->prepare('SELECT * FROM comments WHERE validate = 1');
 		$req->execute();
@@ -28,7 +40,10 @@ class CommentRepository extends Repository {
 	}
 
 
-	function getCommentsByArticle()
+    /**
+     * @return array
+     */
+    public function getCommentsByArticle()
 	{
 		$req = $this->database->prepare('SELECT comments.id, pseudo, message, date_mess FROM comments INNER JOIN user ON id_user=user.id WHERE id_post=:id_post AND validate=1 ORDER BY date_mess DESC');
 		$req->bindParam(':id_post', $this->session['id_post'], \PDO::PARAM_INT);
@@ -36,9 +51,12 @@ class CommentRepository extends Repository {
 
 		return $this->getComs($req);
 	}
-	
-		
-	function addComment()
+
+
+    /**
+     *
+     */
+    public function addComment()
 	{
 		$req = $this->database->prepare('INSERT INTO comments(id_user, id_post, message, date_mess) VALUES(:id_user, :id_post, :message, NOW())');
 		$req->bindParam(':id_user', $this->session['idUser'], \PDO::PARAM_INT);
@@ -48,7 +66,10 @@ class CommentRepository extends Repository {
 		
 	}
 
-	function getCommentsValid() 
+    /**
+     * @return array
+     */
+    public function getCommentsValid()
 	{
 		$req = $this->database->prepare('SELECT comments.id, pseudo, message, date_mess FROM comments INNER JOIN user ON id_user = user.id WHERE validate=0 ORDER BY date_mess DESC');
 		$req->execute();
@@ -56,21 +77,30 @@ class CommentRepository extends Repository {
 		return $this->getComs($req);
 	}
 
-	function validComment() 
+    /**
+     *
+     */
+    public function validComment()
 	{
 		$req = $this->database->prepare('UPDATE comments SET validate = 1 WHERE id = :id');
 		$req->bindParam(':id', $this->session['id'], \PDO::PARAM_INT);
 		$req->execute();
 	}
 
-	function suppComment() 
+    /**
+     *
+     */
+    public function suppComment()
 	{
 		$req = $this->database->prepare('DELETE FROM comments WHERE id = :id');
 		$req->bindParam(':id', $this->session['id'], \PDO::PARAM_INT);
 		$req->execute();
 	}
 
-	function flagComment() 
+    /**
+     *
+     */
+    public function flagComment()
 	{
 		$req = $this->database->prepare('UPDATE comments SET validate = 0 WHERE id = :id');
 		$req->bindParam(':id', $this->session['id'], \PDO::PARAM_INT);
