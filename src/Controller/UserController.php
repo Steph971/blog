@@ -72,7 +72,8 @@ class UserController extends Controller
 		$users = $userRepo->getUsers();	 // get the list of users put in the variable $users
 		unset($this->session['pseudo']); // delete session 
 		unset($this->session['password']);
-		return $this->render('affichageAccueil.twig', ['users' => $users, 'session' => $this->session]); // redirection to the list of users
+        return $this->render('subscribe.twig'); 
+		// redirection to the list of users
 	}
 
     /**
@@ -126,10 +127,10 @@ class UserController extends Controller
 
 		if($user){ // if user exists 
 
-			$this->session['idUser'] = $userRepo->getConnectUser(); // get user id by pseudo(used to add comments and articles)
-			$_SESSION['idUser'] = $this->session['idUser'];
+			$_SESSION['idUser'] = $userRepo->getConnectUser(); // get user id by pseudo(used to add comments and articles)
+			//$_SESSION['idUser'] = $this->session['idUser'];
 
-			return $this->render('connected.twig', ['session' => $this->session]);// redirect successfully connected user
+			return $this->render('connected.twig', ['session' => $_SESSION]);// redirect successfully connected user
 		}
 		else { // if user doesn't exist
 			return $this->render('connectUser.twig'); // redirect to authentication form
