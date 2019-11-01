@@ -14,8 +14,8 @@ class UserRepository extends Repository
      */
     public function getUsers()
 	{
-		$req = $this->database->prepare('SELECT id, pseudo, password FROM user');
-		$req->execute();
+		$req = $this->database->prepare('SELECT id, pseudo, password FROM user ORDER BY id DESC LIMIT 0,1');
+		$req->execute(); 
 		
 		$users = [];
 		
