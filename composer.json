@@ -1,10 +1,12 @@
 {
     "name": "mos/blog",
+    "version": "0.1.2",
     "description": "Création d'un blog pour un écrivain",
     "type": "e.g library",
     "require": {
         "twig/twig": "^2.0"
     },
+    "license": "MIT",
     "authors": [
         {
             "name": "Stephen Germain",
