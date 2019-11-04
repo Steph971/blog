@@ -9,8 +9,7 @@ Creation of a writer's blog with a frontend interface (reading posts) and a back
 The blog was built in PHP locally with a MySQL database. The code uses an MVC architecture and is object-oriented.
 
 ## Summary
-
--   [Package Manager](#package-manager)  
+  
 -   [Download](#download)  
 -   [Support](#support)  
 -   [Open-Source](#open-source)  
@@ -21,14 +20,6 @@ The blog was built in PHP locally with a MySQL database. The code uses an MVC ar
 -   [Versioning](#versioning)  
 -   [Creator](#creator)  
 -   [Copyright](#copyright)    
-
----
-
-## Package Manager
-
-[![Packagist Version](https://img.shields.io/packagist/v/stephen-germain/blog.svg?label=Packagist)](https://packagist.org/packages/stephen-germain/blog)
-
-Composer : `composer create-project stephen-germain/blog`  
 
 ---
 
@@ -44,7 +35,7 @@ Composer : `composer create-project stephen-germain/blog`
 
 ## Support
 
-pam-app has continuous support !
+blog has continuous support !
 
 [![Project Maintained](https://img.shields.io/maintenance/yes/2019.svg?label=Maintained)](https://github.com/stephen-germain/blog)
 [![GitHub Last Commit](https://img.shields.io/github/last-commit/stephen-germain/blog.svg?label=Last+Commit)](https://github.com/stephen-germain/blog/commits/master)
@@ -53,7 +44,7 @@ pam-app has continuous support !
 
 ## Open-Source
 
-[![GitHub Stars](https://img.shields.io/github/stars/stephen-germain/blog.svg?label=GitHub+:+pam-app+|+Stars)](https://github.com/stephen-germain/blog)
+[![GitHub Stars](https://img.shields.io/github/stars/stephen-germain/blog.svg?label=GitHub+:+Blog+|+Stars)](https://github.com/stephen-germain/blog)
 
 ---
 
@@ -83,7 +74,7 @@ And Pull Requests can be created there
 
 ## Contributing
 
-pam-app needs you if you like it : sends pull requests on GitHub to improve it !!
+Blog needs you if you like it : sends pull requests on GitHub to improve it !!
 
 [![GitHub Contributors](https://img.shields.io/github/contributors/stephen-germain/blog.svg?label=Contributors)](https://github.com/stephen-germain/blog/graphs/contributors)
 
@@ -101,8 +92,8 @@ pam-app is maintained under the [Semantic Versioning 2.0.0](https://semver.org)
 
 Stephen Germain
 
-[![GitHub Followers](https://img.shields.io/github/followers/philippebeck.svg?label=GitHub+:+philippebeck+|+Followers)](https://github.com/philippebeck)
-[![Twitter Follow](https://badgen.net/twitter/follow/philippepjbeck)](https://twitter.com/philippepjbeck)
+[![GitHub Followers](https://img.shields.io/github/followers/stephen-germain.svg?label=GitHub+:+stephen-germain+|+Followers)](https://github.com/stephen-germain)
+[![Twitter Follow](https://badgen.net/twitter/follow/GermainStephen2)](https://twitter.com/GermainStephen2)
 
 ---
 
