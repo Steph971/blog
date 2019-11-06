@@ -1,31 +1,25 @@
 {% extends 'layout.twig' %}
 
 {% block head %}
- <title>Liste des utilisateurs</title>
+  <title>Vous êtes inscrit</title>
 {% endblock %}
 
 {% block content %}
 
-  <a href="index.php?page=home">Page d'accueil</a>
-        
-    <p>Utilisateurs :</p>
-
+  <a href="index.php?page=home">Retour à la page d'accueil</a>   
+    <p>Utilisateur :</p>
       {% for user in users %}
-    
         <div class="user">
           <h3>
-            {{user.username}}
+            Bienvenue {{user.username}}
           </h3>
-        
           <p>
-            Mot de passe:
-           {{user.password}}</br>
-            <a href="index.php?page=editUser&amp;id={{user.id}}"><img src="img/edit.png"></a>
-            <a href="index.php?page=delete&amp;id={{user.id}}"><img src="img/delete.png"></a> <!---->
-              </br>
+            Merci pour votre inscription et bonne navigation sur le blog !
           </p>
+          <a href="index.php?page=editUser&amp;id={{user.id}}"><img src="img/edit.png"></a>
+          <a href="index.php?page=delete&amp;id={{user.id}}"><img src="img/delete.png"></a>
         </div> 
-
+        </br>
       {% endfor %}
 
 {% endblock %}
