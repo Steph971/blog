@@ -11,15 +11,17 @@
     {% for post in posts %}
         
       <div class="post-preview">
-      <a href="index.php?page=getPost&amp;id={{post.id}}">
-        <h2 class="post-title">
-          {{post.title}}
-        </h2>
-        <p class="post-subtitle">
+        <a href="index.php?page=getPost&amp;id={{post.id}}">
+          <h2 class="post-title">
+            {{post.title}}
+          </h2>
+          <p class="post-subtitle">
             {{post.content |slice (0, 150)}}</br>
-                </br>
-            <a href="index.php?page=selectPost&amp;id={{post.id}}"><img src='img/edit.png'/></a>
-            <a href="index.php?page=deletePost&amp;id={{post.id}}"><img src='img/delete.png'/></a>
+            </br>
+            {% if session.idUser is defined and session.password is defined and session.level is defined and  session.level == "2"%}
+              <a href="index.php?page=selectPost&amp;id={{post.id}}"><img src='img/edit.png'/></a>
+              <a href="index.php?page=deletePost&amp;id={{post.id}}"><img src='img/delete.png'/></a>
+            {% endif %}
           </p>
         </h3>
       </a>
