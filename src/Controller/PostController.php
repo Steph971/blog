@@ -10,7 +10,6 @@ use \App\Model\CommentRepository;
  */
 class PostController extends Controller 
 {
-
     /**
      * @return string
      * @throws \Twig\Error\LoaderError
@@ -19,7 +18,6 @@ class PostController extends Controller
      */
     public function listPosts() 
     {
-		
 		$postRepo = new PostRepository();
 		$posts = $postRepo->getLastPosts(); // get articles in descending order
 		
@@ -33,8 +31,7 @@ class PostController extends Controller
      * @throws \Twig\Error\SyntaxError
      */
     public function showAllPosts() 
-    {
-		
+    {	
 		$postRepo = new PostRepository();
 		$posts = $postRepo->getAllPosts(); // get all articles
 		
@@ -49,7 +46,6 @@ class PostController extends Controller
      */
     public function showPost() 
     {
-
 		$postRepo = new PostRepository();
 		$post = $postRepo->getPost(); // get article from id
 		$commentRepo = new CommentRepository();
@@ -57,11 +53,6 @@ class PostController extends Controller
 		return $this->render('afficheArticle.twig', ['post' => $post, 'comments' => $comments, 'session' => $this->session]);
 	}
 
-	//function addPosts(){
-
-		//require('../src/view/addposts.php');
-
-	//}
     /**
      * @return string
      * @throws \Twig\Error\LoaderError
@@ -70,10 +61,8 @@ class PostController extends Controller
      */
     public function showAddPost() 
     {
-		
 		$postRepo = new PostRepository();
 		$postRepo->addPost(); // add article
-		
 		$posts = $postRepo->getLastPosts();
 		
 		return $this->render('home.twig', ['posts' => $posts, 'session' => $this->session]);	
@@ -87,7 +76,6 @@ class PostController extends Controller
      */
     public function showSelectPost() 
     {
-
 		$postRepo = new PostRepository();
 		$article = $postRepo->selectPost(); // get articles from id
 		return $this->render('selectPost.twig', ['article' => $article, 'session' => $this->session]);
@@ -101,7 +89,6 @@ class PostController extends Controller
      */
     public function showUpdatePost() 
     {
-
 		$postRepo = new PostRepository();
 		$postRepo->updatePost(); // update article from id
 		$posts = $postRepo->getLastPosts(); 
@@ -116,7 +103,6 @@ class PostController extends Controller
      */
     public function showDeletePost() 
     {
-
 		$postRepo = new PostRepository();
 		$postRepo->deletePost(); // delete article from id
 		$posts = $postRepo->getLastPosts();

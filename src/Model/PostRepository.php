@@ -70,7 +70,6 @@ class PostRepository extends Repository
 		return $post;
 	}
 
-
     /**
      *
      */
@@ -95,13 +94,6 @@ class PostRepository extends Repository
 		$posts = [];
 
 		while($data = $req-> fetch()) {
-
-			//$this->post = new Post();
-			//$this->data['id'] = $this->post->getPostVar('id');
-           // $this->data['title'] = $this->post->getPostVar('title');
-           // $this->data['content'] = $this->post->getPostVar('content');
-            //$this->data['author'] = $this->post->getPostVar('author');
-           // $this->data['date_cont'] = $this->post->getPostVar('date_cont');
 
 			$posts[] = $data;
 		}

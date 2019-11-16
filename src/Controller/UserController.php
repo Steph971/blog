@@ -10,12 +10,6 @@ use \App\Model\UserRepository;
  */
 class UserController extends Controller
 {
-
-	//private function setSessionId()
-    //{
-        //$_SESSION['idUser'] = $this->session['idUser'];
-   // }
-
     /**
      * @return string
      * @throws \Twig\Error\LoaderError
@@ -24,7 +18,6 @@ class UserController extends Controller
      */
     public function listAllUsers() 
     {
-		
 		$userRepo = new UserRepository();
 		$users = $userRepo->getUsers(); // get the list of users put in the variable $users
 		return $this->render('affichageAccueil.twig', ['users' => $users, 'session' => $this->session]);
@@ -38,10 +31,8 @@ class UserController extends Controller
      */
     public function showAddUser() 
     {
-		
 		$userRepo = new UserRepository();
 		$userRepo->addUser();
-		
 		$users = $userRepo->getUsers(); // get the list of users put in the variable $users
 		
 		return $this->render('affichageAccueil.twig', ['users' => $users, 'session' => $this->session]);	
@@ -54,8 +45,7 @@ class UserController extends Controller
      * @throws \Twig\Error\SyntaxError
      */
     public function subscribe() 
-    {
-		
+    {	
 		return $this->render('subscribe.twig');	
 	}
 
@@ -128,12 +118,10 @@ class UserController extends Controller
 		if($user){ // if user exists 
 
 			$_SESSION['idUser'] = $userRepo->getConnectUser(); // get user id by pseudo(used to add comments and articles)
-			//$_SESSION['idUser'] = $this->session['idUser'];
-
 			return $this->render('connected.twig', ['session' => $_SESSION]);// redirect successfully connected user
 		}
 		else { // if user doesn't exist
-			return $this->render('connectUser.twig'); // redirect to authentication form
+			return $this->render('connectUserError.twig'); // redirect to authentication form
 		}
 	}
 
@@ -180,7 +168,6 @@ class UserController extends Controller
      */
     public function showConnectAdmin() 
     {
-
 		$userRepo = new UserRepository();
 		$_SESSION['level'] = $userRepo->connectAdmin(); // get level by user
 	}
