@@ -1,0 +1,29 @@
+ {% extends 'layout.twig' %}
+
+ {% block head %}
+ <title>Connexion</title>
+{% endblock %}
+ 
+ {% block content %}
+
+ <h1>Se Connecter</h1>
+
+        <p> <a href="index.php?page=home">Retour</a></p>
+
+        <p><strong>L'identifiant ou le mot de passe est invalide</strong></p>
+
+        <form method="post" action="index.php?page=connected">
+          <label for="pseudo">Pseudo : </label>
+          <input type="text" name="pseudo" placeholder="Identifiant"/></br>     
+          <label for="password">Password : </label>
+          <input type="password" name="password" placeholder="mot de passe"/></br>
+          <input type="submit" value="Connexion" />
+        </form> 
+        
+{% endblock %}
+
+{% block nextpage %}
+  <div class="clearfix">
+    <a class="btn btn-primary float-right" href="index.php?page=listeArticles">Tous les articles &rarr;</a>
+  </div>
+{% endblock %}
