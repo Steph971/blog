@@ -27,7 +27,7 @@
           </a>
           <p class="post-meta">Publié par
             {{post.author}}
-            le {{post.date_cont}} 
+            le {{post.date_cont|date("m/d/Y", "Europe/Paris")}} à {{post.date_cont|date("H:i:s")}}   
           </p>
         </div>
         <hr>
