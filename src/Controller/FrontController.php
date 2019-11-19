@@ -81,7 +81,6 @@ class FrontController extends Controller
 				break;
 
 			case "connectUser" : 
-				$userController = new UserController();
 				$response = $userController->showConnectUser();
 				break;
 
