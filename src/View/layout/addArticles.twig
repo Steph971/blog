@@ -1,0 +1,42 @@
+{% extends 'layout.twig' %}
+
+{% block head %}
+Ajout article
+{% endblock %}
+
+{% block tiny %}
+  <script src="https://cdn.tiny.cloud/1/yz1dl2jhkmtb0ke23e6t7hbzz91j56ylmje1ow9b02jsm8ao/tinymce/5/tinymce.min.js"></script>
+  <script>
+  tinymce.init({
+    selector: '#mytextarea'
+  });
+  </script>
+
+{% endblock %}
+
+{% block content %}
+
+  {% if session.pseudo is defined %}
+       <p> Bonjour {{ session.pseudo }} </p>
+  {% endif %}
+        
+  <h2>Ajouter un article:</h2>
+
+  <form method="POST" action="index.php?page=addPost">
+    <p> <label for="title">Titre: </label>
+       <input type="text" name="title"></p>
+     <label for="content">Contenu:</label>
+    <textarea id="mytextarea" name="content"></textarea>
+    <input type="submit">
+
+    <p><a href="index.php?page=deconnexion"><em>Déconnexion</em></a></p>
+
+  </form>
+
+{% endblock %}
+
+{% block nextpage %}
+  <div class="clearfix">
+    <a class="btn btn-primary float-right" href="index.php?page=listeArticles">Tous les articles &rarr;</a>
+  </div>
+{% endblock %}
