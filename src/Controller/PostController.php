@@ -105,7 +105,10 @@ class PostController extends Controller
     {
 		$postRepo = new PostRepository();
 		$postRepo->deletePost(); // delete article from id
+        $commentRepo = new CommentRepository();
+        $coms = $commentRepo->suppComPost();
 		$posts = $postRepo->getLastPosts();
-		return $this->render('home.twig', ['posts' => $posts, 'session' => $this->session]);
+         
+		return $this->render('home.twig', ['posts' => $posts, 'coms' => $coms, 'session' => $this->session]);
 	}
 }
