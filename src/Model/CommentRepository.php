@@ -97,6 +97,13 @@ class CommentRepository extends Repository
 		$req->execute();
 	}
 
+	public function suppComPost()
+	{
+		$req = $this->database->prepare('DELETE FROM comments WHERE id_post= :id');
+		$req->bindParam(':id', $this->session['id_post'], \PDO::PARAM_INT);
+		$req->execute();
+	}
+
     /**
      *
      */
