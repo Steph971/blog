@@ -138,10 +138,10 @@ class UserController extends Controller
 
 		if($user){ // if user exists 
 
-			$this->session['idUser'] = $userRepo->getConnectUser(); // get user id by pseudo(used to add comments and articles)
-			$_SESSION['idUser'] = $this->session['idUser'];
+			$_SESSION['idUser'] = $userRepo->getConnectUser(); // get user id by pseudo(used to add comments and articles)
+			//$_SESSION['idUser'] = $this->session['idUser'];
 
-			return $this->render('connected.twig', ['session' => $this->session]);  // redirect successfully connected user
+			return $this->render('addArticles.twig', ['session' => $this->session]);  // redirect successfully connected user
 		}
 	}
 
