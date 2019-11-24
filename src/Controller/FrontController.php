@@ -117,7 +117,7 @@ class FrontController extends Controller
 				$this->session['content'] = $this->post['content'];
 				$this->setSession();
 				$response = $postController->showAddPost();
-				break;	
+				break;
 
 			case "selectPost" : 
 				$this->session['id'] = $this->get['id'];
