@@ -1,8 +1,8 @@
 {% extends 'layout.twig' %}
 
-{% block head %}
- <title>Accueil</title>
-{% endblock %}
+{% block head %}Accueil{% endblock %}
+ 
+
 
 {% block content %}
 
@@ -19,7 +19,7 @@
             <p class="post-subtitle">
               {{post.content |slice(0, 150, true) |striptags}}</br>
               </br>
-              {% if session.idUser is defined %}
+              {% if session.idUser is defined and session.level == "2" %}
                 <a href="index.php?page=selectPost&amp;id={{post.id}}"><img src='img/edit.png'/></a>
                 <a href="index.php?page=deletePost&amp;id={{post.id}}"><img src='img/delete.png'/></a>
               {% endif %}
