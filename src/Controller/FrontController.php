@@ -64,7 +64,7 @@ class FrontController extends Controller
 			case "userAccount" : 
 				//$this->session['id'] = $this->get['id'];
 				$this->setSession();
-				$response = $userController->listAllUsers();
+				$response = $userController->getUserAccount();
 				break;
 
 			case "delete" :					
