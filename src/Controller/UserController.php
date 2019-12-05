@@ -20,8 +20,16 @@ class UserController extends Controller
     {
 		$userRepo = new UserRepository();
 		$users = $userRepo->getUsers(); // get the list of users put in the variable $users
-		return $this->render('affichageAccueil.twig', ['users' => $users, 'session' => $this->session]);
+		return $this->render('userAccount.twig', ['users' => $users, 'session' => $this->session]);
 	}
+
+    public function getUserAccount() 
+    {
+        $userRepo = new UserRepository();
+        $users = $userRepo->getUserAccount(); // get the list of users put in the variable $users
+
+        return $this->render('userAccount.twig', ['users' => $users, 'session' => $this->session]);
+    }
 
     /**
      * @return string
