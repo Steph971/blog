@@ -61,6 +61,12 @@ class FrontController extends Controller
 				$response = $userController->subscribe();
 				break;
 
+			case "userAccount" : 
+				//$this->session['id'] = $this->get['id'];
+				$this->setSession();
+				$response = $userController->listAllUsers();
+				break;
+
 			case "delete" :					
 				$this->session['id'] = $this->get['id'];
 				$this->setSession();
