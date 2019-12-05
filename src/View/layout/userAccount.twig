@@ -1,0 +1,31 @@
+{% extends 'layout.twig' %}
+
+{% block head %}
+  Mon compte
+{% endblock %}
+
+{% block content %}
+
+  <a href="index.php?page=home">Retour à la page d'accueil</a>   
+      {% for user in users %}
+        <div class="user">
+          <h3>
+            {{user.username}}
+          </h3>
+          <p>
+            Vous pouvez modifier ou supprimer votre compte
+          </p>
+          <a href="index.php?page=editUser&amp;id={{user.id}}"><img src="img/edit.png"></a>
+          <a href="index.php?page=delete&amp;id={{user.id}}"><img src="img/delete.png"></a>
+        </div> 
+        </br>
+      {% endfor %}
+
+{% endblock %}
+
+{% block nextpage %}
+  <div class="clearfix">
+    <a class="btn btn-primary float-right" href="index.php?page=listeArticles">Tous les articles &rarr;</a>
+  </div>
+{% endblock %}
+
