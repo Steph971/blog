@@ -30,9 +30,27 @@ class CommentController extends Controller
     {
 		$commentRepo = new CommentRepository();
 		$coms = $commentRepo->getCommentsValid(); // get comments to validated link to the users
+        $flags = $commentRepo->getCommentsFlag();
 
-		return $this->render('moderation.twig', ['coms' => $coms, 'session' => $this->session]);
+        if(isset($this->session['pseudo']) && isset($this->session['password']) && isset($this->session['level'])) {
+                    if($this->session['level'] == "2" ){
+
+		return $this->render('moderation.twig', ['coms' => $coms, 'flags' => $flags, 'session' => $this->session]);
+
+            }
+                    else {
+                        echo "Acces refusé";
+                    }
+                }
 	}
+
+    public function showCommentsFlag() 
+    {
+        $commentRepo = new CommentRepository();
+        $flags = $commentRepo->getCommentsFlag(); // get comments to validated link to the users
+
+        return $this->render('moderation.twig', ['flags' => $flags, 'session' => $this->session]);
+    }
 
     /**
      * @return string
@@ -45,8 +63,10 @@ class CommentController extends Controller
 		$commentRepo = new CommentRepository();
 		$commentRepo->validComment(); // to validate the comment
 		$coms = $commentRepo->getCommentsValid(); //get comments to validated 
+        $commentRepo->validFlagComment(); // to validate the comment
+        $flags = $commentRepo->getCommentsFlag();
 
-		return $this->render('moderation.twig', ['coms' => $coms, 'session' => $this->session]);
+		return $this->render('moderation.twig', ['coms' => $coms, 'flags' => $flags, 'session' => $this->session]);
 	}
 
     /**
@@ -60,8 +80,9 @@ class CommentController extends Controller
 		$commentRepo = new CommentRepository();
 		$commentRepo->suppComment(); // delete comment from id
 		$coms = $commentRepo->getCommentsValid();
+        $flags = $commentRepo->getCommentsFlag();
 
-		return $this->render('moderation.twig', ['coms' => $coms, 'session' => $this->session]);
+		return $this->render('moderation.twig', ['coms' => $coms, 'flags' => $flags, 'session' => $this->session]);
 	}
 
     /**
@@ -80,4 +101,16 @@ class CommentController extends Controller
 
 		return $this->render('afficheArticle.twig', ['post' => $post, 'comments' => $comments, 'session' => $this->session]);
 	}
+
+    public function showValidFlagComment()
+    {
+        $commentRepo = new CommentRepository();
+        $commentRepo->validFlagComment(); // to validate the comment
+        $flags = $commentRepo->getCommentsFlag(); //get comments to validated 
+        $commentRepo->validComment(); // to validate the comment
+        $coms = $commentRepo->getCommentsValid();
+
+
+        return $this->render('moderation.twig', ['flags' => $flags, 'coms' => $coms, 'session' => $this->session]);
+    }
 }
