@@ -6,7 +6,20 @@
 
 {% block content %}
 
-  <h1>Attente de validation:</h1>
+<h1>Commentaires signalés:</h1>
+
+    {% for flag in flags %} 
+          
+      <div>
+        {{flag.pseudo}}
+        <p><strong>{{flag.message}}</strong> -> Commentaire signalé<p>
+        {{flag.date_mess}}</br>
+        <a href="index.php?page=validFlagComment&amp;id={{flag.id}}"><img src="img/check.png"></a> - <a href="index.php?page=suppComment&amp;id={{flag.id}}"><img src="img/delete.png"></a></br></br>
+      </div>
+          
+    {% endfor %}
+
+  <h1>Nouveaux commentaires en attente de validation:</h1>
 
     {% for com in coms %} 
           
