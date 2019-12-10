@@ -104,14 +104,13 @@ class FrontController extends Controller
 				break;
 
 			case "moderation" :
-				if(isset($this->session['pseudo']) && isset($this->session['password']) && isset($this->session['level'])) {
-					if($this->session['level'] == "2" ){
+	
+						//$response = $commentController->showCommentsFlag();
 						$response = $commentController->showCommentsValid();
-					}
-		 			else {
-						echo "Acces refusé";
-					}
-				}
+					
+						
+					
+				
 				break;
 
 			case "listeArticles" :
@@ -162,9 +161,15 @@ class FrontController extends Controller
 				$response = $postController->showPost();
 				break;
 
-			case "getCommentsValid" :
-				$response = $commentController->showCommentsValid();
-				break;
+			//case "getCommentsValid" :
+				//$response = $commentController->showCommentsValid();
+			//	break;
+
+			//case "getCommentsFLag" :
+				//$response = $commentController->showCommentsFlag();
+				//break;
+
+
 
 			case "validComment" : 
 				$this->session['id'] = $this->get['id'];
@@ -182,6 +187,12 @@ class FrontController extends Controller
 				$this->session['id'] = $this->get['id'];
 				$this->setSession();
 				$response = $commentController->showFlagComment();
+				break;
+
+			case "validFlagComment" : 
+				$this->session['id'] = $this->get['id'];
+				$this->setSession();
+				$response = $commentController->showValidFlagComment();
 				break;
 		}
 
