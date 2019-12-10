@@ -45,7 +45,7 @@ class CommentRepository extends Repository
      */
     public function getCommentsByArticle()
 	{
-		$req = $this->database->prepare('SELECT comments.id, pseudo, message, date_mess FROM comments INNER JOIN user ON id_user=user.id WHERE id_post=:id_post AND validate=1 ORDER BY date_mess DESC');
+		$req = $this->database->prepare('SELECT comments.id, pseudo, message, date_mess, flag FROM comments INNER JOIN user ON id_user=user.id WHERE id_post=:id_post AND validate=1 ORDER BY date_mess DESC');
 		$req->bindParam(':id_post', $this->session['id_post'], \PDO::PARAM_INT);
 		$req->execute();
 
@@ -71,7 +71,15 @@ class CommentRepository extends Repository
      */
     public function getCommentsValid()
 	{
-		$req = $this->database->prepare('SELECT comments.id, pseudo, message, date_mess FROM comments INNER JOIN user ON id_user = user.id WHERE validate=0 ORDER BY date_mess DESC');
+		$req = $this->database->prepare('SELECT comments.id, pseudo, message, date_mess, flag FROM comments INNER JOIN user ON id_user = user.id WHERE validate=0 ORDER BY date_mess DESC');
+		$req->execute();
+
+		return $this->getComs($req);
+	}
+
+	public function getCommentsFlag()
+	{
+		$req = $this->database->prepare('SELECT comments.id, pseudo, message, date_mess FROM comments INNER JOIN user ON id_user = user.id WHERE flag=1 ORDER BY date_mess DESC');
 		$req->execute();
 
 		return $this->getComs($req);
@@ -109,7 +117,14 @@ class CommentRepository extends Repository
      */
     public function flagComment()
 	{
-		$req = $this->database->prepare('UPDATE comments SET validate = 0 WHERE id = :id');
+		$req = $this->database->prepare('UPDATE comments SET flag = 1 WHERE id = :id');
+		$req->bindParam(':id', $this->session['id'], \PDO::PARAM_INT);
+		$req->execute();
+	}
+
+	public function validFlagComment()
+	{
+		$req = $this->database->prepare('UPDATE comments SET flag = 0 WHERE id = :id');
 		$req->bindParam(':id', $this->session['id'], \PDO::PARAM_INT);
 		$req->execute();
 	}
